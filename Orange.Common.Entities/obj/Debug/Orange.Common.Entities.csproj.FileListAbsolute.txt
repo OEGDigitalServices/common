@@ -1,0 +1,10 @@
+C:\Projects\Orange-TriplePay\Orange.Common\Orange.Common.Entities\bin\Debug\Orange.Common.Entities.dll
+C:\Projects\Orange-TriplePay\Orange.Common\Orange.Common.Entities\bin\Debug\Orange.Common.Entities.pdb
+C:\Projects\Orange-TriplePay\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.csproj.CoreCompileInputs.cache
+C:\Projects\Orange-TriplePay\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.dll
+C:\Projects\Orange-TriplePay\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.pdb
+C:\Projects\Orange.Common\Orange.Common.Entities\bin\Debug\Orange.Common.Entities.dll
+C:\Projects\Orange.Common\Orange.Common.Entities\bin\Debug\Orange.Common.Entities.pdb
+C:\Projects\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.csproj.CoreCompileInputs.cache
+C:\Projects\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.dll
+C:\Projects\Orange.Common\Orange.Common.Entities\obj\Debug\Orange.Common.Entities.pdb
