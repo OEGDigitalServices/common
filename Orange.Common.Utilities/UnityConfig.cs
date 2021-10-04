@@ -12,6 +12,7 @@ namespace Orange.Common.Utilities
             container.RegisterType<ILogger, Logger>();
             container.RegisterType<ISecurityUtilities, SecurityUtilities>();
             container.RegisterType<IEntityFramworkUtilties, EntityFramworkUtilties>();
+            container.RegisterType<IUnityResolver, UnityResolver>();
         }
     }
 }
