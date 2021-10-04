@@ -1,5 +1,4 @@
-﻿using Orange.Shared.Common.Enums;
-using System;
+﻿using System;
 
 namespace Orange.Common.Entities
 {
