@@ -393,5 +393,13 @@ namespace Orange.Common.Utilities
         {
             return System.Convert.FromBase64String(base64EncodedData);
         }
+        public bool ValidateLanguageInput(string language)
+        {
+            if (string.IsNullOrEmpty(language))
+                return false;
+            if (language != Strings.Cultures.Ar && language != Strings.Cultures.En)
+                return false;
+            return true;
+        }
     }
 }

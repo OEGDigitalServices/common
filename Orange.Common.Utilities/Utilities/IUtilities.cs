@@ -50,5 +50,6 @@ namespace Orange.Common.Utilities
         int DisabledTimeToReserveTicketInMinutes { get; }
         string OrangeCashAddMoneyContentListURL { get; }
         byte[] Base64DecodeinBayte(string base64EncodedData);
+        bool ValidateLanguageInput(string language);
     }
 }

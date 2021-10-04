@@ -68,6 +68,12 @@ namespace Orange.Common.Utilities
             public const string DisabledTimeToReserveTicketInMinutes = "DisabledTimeToReserveTicketInMinutes";
             public const string DataGatheringSameIPIntervalInSeconds = "DataGatheringSameIPIntervalInSeconds";
             public const string DataGatheringCodeValidtyInSeconds = "DataGatheringCodeValidtyInSeconds";
+
+            public const string Language = "lang";
+            public const string Token = "Token";
+            public const string Password = "Password";
+
+            public const string RequestErrorCodeHandlingCachedKey = "Request_Error____Code_Handl____ings";
         }
 
         public struct DateFormats
@@ -415,7 +421,8 @@ namespace Orange.Common.Utilities
             public const string AttachmentIsNull = "Attachment is null";
             public const string AttachmentNotSaved = "Attachment not saved";
 
-            
+            public const string LanguageHeaderMissingOrInvalid = "The \"lang\" header is missing or invalid";
+            public const string LanguageHeaderMissingOrInvalidErrorLog = "The \"lang\" header is missing or invalid in {{url}} URL";
 
         }
         public struct SharePointQuery
@@ -462,6 +469,39 @@ namespace Orange.Common.Utilities
             public const string InfotainmentSMSPassword = "InfotainmentSMSPassword";
             public const string SMSpassword = "SMSpassword";
 
+        }
+        public struct Services
+        {
+            public const string PostVerb = "POST";
+            public const string GetVerb = "GET";
+            public const string XmlContentType = "text/xml";
+            public const string JsonContentType = "application/json";
+        }
+        public struct AppSettingKeys
+        {
+            public const string SMSTitle = "SMSTitle";
+            public const string SMSUsername = "SMSUsername";
+            public const string SMSPassword = "SMSPassword";
+            public const string IsItTestEnviroment = "IsItTestEnviroment";
+            public const string IsMongoEnabled = "IsMongoEnabled";
+            public const string SMTPAddress = "SMTPAddress";
+            public const string Port = "Port";
+            public const string EmailFromAddress = "EmailFromAddress";
+            public const string EmailFromPassword = "EmailFromPassword";
+            public const string SecureIntegrationBusUrl = "SecureIntegrationBusUrl";
+            public const string TestingMsisdn = "TestingMsisdn";
+            public const string TestingUserId = "TestingUserId";
+        }
+        public struct CommandXmlTags
+        {
+            public const string AutomaticGeneratedCommandTag = "<COMMAND xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">";
+            public const string CommandTag = "<COMMAND>";
+            public const string Utf16 = "utf-16";
+            public const string Utf8 = "utf-8";
+            public const string AutomaticGeneratedEncodingTag = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+            public const string EncodingTag = "<?xml version=\"1.0\"?><!DOCTYPE COMMAND PUBLIC \" -//Ocam//DTD XML Command 1.0//EN\" \"xml/command.dtd\">";
+            public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
+            public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Orange.Common.Utilities
     {
         public static void RegisterTypes(IUnityContainer container)
         {
-            //container.RegisterType<IOrangeServicesUtilities, OrangeServicesUtilities>();
+            container.RegisterType<IServicesUtilties, ServicesUtilities>();
             container.RegisterType<IUtilities, Utilities>();
             container.RegisterType<ILogger, Logger>();
             container.RegisterType<ISecurityUtilities, SecurityUtilities>();
