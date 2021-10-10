@@ -3,15 +3,18 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Orange.Common.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.Caching;
+using System.Web.Script.Serialization;
 
 namespace Orange.Common.Utilities
 {
@@ -26,12 +29,10 @@ namespace Orange.Common.Utilities
         {
             get { return GetAppSetting(Strings.Mails.AdminEmail); }
         }
-
         public string BaseSiteUrl
         {
             get { return GetAppSetting(Strings.SharePoint.BaseSiteUrl); }
         }
-
         public string MyAccountTargetWeb
         {
             get
@@ -39,7 +40,6 @@ namespace Orange.Common.Utilities
                 return GetAppSetting(Strings.SharePoint.MyAccountTargetWeb);
             }
         }
-
         public string LinePurchasePlansListUrl
         {
             get { return GetAppSetting(Strings.SharePoint.LinePurchasePlansListUrl); }
@@ -255,7 +255,7 @@ namespace Orange.Common.Utilities
             }
             return string.Empty;
         };
-        public static bool IsValidDial(string dial)
+        public bool IsValidDial(string dial)
         {
             Regex regexDial = new Regex(@"^01([0-2,5])\d{8}$", RegexOptions.Compiled);
             return regexDial.IsMatch(dial);
@@ -296,7 +296,6 @@ namespace Orange.Common.Utilities
         {
             get { return GetAppSetting(Strings.SharePoint.LinePurchaseAssetsListUrl); }
         }
-        
         public CultureInfo GetLanguageCulture(string language)
         {
             var culture = new CultureInfo(Strings.Cultures.EnUs);
@@ -336,7 +335,6 @@ namespace Orange.Common.Utilities
                 return false;
             }
         }
-
         public string GetFormattedFees(string lang, decimal? price)
         {
             if (!price.HasValue)
@@ -374,13 +372,11 @@ namespace Orange.Common.Utilities
                     pi.SetValue(obj, pi.GetValue(bucket, null), null);
             return obj;
         }
-        
+
         public string MobileAdministrationWebUrl
         {
             get { return GetAppSetting(Strings.SharePoint.MobileAdministrationWebUrl); }
-
         }
-
         public int DisabledTimeToReserveTicketInMinutes
         {
             get
@@ -392,6 +388,67 @@ namespace Orange.Common.Utilities
         public byte[] Base64DecodeinBayte(string base64EncodedData)
         {
             return System.Convert.FromBase64String(base64EncodedData);
+        }
+        public bool ValidateLanguageInput(string language)
+        {
+            if (string.IsNullOrEmpty(language))
+                return false;
+            if (language != Strings.Cultures.Ar && language != Strings.Cultures.En)
+                return false;
+            return true;
+        }
+        public string GetEnumDisplayName<T>(T action) where T : Enum
+        {
+            string name = action.ToString();
+            var attribute = action.GetType().GetMember(action.ToString()).First().GetCustomAttribute<DisplayAttribute>();
+            if (attribute != null)
+            {
+                name = attribute.Name;
+            }
+            return name;
+        }
+        public CultureInfo GetCurrentCulture()
+        {
+            return Thread.CurrentThread.CurrentUICulture;
+        }
+        public CultureInfo GetCultureInfo(string language)
+        {
+            var _culture = new CultureInfo(Strings.Cultures.EnUs);
+            if (!string.IsNullOrWhiteSpace(language))
+                _culture = new CultureInfo(language);
+            return _culture;
+        }
+        public DateTime FormatDate(string date, string dateFormat)
+        {
+            DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
+            return formattedDate;
+        }
+        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records)
+        {
+            List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
+            if (allCachedRecords == null)
+            {
+                allCachedRecords = records;
+                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
+                    null,
+                    Cache.NoAbsoluteExpiration,
+                    Cache.NoSlidingExpiration);
+            }
+            return allCachedRecords;
+        }
+        public T Deserialize<T>(string json)
+        {
+            object obj = null;
+            try
+            {
+                obj = new JavaScriptSerializer().Deserialize<T>(json);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp);
+                return (T)obj;
+            }
+            return (T)obj;
         }
     }
 }

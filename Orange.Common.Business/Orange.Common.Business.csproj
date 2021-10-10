@@ -34,7 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\..\orange.integrations.payfort\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,10 +43,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.11.10\lib\net46\Unity.Abstractions.dll</HintPath>
+      <HintPath>..\..\orange.integrations.payfort\packages\Unity.5.11.10\lib\net46\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.11.10\lib\net46\Unity.Container.dll</HintPath>
+      <HintPath>..\..\orange.integrations.payfort\packages\Unity.5.11.10\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +70,10 @@
     <ProjectReference Include="..\Orange.Common.EntityFramework\Orange.Common.EntityFramework.csproj">
       <Project>{7F99118B-644A-4901-9829-DE51A203C602}</Project>
       <Name>Orange.Common.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orange.Common.GenericRepository\Orange.Common.GenericRepository.csproj">
+      <Project>{611481af-b1eb-49b8-b2c1-012aa7c62e7c}</Project>
+      <Name>Orange.Common.GenericRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Utilities\Orange.Common.Utilities.csproj">
       <Project>{7f058844-4319-47c3-b86f-5fc48bee93e6}</Project>

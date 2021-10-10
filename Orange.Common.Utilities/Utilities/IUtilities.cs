@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
 using Orange.Common.Entities;
@@ -50,5 +51,13 @@ namespace Orange.Common.Utilities
         int DisabledTimeToReserveTicketInMinutes { get; }
         string OrangeCashAddMoneyContentListURL { get; }
         byte[] Base64DecodeinBayte(string base64EncodedData);
+        bool IsValidDial(string dial);
+        bool ValidateLanguageInput(string language);
+        string GetEnumDisplayName<T>(T action) where T : Enum;
+        CultureInfo GetCurrentCulture();
+        CultureInfo GetCultureInfo(string language);
+        DateTime FormatDate(string date, string dateFormat);
+        List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records);
+        T Deserialize<T>(string json);
     }
 }
