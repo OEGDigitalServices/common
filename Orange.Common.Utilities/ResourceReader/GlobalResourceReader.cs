@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Orange.TriplePlay.Common.Utilities
+namespace Orange.Common.Utilities
 {
     public class GlobalResourceReader : IGlobalResourceReader
     {

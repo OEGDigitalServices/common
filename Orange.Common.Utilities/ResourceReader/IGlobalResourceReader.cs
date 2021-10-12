@@ -1,4 +1,4 @@
-﻿namespace Orange.TriplePlay.Common.Utilities
+﻿namespace Orange.Common.Utilities
 {
     public interface IGlobalResourceReader
     {
