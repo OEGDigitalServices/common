@@ -1,6 +1,6 @@
 ﻿using Orange.Common.Entities;
 
-namespace Orange.TriplePay.Common.Utilities
+namespace Orange.Common.Utilities
 {
     public interface IOutputFillerManager
     {
