@@ -4,6 +4,7 @@
     {
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
-        public string InternalErrorMessage { get; set; }
+        public string InternalError { get; set; }
+        public string InternalErrorDescription { get; set; }
     }
 }
