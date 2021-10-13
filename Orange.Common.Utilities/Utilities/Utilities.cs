@@ -436,6 +436,20 @@ namespace Orange.Common.Utilities
             }
             return allCachedRecords;
         }
+
+        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        {
+            if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
+            {
+                allCachedRecords = fetchingMethod.Invoke();
+                var expirationDate = daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
+                    null,
+                    expirationDate,
+                    Cache.NoSlidingExpiration);
+            }
+            return allCachedRecords;
+        }
         public T Deserialize<T>(string json)
         {
             object obj = null;
