@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -442,7 +440,7 @@ namespace Orange.Common.Utilities
             if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
             {
                 allCachedRecords = fetchingMethod.Invoke();
-                var expirationDate = daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+                var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
                 HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
                     null,
                     expirationDate,

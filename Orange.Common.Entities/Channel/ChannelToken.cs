@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orange.Common.Entities
 {
-   public class ChannelToken
+    public class ChannelToken
     {
         public int ID { get; set; }
         public Nullable<System.Guid> TokenValue { get; set; }

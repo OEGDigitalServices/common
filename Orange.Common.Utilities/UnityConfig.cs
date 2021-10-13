@@ -1,6 +1,5 @@
-﻿using Orange.Common.Utilities;
-using Unity;
-using Unity.Lifetime;
+﻿using Unity;
+using Unity.Injection;
 
 namespace Orange.Common.Utilities
 {
@@ -13,7 +12,7 @@ namespace Orange.Common.Utilities
             container.RegisterType<ILogger, Logger>(TypeLifetime.PerResolve);
             container.RegisterType<ISecurityUtilities, SecurityUtilities>(TypeLifetime.PerResolve);
             container.RegisterType<IEntityFramworkUtilties, EntityFramworkUtilties>(TypeLifetime.PerResolve);
-            container.RegisterType<IUnityResolver, UnityResolver>(TypeLifetime.PerResolve);
+            container.RegisterType<IUnityResolver, UnityResolver>(TypeLifetime.PerResolve, new InjectionConstructor(container));
             container.RegisterType<ISMSUtilities, SMSUtilities>(TypeLifetime.PerResolve);
             container.RegisterType<IEmailUtilities, EmailUtilities>(TypeLifetime.PerResolve);
             container.RegisterType<ISmsMessageManager, SmsMessageManager>(TypeLifetime.PerResolve);

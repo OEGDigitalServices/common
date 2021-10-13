@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Orange.Common.Business
+﻿namespace Orange.Common.Business
 {
     public class Strings
     {
-        public struct  AppSettings
+        public struct AppSettings
         {
-            public const string  ServicesAuthorizationTokenLifeTimeInSeconds ="ServicesAuthorizationTokenLifeTimeInSeconds";
-            public const string TokenHashKey ="TokenHashKey";
-            public const string IsTokenEnabled ="IsTokenEnabled";
+            public const string ServicesAuthorizationTokenLifeTimeInSeconds = "ServicesAuthorizationTokenLifeTimeInSeconds";
+            public const string TokenHashKey = "TokenHashKey";
+            public const string IsTokenEnabled = "IsTokenEnabled";
             public const string EricssonEnrichmentHeaderDecryptKey = "EricssonEnrichmentHeaderDecryptKey";
             public const string EnrichmentHeaderDecryptKey = "EnrichmentHeaderDecryptKey";
             public const string IsTestingEnvironment = "IsTestingEnvironment";
@@ -41,16 +35,16 @@ namespace Orange.Common.Business
             public const string EAIErrorCode = "EAIErrorCode";
             public const string CreatedDate = "CreatedDate";
             public const string EndRenewViaCreditCard = "EndRenewViaCreditCard";
-            public const  string True ="true";
-            public const  string False ="false";
-            public const string Dial ="dial";
-            public const string Password ="password";
-            public const string IsEasyLogin ="iseasylogin";
-            public const string ChannelName ="channelname";
-            public const string ChannelPassword ="channelpassword";
-            public const string Htv ="_htv";
-            public const string Ctv ="_ctv";
-            public const string UserId ="userid";
+            public const string True = "true";
+            public const string False = "false";
+            public const string Dial = "dial";
+            public const string Password = "password";
+            public const string IsEasyLogin = "iseasylogin";
+            public const string ChannelName = "channelname";
+            public const string ChannelPassword = "channelpassword";
+            public const string Htv = "_htv";
+            public const string Ctv = "_ctv";
+            public const string UserId = "userid";
             public const string MSISDN = "MSISDN";
             public const string XMSISDN = "X-MSISDN";
             public const string Pin = "Pin";
