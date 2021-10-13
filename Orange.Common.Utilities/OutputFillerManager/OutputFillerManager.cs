@@ -10,7 +10,7 @@ namespace Orange.Common.Utilities
         {
             output.ErrorCode = errorCode;
             output.ErrorMessage = errorMessage;
-            output.InternalErrorMessage = internalErrorMessage;
+            output.InternalErrorDescription = internalErrorMessage;
         }
 
         public void FillOutput<TOutput>(Output<TOutput> output, int errorCode, string errorMessage, TOutput data, string internalErrorMessage = null)
