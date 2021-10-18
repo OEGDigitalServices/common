@@ -31,7 +31,7 @@ namespace Orange.Common.WebApi
                     return;
                 }
 
-                _logger.LogDebug(Strings.ErrorDescriptions.LanguageHeaderMissingOrInvalidErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                //_logger.LogDebug(Strings.ErrorDescriptions.LanguageHeaderMissingOrInvalidErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed)
                 {
                     Content = new StringContent(Strings.ErrorDescriptions.LanguageHeaderMissingOrInvalid)

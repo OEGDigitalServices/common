@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.Caching;
+using System.Web.Script.Serialization;
 
 namespace Orange.Common.Utilities
 {
@@ -400,6 +401,20 @@ namespace Orange.Common.Utilities
             if (language != Strings.Cultures.Ar && language != Strings.Cultures.En)
                 return false;
             return true;
+        }
+        public T Deserialize<T>(string json)
+        {
+            object obj = null;
+            try
+            {
+                obj = new JavaScriptSerializer().Deserialize<T>(json);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp);
+                return (T)obj;
+            }
+            return (T)obj;
         }
     }
 }

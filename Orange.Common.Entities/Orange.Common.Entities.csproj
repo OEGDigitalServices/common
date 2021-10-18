@@ -50,6 +50,7 @@
     <Compile Include="Entites\RequestModel.cs" />
     <Compile Include="Entites\ResponseModel.cs" />
     <Compile Include="Inputs\BodyInput.cs" />
+    <Compile Include="Inputs\CommonInput.cs" />
     <Compile Include="Inputs\HeaderData.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />

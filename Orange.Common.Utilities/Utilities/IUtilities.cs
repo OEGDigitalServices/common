@@ -51,5 +51,6 @@ namespace Orange.Common.Utilities
         string OrangeCashAddMoneyContentListURL { get; }
         byte[] Base64DecodeinBayte(string base64EncodedData);
         bool ValidateLanguageInput(string language);
+        T Deserialize<T>(string json);
     }
 }
