@@ -257,7 +257,8 @@
         WheelOfFortune = 252,
         Home4GRamadanOffers = 255,
         DeezerOffer = 258,
-        TriplePlay = 259
+        TriplePlay = 259,
+        AhsanNasPayment = 260
     }
 }
 
