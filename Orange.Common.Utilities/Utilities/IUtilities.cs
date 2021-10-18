@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Orange.Common.Entities;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
-using Orange.Common.Entities;
-using System.IO;
 
 namespace Orange.Common.Utilities
 {
@@ -37,7 +36,7 @@ namespace Orange.Common.Utilities
         string CAFPromoCodesMappingListUrl { get; }
         string FullFillOfferItemsListUrl { get; }
         string OrangeCashFawryCategories { get; }
-        string LinePurchaseAssetsListUrl { get;  }
+        string LinePurchaseAssetsListUrl { get; }
         CultureInfo GetLanguageCulture(string language);
         bool IsValidPin(string pin);
         string GetSuperRechargeTransactionID(string dial);

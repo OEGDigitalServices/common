@@ -93,7 +93,7 @@
         OwnerDoesnotHaveEnoughQuota = 88,
         InvalidBucketStaticFee = 89,
         InvalidFreePeriods = 90,
-        CustomerNotFound=97,
+        CustomerNotFound = 97,
         Timeout = 98,
         HasDueBills = 99,
         SuspendedDueToDunning = 100,
@@ -212,7 +212,7 @@
         DoubleTariffNotEligible = 216,
 
 
-        
+
 
         NoOfferAndChannelsUpsellDiscountedOffer = 217,
         ExceededSpinningTheWheelCapping = 218,
@@ -227,15 +227,15 @@
         OfferNoLuck = 227,
         AlreadyFulfilled = 228,
         NumbersNotMatched = 229,
-        SubscriberSimSwap = 230, 
+        SubscriberSimSwap = 230,
         SuccessWithOnlyOneCategoryReturned = 231,
-        NoExtensionFoundForCategory	= 232,
+        NoExtensionFoundForCategory = 232,
         BalanceOptionForEagleOnlyAsActivationNotExceeded2Months = 233,
         BalanceOptionForEagleOnlyAsCustomerHasDueBillsAndActivationNotExceeded4Month = 234,
-        OfferOneEligible =235,
-        OfferTwoEligible =236,
-        OfferThreeEligible =237,
-        UnSubscribedSuccessfully=238,
+        OfferOneEligible = 235,
+        OfferTwoEligible = 236,
+        OfferThreeEligible = 237,
+        UnSubscribedSuccessfully = 238,
         PrepaidAndOtherNonEligibleHybrids = 239,
         StarControlAndPostpaidNonBuiltIn = 240,
         PostpaidNonBuiltIn = 241,
@@ -279,9 +279,9 @@
 
 
         NoGiftsFound = 277,
-        NoMigrationFlag	= 278,
+        NoMigrationFlag = 278,
         CustomerNotHavePromotion = 279,
-        DataOutOfBounds	= 280,
+        DataOutOfBounds = 280,
         SuccessSubscribedIntoDragonAndDolphinDYBPromo = 281,
 
 
@@ -430,7 +430,7 @@
         EmptyVariables = 20130,
         EmptyOptions = 20131,
         OfferNotOptedIn = 20132,
-        EmptyReleaseNo= 20133,
+        EmptyReleaseNo = 20133,
 
         InValidAccountNo = 20134,
         InValidCVV = 20135,
@@ -445,12 +445,12 @@
         InvalidSharingFees = 20156,
 
 
-     
-     
-        
+
+
+
         AccountNumberNotExists = 20142,
         AccountTemporaryLocked = 20143,
-        PasswordNotSent =	20144,
+        PasswordNotSent = 20144,
         PasswordNotReset = 20145,
         EmptyName = 20146,
         EmptyMobileNo = 20148,
@@ -463,7 +463,7 @@
         EmailNotSent = 20157,
         ImageSizeExceeded = 20158,
         ImagesLimitExceeded = 20159,
-        EmptyImages=20160,
+        EmptyImages = 20160,
 
     }
 }

@@ -1,10 +1,4 @@
-﻿using Orange.Common.Entities;
-using Orange.Common.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Orange.Common.Business
 {
