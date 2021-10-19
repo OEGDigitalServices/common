@@ -258,7 +258,7 @@
         Home4GRamadanOffers = 255,
         DeezerOffer = 258,
         TriplePlay = 259,
-        AhsanNasPayment = 260
+        AhsanNasPayment = 274
     }
 }
 
