@@ -129,12 +129,12 @@
     <Compile Include="Security\SecurityUtilities.cs" />
     <Compile Include="ServicesUtilities\IServicesUtilties.cs" />
     <Compile Include="ServicesUtilities\ServicesUtilities.cs" />
+    <Compile Include="SharePoint\ISharePointUtilities.cs" />
+    <Compile Include="SharePoint\SharepointUtilities.cs" />
     <Compile Include="SMS\ISmsMessageManager.cs" />
     <Compile Include="SMS\ISMSUtilities.cs" />
     <Compile Include="SMS\SmsMessageManager.cs" />
     <Compile Include="SMS\SMSUtilities.cs" />
-    <Compile Include="SharePoint\ISharePointUtilities.cs" />
-    <Compile Include="SharePoint\SharepointUtilities.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="UnityConfig.cs" />
     <Compile Include="UnityResolver\IUnityResolver.cs" />

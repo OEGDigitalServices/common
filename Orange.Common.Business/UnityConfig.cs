@@ -8,7 +8,7 @@ namespace Orange.Common.Business
 
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
             container.RegisterType<IServicesFailedRequestsManager, ServicesFailedRequestsManager>();
-            container.RegisterType<INotificationManager, NotificationManager>();
+            container.RegisterType<INotificationManager, SendMailNotificationManager>();
            
             Common.Utilities.UnityConfig.RegisterTypes(container);
             Common.DataAccess.UnityConfig.RegisterTypes(container);
