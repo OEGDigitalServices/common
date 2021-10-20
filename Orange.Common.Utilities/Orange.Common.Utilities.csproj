@@ -114,10 +114,14 @@
     <Compile Include="Logging\ErrorLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CachingUtilities.cs" />
+    <Compile Include="Security\ICachingUtilities.cs" />
     <Compile Include="Security\ISecurityUtilities.cs" />
     <Compile Include="Security\SecurityUtilities.cs" />
     <Compile Include="ServicesUtilities\IServicesUtilties.cs" />
     <Compile Include="ServicesUtilities\ServicesUtilities.cs" />
+    <Compile Include="SharePoint\ISharePointUtilities.cs" />
+    <Compile Include="SharePoint\SharepointUtilities.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="UnityConfig.cs" />
     <Compile Include="UnityResolver\IUnityResolver.cs" />

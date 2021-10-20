@@ -13,6 +13,8 @@ namespace Orange.Common.Utilities
             container.RegisterType<ISecurityUtilities, SecurityUtilities>();
             container.RegisterType<IEntityFramworkUtilties, EntityFramworkUtilties>();
             container.RegisterType<IUnityResolver, UnityResolver>();
+            container.RegisterType<ICachingUtilities, CachingUtilities>();
+            container.RegisterType<ISharePointUtilities, SharePointUtilities>();
         }
     }
 }

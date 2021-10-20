@@ -503,5 +503,9 @@ namespace Orange.Common.Utilities
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
+        public struct AppSettings
+        {
+            public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+        }
     }
 }
