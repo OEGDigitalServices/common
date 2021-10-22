@@ -32,6 +32,7 @@
         OrangeDSLRedirection = 32,
         OrangeDSLDunningRetrialMechanism = 33,
         LinkDslDunning = 34,
-        LinkDslDunningRetrialMechanism = 35
+        LinkDslDunningRetrialMechanism = 35,
+        MyOrange = 36
     }
 }

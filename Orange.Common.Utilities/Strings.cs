@@ -503,5 +503,9 @@
         {
             public const string BodyFormat = "{0:X04}";
         }
+        public struct AppSettings
+        {
+            public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+        }
     }
 }

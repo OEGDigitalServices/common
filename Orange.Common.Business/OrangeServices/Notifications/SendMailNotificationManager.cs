@@ -24,13 +24,14 @@ namespace Orange.Common.Business
         }
         #endregion
 
-        public override bool AddNotification(string body, string subject, string from, string to, string ccMail, Stream attachement, string attachementName, CultureInfo cultureInfo)
+        public override bool AddNotification(string body, string subject, string from, string to, string ccMail, 
+            Stream attachement, string attachementName, CultureInfo cultureInfo, string resourceKey)
         {
             try
             {
                 QueuedEmail email = new QueuedEmail();
                 email.Subject = subject;
-                email.Body = PrepareMessageBody(body, cultureInfo);
+                email.Body = PrepareMessageBody(body, cultureInfo, resourceKey);
                 email.From = from;
                 email.To = to;
                 email.CC = ccMail;
@@ -49,9 +50,10 @@ namespace Orange.Common.Business
             }
            
         }
-        private string PrepareMessageBody(string body, CultureInfo cultureInfo)
+        private string PrepareMessageBody(string body, CultureInfo cultureInfo, string resourceKey)
         {
-            string str = HttpContext.GetGlobalResourceObject(Utilities.Strings.Mails.CommonGlobalResource, Utilities.Strings.Mails.MainMailContainer, cultureInfo) as string;
+            string str = HttpContext.GetGlobalResourceObject(resourceKey, 
+                Utilities.Strings.Mails.MainMailContainer, cultureInfo) as string;
             if (string.IsNullOrWhiteSpace(str))
                 return string.Empty;
             str = str.Replace(Utilities.Strings.Mails.BodyMailReplace, body);
