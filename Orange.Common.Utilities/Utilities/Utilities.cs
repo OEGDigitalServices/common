@@ -463,7 +463,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
