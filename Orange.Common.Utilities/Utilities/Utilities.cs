@@ -463,15 +463,16 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int Minutes)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes)
         {
+            Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
                 return;
 
             System.Web.Caching.Cache cache = System.Web.HttpContext.Current.Cache;
             lock (cache)
             {
-                System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
+                System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
             }
         }
     }
