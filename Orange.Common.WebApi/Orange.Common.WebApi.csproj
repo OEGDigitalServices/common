@@ -126,6 +126,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\AuthenticationBodyAttribute.cs" />
+    <Compile Include="Filters\ChannelBodyAttribute.cs" />
     <Compile Include="Filters\LanguageSetterAttribute.cs" />
     <Compile Include="Filters\TokenAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
