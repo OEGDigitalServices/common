@@ -12,7 +12,7 @@ using Orange.Common.Entities;
 using Orange.Common.Utilities;
 using Unity;
 
-namespace Orange.GSM.Common.WebApiFramework
+namespace Orange.Common.WebApiFramework
 {
     public class ChannelBodyAttribute : ActionFilterAttribute
     {

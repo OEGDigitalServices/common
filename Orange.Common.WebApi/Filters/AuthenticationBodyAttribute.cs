@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 using Unity;
 using Orange.Common.DataAccess.ProfileContexts;
 
-namespace Orange.GSM.Common.WebApiFramework
+namespace Orange.Common.WebApi
 {
     public class AuthenticationBodyAttribute : ActionFilterAttribute
     {

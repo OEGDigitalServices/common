@@ -124,7 +124,8 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="App_Start\WebApiUnityActionFilterProvider.cs" />
+    <Compile Include="Controllers\AuthenticationFullBodyController.cs" />
     <Compile Include="Filters\AuthenticationBodyAttribute.cs" />
     <Compile Include="Filters\ChannelBodyAttribute.cs" />
     <Compile Include="Filters\InputValidationAttribute.cs" />
