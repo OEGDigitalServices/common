@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channel\Channel.cs" />
+    <Compile Include="Channel\ChannelClaims.cs" />
+    <Compile Include="Channel\ChannelInfo.cs" />
     <Compile Include="Channel\ChannelsNames.cs" />
     <Compile Include="Channel\ChannelToken.cs" />
+    <Compile Include="Channel\OrangeClaims.cs" />
     <Compile Include="DialType\DialType.cs" />
     <Compile Include="Entites\ErrorModel.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />

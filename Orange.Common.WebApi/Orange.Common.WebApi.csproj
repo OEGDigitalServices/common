@@ -125,6 +125,7 @@
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Filters\AuthenticationBodyAttribute.cs" />
     <Compile Include="Filters\LanguageSetterAttribute.cs" />
     <Compile Include="Filters\TokenAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,6 +150,10 @@
     <ProjectReference Include="..\Orange.Common.Business\Orange.Common.Business.csproj">
       <Project>{f76cda6a-cfda-449a-830a-92a016c18d80}</Project>
       <Name>Orange.Common.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orange.Common.DataAccess\Orange.Common.DataAccess.csproj">
+      <Project>{0CFFA67C-6810-4365-A02F-1A32F2C39F1A}</Project>
+      <Name>Orange.Common.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Entities\Orange.Common.Entities.csproj">
       <Project>{0170b2a4-9a05-4627-ab02-ccb1ca6740ca}</Project>
