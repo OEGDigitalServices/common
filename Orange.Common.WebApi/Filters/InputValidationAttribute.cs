@@ -8,12 +8,12 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Newtonsoft.Json;
-using Orange.GSM.Common.Business;
-using Orange.GSM.Common.Entities;
-using Orange.GSM.Common.Utilities;
-using Unity.Attributes;
+using Orange.Common.Business;
+using Orange.Common.Entities;
+using Orange.Common.Utilities;
+using Unity;
 
-namespace Orange.GSM.Common.WebApiFramework
+namespace Orange.Common.WebApiFramework
 {
     public class InputValidationAttribute : ActionFilterAttribute
     {

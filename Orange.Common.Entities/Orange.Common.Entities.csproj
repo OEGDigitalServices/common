@@ -56,6 +56,7 @@
     <Compile Include="Inputs\BodyInput.cs" />
     <Compile Include="Inputs\CommonInput.cs" />
     <Compile Include="Inputs\HeaderData.cs" />
+    <Compile Include="Inputs\Input.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />
