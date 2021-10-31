@@ -1,5 +1,6 @@
 ﻿using System;
 using Unity;
+using Unity.Resolution;
 
 namespace Orange.Common.Utilities
 {
@@ -29,6 +30,10 @@ namespace Orange.Common.Utilities
         public T Resolve<T>()
         {
             return _container.Resolve<T>();
+        }
+        public T Resolve<T>(ResolverOverride[] resolverOverrides)
+        {
+            return _container.Resolve<T>(resolverOverrides);
         }
         public object ResolveType(Type type)
         {

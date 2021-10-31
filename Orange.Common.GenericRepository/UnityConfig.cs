@@ -6,8 +6,8 @@ namespace Orange.Common.GenericRepository
     {
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType(typeof(IRepository<>), typeof(Repository<>));
+            container.RegisterType<IUnitOfWork, UnitOfWork>(TypeLifetime.PerResolve);
+            container.RegisterType(typeof(IRepository<>), typeof(Repository<>),TypeLifetime.PerResolve);
         }
     }
 }

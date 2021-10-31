@@ -18,8 +18,7 @@ namespace Orange.Common.Utilities
             container.RegisterType<ISmsMessageManager, SmsMessageManager>(TypeLifetime.PerResolve);
             container.RegisterType<IGlobalResourceReader, GlobalResourceReader>(TypeLifetime.PerResolve);
             container.RegisterType<IHttpClientManager, HttpClientManager>(TypeLifetime.PerResolve);
-
-
+            container.RegisterType<IOutputFillerManager, OutputFillerManager>(TypeLifetime.PerResolve);
         }
     }
 }
