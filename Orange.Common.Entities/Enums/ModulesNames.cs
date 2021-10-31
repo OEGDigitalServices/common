@@ -156,7 +156,6 @@
         OrangeDSLMoveDSL = 151,
         OrangeDSLSuspendService = 152,
         OrangeDSLReactivateService = 153,
-
         OrangeDSLLogin = 155,
         OrangeDSLCurrentAccountSettings = 156,
         OrangeDSLAddNewRouter = 157,
@@ -253,11 +252,27 @@
         OrangeCashEFinanceOpenIntegration = 248,
         OrangeCashQR = 249,
         GoNet = 250,
-        MILO = 251,
-        WheelOfFortune = 252,
-        Home4GRamadanOffers = 255,
+        MyOrangeSuperRecharge = 251,
+        InternetCards = 252,
+        EBillBreakDown = 253,
+        OrangeMoneySelfRegistration = 254,
+        GoSuperSites = 255,
+        UControlEndUserRequests = 256,
+        Complaints = 257,
         DeezerOffer = 258,
-        TriplePlay = 259
+        PromotionOptin = 259,
+        DataGathering = 260,
+        UControlBillPayment = 261,
+        HybirdOffer = 262,
+        RamadanMassOffer = 263,
+        RamadanVasOffer = 264,
+        ServiceManagement = 265,
+        SummerPromotion = 266,
+        UControlManagePremier = 267,
+        TriplePlay = 266,
+        MyOrangeGounaFilmFestival = 273,
+        MyOrangeGrandMaster = 274,
+        AhsanNasPayment = 275
     }
 }
 

@@ -11,6 +11,7 @@ namespace Orange.Common.DataAccess
             container.RegisterType<IChannelsPrivilegesDataAccess, ChannelsPrivilegesDataAccess>();
             container.RegisterType<IChannelsTokensDataAccess, ChannelsTokensDataAccess>();
             container.RegisterType<IServicesFailedRequestsDataAccess, ServicesFailedRequestsDataAccess>();
+            container.RegisterType<IQueuedEmailDataAccess, QueuedEmailDataAccess>();
         }
     }
 }

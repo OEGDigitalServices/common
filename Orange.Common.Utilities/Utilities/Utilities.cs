@@ -135,7 +135,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.UserAgent;
+                return HttpContext.Current?.Request.UserAgent ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -147,7 +147,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.ServerVariables["LOCAL_ADDR"];
+                return HttpContext.Current?.Request.ServerVariables["LOCAL_ADDR"] ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -161,10 +161,10 @@ namespace Orange.Common.Utilities
             {
                 //The X-Forwarded-For (XFF) HTTP header field is a de facto standard for identifying the originating IP address of a 
                 //client connecting to a web server through an HTTP proxy or load balancer
-                string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                string ip = HttpContext.Current?.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? string.Empty;
                 if (string.IsNullOrEmpty(ip))
                 {
-                    ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                    ip = HttpContext.Current?.Request.ServerVariables["REMOTE_ADDR"] ?? string.Empty;
                 }
                 if (ip.Contains(","))
                     ip = ip.Split(',')[0];
@@ -486,5 +486,17 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        {
+            Minutes = Minutes ?? 1;
+            if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
+                return;
+
+            System.Web.Caching.Cache cache = System.Web.HttpContext.Current.Cache;
+            lock (cache)
+            {
+                System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
+            }
+        }
     }
 }

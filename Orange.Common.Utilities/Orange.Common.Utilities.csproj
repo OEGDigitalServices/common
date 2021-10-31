@@ -44,11 +44,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExternalLibraries\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\ExternalLibraries\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\ExternalLibraries\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="iTextSharp">
       <HintPath>..\ExternalLibraries\iTextSharp.dll</HintPath>
@@ -68,8 +68,9 @@
     <Reference Include="Microsoft.SharePoint.Security">
       <HintPath>..\ExternalLibraries\Microsoft.SharePoint.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalLibraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -122,10 +123,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceReader\GlobalResourceReader.cs" />
     <Compile Include="ResourceReader\IGlobalResourceReader.cs" />
+    <Compile Include="Security\CachingUtilities.cs" />
+    <Compile Include="Security\ICachingUtilities.cs" />
     <Compile Include="Security\ISecurityUtilities.cs" />
     <Compile Include="Security\SecurityUtilities.cs" />
     <Compile Include="ServicesUtilities\IServicesUtilties.cs" />
     <Compile Include="ServicesUtilities\ServicesUtilities.cs" />
+    <Compile Include="SharePoint\ISharePointUtilities.cs" />
+    <Compile Include="SharePoint\SharepointUtilities.cs" />
     <Compile Include="SMS\ISmsMessageManager.cs" />
     <Compile Include="SMS\ISMSUtilities.cs" />
     <Compile Include="SMS\SmsMessageManager.cs" />
