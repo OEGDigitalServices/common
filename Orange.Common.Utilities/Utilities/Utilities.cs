@@ -112,7 +112,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.UserAgent;
+                return HttpContext.Current?.Request.UserAgent ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -124,7 +124,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.ServerVariables["LOCAL_ADDR"];
+                return HttpContext.Current?.Request.ServerVariables["LOCAL_ADDR"] ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -138,10 +138,10 @@ namespace Orange.Common.Utilities
             {
                 //The X-Forwarded-For (XFF) HTTP header field is a de facto standard for identifying the originating IP address of a 
                 //client connecting to a web server through an HTTP proxy or load balancer
-                string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                string ip = HttpContext.Current?.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? string.Empty;
                 if (string.IsNullOrEmpty(ip))
                 {
-                    ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                    ip = HttpContext.Current?.Request.ServerVariables["REMOTE_ADDR"] ?? string.Empty;
                 }
                 if (ip.Contains(","))
                     ip = ip.Split(',')[0];
