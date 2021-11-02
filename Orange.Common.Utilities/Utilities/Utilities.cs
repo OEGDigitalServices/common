@@ -86,28 +86,6 @@ namespace Orange.Common.Utilities
             return channel;
         }
 
-        public string GetEAISource(Channel channel)
-        {
-            if (channel == Channel.Portal)
-                return "28";
-            else if (channel == Channel.MobinilAndMe)
-                return "60";
-            if (channel == Channel.OrangeMoney)
-                return "65";
-            else if (channel == Channel.UControl || channel == Channel.CPApp)
-                return "22";
-            else if (channel == Channel.InternetSelfie)
-                return "60";
-            else if (channel == Channel.CrossChannel)
-                return "40";
-            else if (channel == Channel.IBN)
-                return "281";
-            else if (channel == Channel.Interactive || channel == Channel.AutomaticMigration || channel == Channel.RTOM)
-                return "282";
-            else
-                return "28";
-        }
-
         public string EncodeHTML(string Input)
         {
             if (!string.IsNullOrEmpty(Input))

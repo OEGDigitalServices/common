@@ -59,7 +59,6 @@ namespace Orange.Common.Utilities
         List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records);
         List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
-        string GetEAISource(Channel channel);
         void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
     }
 }
