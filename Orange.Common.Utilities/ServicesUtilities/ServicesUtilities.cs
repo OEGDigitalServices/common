@@ -218,6 +218,100 @@ namespace Orange.Common.Utilities
             return isMongoEnabled;
         }
 
+        public System.Net.CredentialCache GetCredentialCache(string URL)
+        {
+            System.Net.NetworkCredential objNetworkCredential = new System.Net.NetworkCredential("portal", "portal");
+            System.Net.CredentialCache objCredentialCache = new System.Net.CredentialCache();
+            objCredentialCache.Add(new Uri(URL), "Basic", objNetworkCredential);
+            return objCredentialCache;
+        }
+        public string GetEAISource(Channel channel)
+        {
+            if (channel == Channel.Portal)
+                return "28";
+            else if (channel == Channel.MobinilAndMe)
+                return "60";
+            if (channel == Channel.OrangeMoney)
+                return "65";
+            else if (channel == Channel.UControl || channel == Channel.CPApp)
+                return "22";
+            else if (channel == Channel.InternetSelfie)
+                return "60";
+            else if (channel == Channel.CrossChannel)
+                return "40";
+            else if (channel == Channel.IBN)
+                return "281";
+            else if (channel == Channel.Interactive || channel == Channel.AutomaticMigration || channel == Channel.RTOM)
+                return "282";
+            else
+                return "28";
+        }
+
+        public Object XMLToObject(string xml, Type objectType)
+        {
+            StringReader strReader = null;
+            XmlSerializer serializer = null;
+            XmlTextReader xmlReader = null;
+            Object obj = null;
+            try
+            {
+                strReader = new StringReader(xml);
+                serializer = new XmlSerializer(objectType);
+                xmlReader = new XmlTextReader(strReader);
+                obj = serializer.Deserialize(xmlReader);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError("Error While deserialising object " + xml, exp, false);
+                //Handle Exception Code
+            }
+            finally
+            {
+                if (xmlReader != null)
+                {
+                    xmlReader.Close();
+                }
+                if (strReader != null)
+                {
+                    strReader.Close();
+                }
+            }
+            return obj;
+        }
+
+        public string GetSoapXml<T>(T obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return string.Empty;
+
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                var xmlWriterSetting = new XmlWriterSettings()
+                {
+                    Indent = false,
+                    OmitXmlDeclaration = true,
+                    NewLineOnAttributes = false,
+                    DoNotEscapeUriAttributes = false,
+                };
+                using (var textWriter = new StringWriter())
+                {
+                    using (var xmlWriter = XmlWriter.Create(textWriter, xmlWriterSetting))
+                    {
+                        XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                        ns.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                        xmlSerializer.Serialize(xmlWriter, obj, ns);
+                        return textWriter.ToString().Replace(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty).Replace(" xsi:nil=\"true\"", string.Empty);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return string.Empty;
+            }
+        }
+
         #endregion
     }
 }
