@@ -85,6 +85,7 @@ namespace Orange.Common.Utilities
                 Enum.TryParse(channelName, out channel);
             return channel;
         }
+
         public string EncodeHTML(string Input)
         {
             if (!string.IsNullOrEmpty(Input))
