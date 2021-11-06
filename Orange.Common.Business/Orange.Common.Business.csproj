@@ -51,7 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
+    <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />
+    <Compile Include="OrangeServices\Channels\IChannelsDataManager.cs" />
+    <Compile Include="OrangeServices\Channels\IChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\IChannelsTokensManager.cs" />
     <Compile Include="OrangeServices\Notifications\INotificationManager.cs" />
     <Compile Include="OrangeServices\Notifications\NotificationManager.cs" />
