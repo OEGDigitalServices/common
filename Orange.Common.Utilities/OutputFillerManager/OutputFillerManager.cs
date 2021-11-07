@@ -1,6 +1,7 @@
 ﻿
 
 using Orange.Common.Entities;
+using System;
 
 namespace Orange.Common.Utilities
 {
@@ -18,6 +19,11 @@ namespace Orange.Common.Utilities
             FillOutput(output, errorCode, errorMessage, internalErrorMessage);
             output.Data = data;
         }
-
+        public T FillOutput<T, ErrorCodeEnum>(T output, ErrorCodeEnum errorCode, string errorDesc) where T : SecureOutput<ErrorCodeEnum> where ErrorCodeEnum : struct, IConvertible
+        {
+            output.ErrorCode = errorCode;
+            output.ErrorDescription = errorDesc;
+            return output;
+        }
     }
 }
