@@ -11,6 +11,7 @@ using Orange.Common.Business;
 using Orange.Common.Entities;
 using Orange.Common.Utilities;
 using Unity;
+using Strings = Orange.Common.Business.Strings;
 
 namespace Orange.Common.WebApiFramework
 {
@@ -33,7 +34,8 @@ namespace Orange.Common.WebApiFramework
                 action = actionContext.ActionDescriptor.ActionName;
 
                 var claims = GetRequestBody(actionContext);
-                var channelInfo = GetChannel(claims);
+                //var channelInfo = GetChannel(claims);
+                var channelInfo = GetChannelFromBodyOrHeader(claims, actionContext);
 
                 if (ValidateChannelInfo(channelInfo, claims.Dial) && ValidateChannelsPrivilegesManager(channelInfo.Name, claims.Dial))
                     return;
@@ -59,6 +61,30 @@ namespace Orange.Common.WebApiFramework
                 return null;
             return new ChannelInfo { Name = claims.ChannelName, Password = claims.ChannelPassword };
         }
+
+        private ChannelInfo GetChannelFromBodyOrHeader(ChannelClaims claims, HttpActionContext actionContext)
+        {
+            var channel = new ChannelInfo();
+            if (string.IsNullOrEmpty(claims?.ChannelName))
+            {
+                var channelName = actionContext.Request.Headers.FirstOrDefault(a => a.Key.ToLower() == Strings.Keys.ChannelName);
+                channel.Name = channelName.Value?.FirstOrDefault();
+            }
+            else
+                channel.Name = claims.ChannelName;
+
+            if (string.IsNullOrEmpty(claims?.ChannelPassword))
+            {
+                var channelPassword =
+                    actionContext.Request.Headers.FirstOrDefault(a => a.Key.ToLower() == Strings.Keys.ChannelPassword);
+                channel.Password = channelPassword.Value?.FirstOrDefault();
+            }
+            else
+                channel.Password = claims.ChannelPassword;
+
+            return channel;
+        }
+
         private bool ValidateChannelInfo(ChannelInfo channelInfo, string dial)
         {
             if (channelInfo == null || (string.IsNullOrEmpty(channelInfo.Name) && string.IsNullOrEmpty(channelInfo.Password)))
