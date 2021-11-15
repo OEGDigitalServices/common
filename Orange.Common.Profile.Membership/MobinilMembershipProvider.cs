@@ -11,12 +11,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 using Orange.Common.Utilities;
+using Unity;
 
 namespace Orange.Common.Profile.Membership
 {
 
     internal class MobinilMembershipProvider : MembershipProvider
     {
+        private  ILogger _logger;
+        private  ISecurityUtilities _securityUtilities;
+        private IUtilities _utilities;
+
         #region Fields
 
         private static string _ApplicationName;
@@ -126,11 +131,7 @@ namespace Orange.Common.Profile.Membership
             if (name == null || name.Length == 0)
                 name = "MobinilMembershipProvider";
 
-            if (String.IsNullOrEmpty(config["description"]))
-            {
-                config.Remove("description");
-                config.Add("description", "Mobinil Membership Provider");
-            }
+            SetupUnity();
 
             base.Initialize(name, config);
 
@@ -162,7 +163,19 @@ namespace Orange.Common.Profile.Membership
                           GetConfigValue(config["writeExceptionsToEventLog"], "false"));
         }
 
+        private void SetupUnity()
+        {
+            var container = new UnityContainer();
+            UnityConfig.RegisterTypes(container);
+            _securityUtilities = container.Resolve<ISecurityUtilities>();
+            _logger = container.Resolve<ILogger>();
+            _utilities = container.Resolve<IUtilities>();
+
+        }
+
         #endregion
+
+
 
         #region Membership Methods
 
@@ -1560,7 +1573,7 @@ namespace Orange.Common.Profile.Membership
         {
             bool isValid = false;
             //OrangeDSL Case in case DSL Line is physically connected 
-            if (new SecurityUtilities(new Logger()).VerifyHashedData(password, username))
+            if (_securityUtilities.VerifyHashedData(password, username))
             {
                 return true;
             }
@@ -1630,7 +1643,7 @@ namespace Orange.Common.Profile.Membership
         {
             bool isValid = false;
             //OrangeDSL Case in case DSL Line is physically connected 
-            if (new SecurityUtilities(new Logger()).VerifyHashedData(password, username))
+            if (_securityUtilities.VerifyHashedData(password, username))
             {
                 return true;
             }
@@ -1655,7 +1668,7 @@ namespace Orange.Common.Profile.Membership
                                 }
                             }
                             // To handle Facebook Login
-                            else if (new SecurityUtilities(new Logger()).VerifyHashedData(password, user.UserName + user.Id.ToString() + new  Utilities.Utilities(new Logger()).GetAppSetting("ProfileHashKey")))
+                            else if (_securityUtilities.VerifyHashedData(password, user.UserName + user.Id.ToString() + _utilities.GetAppSetting("ProfileHashKey")))
                             {
                                 if (user.IsApproved)
                                 {
