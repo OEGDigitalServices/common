@@ -42,16 +42,18 @@ namespace Orange.Common.Utilities
             _client.Timeout = new TimeSpan(0, 0, 100);
             return desrializedContent;
         }
-        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
         {
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            _client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
             var response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
+            _client.Timeout = new TimeSpan(0, 0, 100);
             return desrializedContent;
         }
         #endregion
