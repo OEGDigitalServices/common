@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -30,13 +31,15 @@ namespace Orange.Common.Utilities
             return content;
         }
 
-        public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
             FillHeaders(headers);
+            _client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
             var response = await _client.PostAsync(url, null).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
+            _client.Timeout = new TimeSpan(0, 0, 100);
             return desrializedContent;
         }
         public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
