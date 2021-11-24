@@ -33,22 +33,25 @@ namespace Orange.Common.Utilities
 
         public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
+            var client = new HttpClient();
             FillHeaders(headers);
-            _client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
-            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
+            var response = await client.PostAsync(url, null).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
-            _client.Timeout = new TimeSpan(0, 0, 100);
+            client.Timeout = new TimeSpan(0, 0, 100);
             return desrializedContent;
         }
-        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
         {
+            var client = new HttpClient();
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
+            var response = await client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);

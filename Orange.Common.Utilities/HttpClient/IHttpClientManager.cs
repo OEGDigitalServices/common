@@ -8,7 +8,7 @@ namespace Orange.Common.Utilities
         Task<string> Get(string url, Dictionary<string, string> headers = null);
         Task<T> Get<T>(string url, Dictionary<string, string> headers = null);
         Task<T> Post<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100);
-        Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class;
     }
 }
