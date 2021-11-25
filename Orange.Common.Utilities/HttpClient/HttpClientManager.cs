@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
@@ -11,20 +12,28 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client;
         #endregion
 
         #region CTOR
+        static HttpClientManager()
+        {
+            _client = new HttpClient();
+            _client.Timeout = TimeSpan.FromSeconds(180);
+        }
         public HttpClientManager()
         {
         }
         #endregion
 
         #region Methods
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
-            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var content = JsonConvert.DeserializeObject<T>(stringContent);
@@ -33,29 +42,41 @@ namespace Orange.Common.Utilities
 
         public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
-            var client = new HttpClient();
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
-            client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
-            var response = await client.PostAsync(url, null).ConfigureAwait(false);
+            var response = await _client.PostAsync(url, null, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
-            client.Timeout = new TimeSpan(0, 0, 100);
             return desrializedContent;
         }
         public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
         {
-            var client = new HttpClient();
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            client.Timeout = new TimeSpan(0, 0, timeoutInSeconds);
-            var response = await client.PostAsync(url, content).ConfigureAwait(false);
+            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
+        }
+
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
         }
         #endregion
 
@@ -84,14 +105,6 @@ namespace Orange.Common.Utilities
             if (concatenatedURL.EndsWith("&"))
                 concatenatedURL.Remove(concatenatedURL.Length - 2, 1);
             return concatenatedURL;
-        }
-
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null)
-        {
-            FillHeaders(headers);
-            var response = await _client.GetAsync(url).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
         }
         #endregion
     }
