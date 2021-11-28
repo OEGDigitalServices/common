@@ -24,6 +24,7 @@ namespace Orange.Common.Utilities
                     mail.Subject = subject;
                     mail.Body = body;
                     mail.IsBodyHtml = true;
+                    mail.BodyEncoding = System.Text.Encoding.UTF8;
                     //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                     using (SmtpClient smtp = new SmtpClient(_emailConfigurations.SMTPAddress, _emailConfigurations.Port))
                     {
