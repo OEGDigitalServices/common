@@ -272,7 +272,9 @@
         TriplePlay = 266,
         MyOrangeGounaFilmFestival = 273,
         MyOrangeGrandMaster = 274,
-        AhsanNasPayment = 275
+        AhsanNasPayment = 275,
+        Home4GEducation = 276,
+        MegaPromo = 277
     }
 }
 
