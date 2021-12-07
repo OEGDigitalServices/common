@@ -9,7 +9,6 @@ namespace Orange.Common.GenericRepository
         IRepository<T> GetRepository<T>() where T : class, new();
         DbContext Context { get; }
         int Submit();
-
         int ExecuteStoredProcedure(string name, params object[] parameters);
         List<T> ExecuteSelectStoredprocedure<T>(string query, params object[] parameters);
     }

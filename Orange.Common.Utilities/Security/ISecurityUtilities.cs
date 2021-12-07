@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
 {
     public interface ISecurityUtilities
     {
         string HashData(string plainText);
-         bool VerifyHashedData(string hashedText, string plainText);
-        
+        bool VerifyHashedData(string hashedText, string plainText);
+
         string FormatCreditCardNumber(string cardNumber, string key, string IV);
         string FormatCreditCardNumber(string cardNumber);
         string CreateSHA256Signature(bool useRequest, SortedList<String, String> _requestFields, SortedList<String, String> _responseFields, string secureHashKey);

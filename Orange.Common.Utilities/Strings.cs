@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iTextSharp.text.pdf;
-
-namespace Orange.Common.Utilities
+﻿namespace Orange.Common.Utilities
 {
     public class Strings
     {
@@ -88,7 +81,7 @@ namespace Orange.Common.Utilities
             public const string dMMMMyyyy = "d MMMM yyyy";
             public const string yyyyMMddTHHmmss = "yyyy-MM-ddTHH:mm:ss";
 
-            
+
 
             public const string YearMonthDayHourMinSec = "yyyyMMddhhmmss";
             public const string MMddyyyySlash = "MM/dd/yyyy";
@@ -154,16 +147,16 @@ namespace Orange.Common.Utilities
             public const string AvailableVoucherListUrl = "AvailableVoucherListUrl";
             public const string MobileAdministrationWebUrl = "MobileAdministrationWebUrl";
             public const string OrangeCashAddMoneyContentListURL = "OrangeCashAddMoneyContentListURL";
-            
+
             public const string ServicesEnglishWebUrl = "ServicesEnglishWebUrl";
             public const string DataGatheringCitiesListUrl = "DataGatheringCitiesListUrl";
             public const string DataGatheringDistrictsListUrl = "DataGatheringDistrictsListUrl";
             public const string DataGatheringFilesListUrl = "DataGatheringFilesListUrl";
             public const string DataGatheringFilesListName = "DataGatheringFilesListName";
 
-			public const string JoinOrangeRequestReportListUrl = "JoinOrangeRequestReportListUrl";
+            public const string JoinOrangeRequestReportListUrl = "JoinOrangeRequestReportListUrl";
 
-		}
+        }
         public struct Mails
         {
             public const string AdminEmail = "AdminEmail";
@@ -200,7 +193,7 @@ namespace Orange.Common.Utilities
             public const string Price = "Price";
             public const string AllDayQuota = "AllDayQuota";
             public const string SpecialTimeQuota = "SpecialTimeQuota";
-            
+
             public const string InclusiveGBs = "InclusiveGBs";
             public const string RouterPrice = "RouterPrice";
             public const string RouterInstallment = "RouterInstallment";
@@ -214,6 +207,9 @@ namespace Orange.Common.Utilities
             public const string DecimalFormat = "0.#";
             public const string MoneyFormat = "0.00";
             public const string DecimalFormat2 = "0.##";
+            public const string DoubleZero = "00";
+            public const string TwoZero = "20";
+            public const string Two = "2";
         }
         public struct CachingIntervals
         {
@@ -267,14 +263,14 @@ namespace Orange.Common.Utilities
             public const string FindAllInYourStores = "__Find___All__InYour__Stores__Cache___Key____{0}{1}{2}";
             public const string HomePageFeatures = "__Home___Page__Features____Cache___Key____{0}{1}{2}";
             public const string ServicesForYou = "__Services___For__You__Cache______Key____{0}{1}{2}";
-            public const string EssentialServices = "__Essential___Services__Cache______Key____{0}{1}{2}"; 
-            public const string GetConnected = "__Get___Connected__Cache______Key____{0}{1}{2}"; 
+            public const string EssentialServices = "__Essential___Services__Cache______Key____{0}{1}{2}";
+            public const string GetConnected = "__Get___Connected__Cache______Key____{0}{1}{2}";
             public const string OrangeApps = "__Orange___Apps__Cache______Key____{0}{1}{2}";
             public const string LandingPagePartners = "__Landing___Page___Partners___Cache______Key____{0}{1}{2}";
             public const string FirstClassPartners = "__First___Class___Partners___Cache______Key____{0}{1}{2}";
             public const string SpecialGenericContent = "__Special___Generic___Content___Cache______Key____{0}{1}{2}";
-            public const string SpecialCategories = "__Special___Categories___Cache______Key____{0}{1}{2}"; 
-            public const string TiersCategories = "__Tiers___Categories___Cache______Key____{0}{1}{2}"; 
+            public const string SpecialCategories = "__Special___Categories___Cache______Key____{0}{1}{2}";
+            public const string TiersCategories = "__Tiers___Categories___Cache______Key____{0}{1}{2}";
             public const string OrangeCashFawryCategories = "__ORA__AN__GE___C_A_S_H__FAW__RY__CAT__EG_O_RI___ES__Cache______Key____{0}{1}";
             public const string LinePurchaseAssets = "__Line__Purchase_____Assets_____Cache___Key____{0}{1}{2}";
             public const string ServicesCards = "__Services___Services__Cache______Key____{0}{1}{2}";
@@ -288,7 +284,7 @@ namespace Orange.Common.Utilities
             public const string SharePointStoreLocatorServices = "_st_Ore_loca_TO_r__S_e_r__v__ice_S_CACH_EK_EY_{0}{1}{2}";
             public const string SharePointStoreLocatorBranches = "_st_Ore_loca_TO_r_Br_aNch__e__S_CACH_EK_EY_{0}{1}{2}";
             public const string SharePointStoreLocatorBanners = "_st_Ore_loca_TO_r_Ba_NN__e__R___s_CACH_EK_EY_{0}{1}{2}";
-            public const string EntertainmentAndServices = "__Entertainment___And__Services_CaChe_____Key____{0}{1}{2}"; 
+            public const string EntertainmentAndServices = "__Entertainment___And__Services_CaChe_____Key____{0}{1}{2}";
             public const string HomePageBannerSidebar = "__Home___Page__Banner__Sidebar_CaChe_____Key____{0}{1}{2}";
             public const string MessagesTemplatesKey = "__M_E_S_S_A_G_E_S__TEM_P__L__AT__E_C_A_C_H_E__K_E_Y__{0}{1}{2}";
             public const string AvailableVoucherCacheKey = "__AV_A__I_LA__B_LE__V_OU__C_H__ER__{0}{1}{2}";
@@ -299,12 +295,12 @@ namespace Orange.Common.Utilities
             public const string DataGatheringAttachments = "__Data____Gathering__Attachments___Cache___Key____{0}{1}{2}{3}";
             public const string OrangeCashWalletConfiguration = "__Oran__ge_Cash___AddMon______eyContent_CaChe_____Key____{0}{1}{2}";
 
-			public const string ShopHomepageMenu = "__Shop___Home___Page__Menu____Cache___Key____{0}{1}{2}";
+            public const string ShopHomepageMenu = "__Shop___Home___Page__Menu____Cache___Key____{0}{1}{2}";
 
-			public const string JoinOrangeRequestReport = "__Join____Orange__Request___Report___Cache___Key____{0}{1}{2}";
+            public const string JoinOrangeRequestReport = "__Join____Orange__Request___Report___Cache___Key____{0}{1}{2}";
 
-		}
-		public struct Entertainment
+        }
+        public struct Entertainment
         {
             public const string ImageUrl = "ImageURL";
             public const string Id = "ID";
@@ -401,7 +397,7 @@ namespace Orange.Common.Utilities
             public const string CustomerNotEligible = "Customer Not Eligible";
             public const string SuccessHasNoCredit = "Success has no credit";
             public const string ErrorReceivedFromIN = "Error received from IN";
-            
+
             public const string AccountNumberAndPasswordIsNull = "Account number and password is null";
             public const string AccountNumberIsNullOrEmpty = "Account number is null or empty";
             public const string SMSNotSent = "SMS not sent successfully";
@@ -502,6 +498,10 @@ namespace Orange.Common.Utilities
             public const string EncodingTag = "<?xml version=\"1.0\"?><!DOCTYPE COMMAND PUBLIC \" -//Ocam//DTD XML Command 1.0//EN\" \"xml/command.dtd\">";
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
+        }
+        public struct SMSFormats
+        {
+            public const string BodyFormat = "{0:X04}";
         }
         public struct AppSettings
         {

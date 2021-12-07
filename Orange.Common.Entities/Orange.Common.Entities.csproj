@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channel\Channel.cs" />
+    <Compile Include="Channel\ChannelClaims.cs" />
+    <Compile Include="Channel\ChannelInfo.cs" />
     <Compile Include="Channel\ChannelsNames.cs" />
     <Compile Include="Channel\ChannelToken.cs" />
+    <Compile Include="Channel\OrangeClaims.cs" />
     <Compile Include="Entites\ErrorModel.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Enums\ModulesNames.cs" />
@@ -52,13 +55,16 @@
     <Compile Include="Inputs\BodyInput.cs" />
     <Compile Include="Inputs\CommonInput.cs" />
     <Compile Include="Inputs\HeaderData.cs" />
+    <Compile Include="Inputs\Input.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />
+    <Compile Include="Output\SecureOutput.cs" />
     <Compile Include="Output\SecureResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFailedRequestsErrorCodes.cs" />
     <Compile Include="ServicesFailedRequest.cs" />
+    <Compile Include="SMS\MessageDetails.cs" />
     <Compile Include="TokenConsumptionStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

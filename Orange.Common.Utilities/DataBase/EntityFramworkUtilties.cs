@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
 {
@@ -15,7 +12,7 @@ namespace Orange.Common.Utilities
         {
             _logger = logger;
         }
-      
+
         public void HandleDbEntityExceptions(DbEntityValidationException exp)
         {
             foreach (var validationErrors in exp.EntityValidationErrors)
@@ -27,7 +24,7 @@ namespace Orange.Common.Utilities
             }
         }
 
-      
+
         public bool SaveChanges<T>(Action<T> action) where T : DbContext, new()
         {
             try
@@ -51,7 +48,7 @@ namespace Orange.Common.Utilities
             }
         }
 
-      
+
         public List<T> GetEntities<T, U>(Func<U, List<T>> list) where U : DbContext, new()
         {
             try
@@ -67,7 +64,7 @@ namespace Orange.Common.Utilities
                 return null;
             }
         }
-        public T GetEntity<T,U>(Func<U, T> item) where U : DbContext, new()
+        public T GetEntity<T, U>(Func<U, T> item) where U : DbContext, new()
         {
             try
             {
@@ -82,8 +79,8 @@ namespace Orange.Common.Utilities
                 return default(T);
             }
         }
-       
-        public T FindFirstMatch<T,U>(Func<U, T> isExist) where U : DbContext, new()
+
+        public T FindFirstMatch<T, U>(Func<U, T> isExist) where U : DbContext, new()
         {
             try
             {

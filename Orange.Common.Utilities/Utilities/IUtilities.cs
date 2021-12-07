@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Orange.Common.Entities;
+using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
-using Orange.Common.Entities;
-using System.IO;
 
 namespace Orange.Common.Utilities
 {
@@ -36,7 +36,7 @@ namespace Orange.Common.Utilities
         string CAFPromoCodesMappingListUrl { get; }
         string FullFillOfferItemsListUrl { get; }
         string OrangeCashFawryCategories { get; }
-        string LinePurchaseAssetsListUrl { get;  }
+        string LinePurchaseAssetsListUrl { get; }
         CultureInfo GetLanguageCulture(string language);
         bool IsValidPin(string pin);
         string GetSuperRechargeTransactionID(string dial);
@@ -50,7 +50,15 @@ namespace Orange.Common.Utilities
         int DisabledTimeToReserveTicketInMinutes { get; }
         string OrangeCashAddMoneyContentListURL { get; }
         byte[] Base64DecodeinBayte(string base64EncodedData);
+        bool IsValidDial(string dial);
         bool ValidateLanguageInput(string language);
+        string GetEnumDisplayName<T>(T action) where T : Enum;
+        CultureInfo GetCurrentCulture();
+        CultureInfo GetCultureInfo(string language);
+        DateTime FormatDate(string date, string dateFormat);
+        List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records);
+        List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
+        void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
     }
 }

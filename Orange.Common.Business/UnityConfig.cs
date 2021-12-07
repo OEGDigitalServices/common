@@ -1,5 +1,4 @@
-﻿using Orange.Common.Utilities;
-using Unity;
+﻿using Unity;
 namespace Orange.Common.Business
 {
     public class UnityConfig
@@ -9,10 +8,13 @@ namespace Orange.Common.Business
 
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
             container.RegisterType<IServicesFailedRequestsManager, ServicesFailedRequestsManager>();
-            container.RegisterType<INotificationManager, NotificationManager>();
-           
-            Common.Utilities.UnityConfig.RegisterTypes(container);
-            Common.DataAccess.UnityConfig.RegisterTypes(container);
+            container.RegisterType<INotificationManager, SendMailNotificationManager>();
+            container.RegisterType<IChannelsDataManager, ChannelsDataManager>();
+            container.RegisterType<IChannelsPrivilegesManager, ChannelsPrivilegesManager>();
+            container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
+
+            Utilities.UnityConfig.RegisterTypes(container);
+            DataAccess.UnityConfig.RegisterTypes(container);
         }
     }
 }

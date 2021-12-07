@@ -1,4 +1,5 @@
-﻿using Orange.Common.Entities;
+﻿using System;
+using Orange.Common.Entities;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Xml.Linq;
@@ -17,5 +18,9 @@ namespace Orange.Common.Utilities
         XElement ExtractDataFromXmlDocument(XDocument doc, string value);
         bool IsItTestEnviroment();
         bool IsMongoEnabled();
+        System.Net.CredentialCache GetCredentialCache(string URL);
+        string GetEAISource(Channel channel);
+        Object XMLToObject(string xml, Type objectType);
+        string GetSoapXml<T>(T obj);
     }
 }

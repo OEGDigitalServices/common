@@ -5,7 +5,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Unity;
 
-namespace Orange.GSM.Payment.MobileAppsAPIs.App_Start
+namespace Orange.Common.WebApi
 {
     public class WebApiUnityActionFilterProvider : ActionDescriptorFilterProvider, IFilterProvider
     {

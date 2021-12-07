@@ -1,7 +1,5 @@
-﻿using System;
-using Orange.Common.DataAccess;
-using Orange.Common.Entities;
-using Orange.Common.EntityFramework;
+﻿using Orange.Common.DataAccess;
+using System;
 
 namespace Orange.Common.Business
 {

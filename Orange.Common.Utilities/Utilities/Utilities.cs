@@ -3,11 +3,11 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Orange.Common.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.ServiceModel;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -27,12 +27,10 @@ namespace Orange.Common.Utilities
         {
             get { return GetAppSetting(Strings.Mails.AdminEmail); }
         }
-
         public string BaseSiteUrl
         {
             get { return GetAppSetting(Strings.SharePoint.BaseSiteUrl); }
         }
-
         public string MyAccountTargetWeb
         {
             get
@@ -40,7 +38,6 @@ namespace Orange.Common.Utilities
                 return GetAppSetting(Strings.SharePoint.MyAccountTargetWeb);
             }
         }
-
         public string LinePurchasePlansListUrl
         {
             get { return GetAppSetting(Strings.SharePoint.LinePurchasePlansListUrl); }
@@ -88,6 +85,7 @@ namespace Orange.Common.Utilities
                 Enum.TryParse(channelName, out channel);
             return channel;
         }
+
         public string EncodeHTML(string Input)
         {
             if (!string.IsNullOrEmpty(Input))
@@ -115,7 +113,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.UserAgent;
+                return HttpContext.Current?.Request.UserAgent ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -127,7 +125,7 @@ namespace Orange.Common.Utilities
         {
             try
             {
-                return HttpContext.Current.Request.ServerVariables["LOCAL_ADDR"];
+                return HttpContext.Current?.Request.ServerVariables["LOCAL_ADDR"] ?? string.Empty;
             }
             catch (Exception exp)
             {
@@ -141,10 +139,10 @@ namespace Orange.Common.Utilities
             {
                 //The X-Forwarded-For (XFF) HTTP header field is a de facto standard for identifying the originating IP address of a 
                 //client connecting to a web server through an HTTP proxy or load balancer
-                string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                string ip = HttpContext.Current?.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? string.Empty;
                 if (string.IsNullOrEmpty(ip))
                 {
-                    ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                    ip = HttpContext.Current?.Request.ServerVariables["REMOTE_ADDR"] ?? string.Empty;
                 }
                 if (ip.Contains(","))
                     ip = ip.Split(',')[0];
@@ -256,7 +254,7 @@ namespace Orange.Common.Utilities
             }
             return string.Empty;
         };
-        public static bool IsValidDial(string dial)
+        public bool IsValidDial(string dial)
         {
             Regex regexDial = new Regex(@"^01([0-2,5])\d{8}$", RegexOptions.Compiled);
             return regexDial.IsMatch(dial);
@@ -297,7 +295,6 @@ namespace Orange.Common.Utilities
         {
             get { return GetAppSetting(Strings.SharePoint.LinePurchaseAssetsListUrl); }
         }
-        
         public CultureInfo GetLanguageCulture(string language)
         {
             var culture = new CultureInfo(Strings.Cultures.EnUs);
@@ -337,7 +334,6 @@ namespace Orange.Common.Utilities
                 return false;
             }
         }
-
         public string GetFormattedFees(string lang, decimal? price)
         {
             if (!price.HasValue)
@@ -375,13 +371,11 @@ namespace Orange.Common.Utilities
                     pi.SetValue(obj, pi.GetValue(bucket, null), null);
             return obj;
         }
-        
+
         public string MobileAdministrationWebUrl
         {
             get { return GetAppSetting(Strings.SharePoint.MobileAdministrationWebUrl); }
-
         }
-
         public int DisabledTimeToReserveTicketInMinutes
         {
             get
@@ -402,6 +396,59 @@ namespace Orange.Common.Utilities
                 return false;
             return true;
         }
+        public string GetEnumDisplayName<T>(T action) where T : Enum
+        {
+            string name = action.ToString();
+            var attribute = action.GetType().GetMember(action.ToString()).First().GetCustomAttribute<DisplayAttribute>();
+            if (attribute != null)
+            {
+                name = attribute.Name;
+            }
+            return name;
+        }
+        public CultureInfo GetCurrentCulture()
+        {
+            return Thread.CurrentThread.CurrentUICulture;
+        }
+        public CultureInfo GetCultureInfo(string language)
+        {
+            var _culture = new CultureInfo(Strings.Cultures.EnUs);
+            if (!string.IsNullOrWhiteSpace(language))
+                _culture = new CultureInfo(language);
+            return _culture;
+        }
+        public DateTime FormatDate(string date, string dateFormat)
+        {
+            DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
+            return formattedDate;
+        }
+        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records)
+        {
+            List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
+            if (allCachedRecords == null)
+            {
+                allCachedRecords = records;
+                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
+                    null,
+                    Cache.NoAbsoluteExpiration,
+                    Cache.NoSlidingExpiration);
+            }
+            return allCachedRecords;
+        }
+
+        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        {
+            if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
+            {
+                allCachedRecords = fetchingMethod.Invoke();
+                var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
+                    null,
+                    expirationDate,
+                    Cache.NoSlidingExpiration);
+            }
+            return allCachedRecords;
+        }
         public T Deserialize<T>(string json)
         {
             object obj = null;
@@ -415,6 +462,19 @@ namespace Orange.Common.Utilities
                 return (T)obj;
             }
             return (T)obj;
+        }
+
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        {
+            Minutes = Minutes ?? 1;
+            if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
+                return;
+
+            System.Web.Caching.Cache cache = System.Web.HttpContext.Current.Cache;
+            lock (cache)
+            {
+                System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
+            }
         }
     }
 }
