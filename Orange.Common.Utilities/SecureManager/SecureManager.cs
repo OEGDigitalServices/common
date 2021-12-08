@@ -24,7 +24,7 @@ namespace Orange.Common.Utilities
         #endregion
 
         #region CallSecureConnect
-
+        
         public T CallSecureConnect<T>(string endpoint, object requestInput, string verb)
         {
             try
