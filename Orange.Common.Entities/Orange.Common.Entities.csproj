@@ -49,6 +49,7 @@
     <Compile Include="Channel\OrangeClaims.cs" />
     <Compile Include="Entites\ErrorModel.cs" />
     <Compile Include="Enums\DialStatus.cs" />
+    <Compile Include="Enums\DialType.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Enums\ModulesNames.cs" />
     <Compile Include="Entites\RequestModel.cs" />
