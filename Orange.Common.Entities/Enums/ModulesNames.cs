@@ -269,6 +269,7 @@
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,
+        StudentProgram = 268,
         TriplePlay = 266,
         MyOrangeGounaFilmFestival = 273,
         MyOrangeGrandMaster = 274,
