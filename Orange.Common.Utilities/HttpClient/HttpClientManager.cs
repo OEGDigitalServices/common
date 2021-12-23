@@ -54,7 +54,7 @@ namespace Orange.Common.Utilities
 
         public async Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
             where TBody : class
-        {
+        { 
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, Strings.Services.XmlContentType);
