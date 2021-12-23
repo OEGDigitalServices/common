@@ -10,5 +10,7 @@ namespace Orange.Common.Utilities
         Task<T> Post<T>(string url, Dictionary<string, string> headers = null);
         Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
             where TBody : class;
+        Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+            where TBody : class;
     }
 }

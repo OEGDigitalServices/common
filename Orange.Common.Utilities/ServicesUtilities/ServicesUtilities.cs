@@ -131,8 +131,7 @@ namespace Orange.Common.Utilities
                 httpWebRequest.Method = requestVerb;
                 if (!string.IsNullOrEmpty(headers))
                 {
-                    httpWebRequest.Headers["Authorization"] = "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=";
-                    //httpWebRequest.Headers["Accept"] = "*/*";
+                    //httpWebRequest.Headers["Authorization"] = headers;
                 }
                 InitiateSSLTrust();
 
