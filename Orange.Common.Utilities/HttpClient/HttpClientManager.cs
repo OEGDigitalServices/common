@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -10,12 +11,21 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client;
         #endregion
 
         #region CTOR
         public HttpClientManager()
         {
+        }
+
+        static HttpClientManager()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12; 
+            //ServicePointManager.Expect100Continue = true;
+            //ServicePointManager.DefaultConnectionLimit = 9999;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+            _client = new HttpClient();
         }
         #endregion
 
