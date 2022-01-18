@@ -275,7 +275,8 @@
         MyOrangeGrandMaster = 274,
         AhsanNasPayment = 275,
         Home4GEducation = 276,
-        MegaPromo = 277
+        MegaPromo = 277,
+        EagleRevamp = 278,
     }
 }
 
