@@ -28,6 +28,7 @@ namespace Orange.Common.Utilities
         List<ExpandoObject> GetSpreadsheetData(string workSheet, string filePath);
         string RemoveZeroFromDial(string dial);
         string GetCurrentLanguage();
+        string GetUICurrentLanguage();
         void RemoveCache(string cacheKey);
         string TreatsListUrl { get; }
         string MyOrangeOfferAndPromotionsListUrl { get; }

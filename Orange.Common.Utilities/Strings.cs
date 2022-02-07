@@ -376,6 +376,9 @@
         {
             public const string SemiColon = ";";
             public const string SemiColonHash = ";#";
+            public const string WhiteSpace = " ";
+            public const string DoubleDots = ":";
+            public const string Comma = ",";
         }
         public struct ErrorDescriptions
         {
@@ -487,6 +490,7 @@
             public const string SecureIntegrationBusUrl = "SecureIntegrationBusUrl";
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
+            public const string IsStagingEnviroment = "IsStagingEnviroment";
         }
         public struct CommandXmlTags
         {
@@ -499,6 +503,13 @@
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
+        public struct OrderDescriptions
+        {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string DSLRechargeOrderDescription = "MODSLRecharge";
+            public const string DSLAddBillOrderDescription = "MODSLAddBill";
+        }
         public struct SMSFormats
         {
             public const string BodyFormat = "{0:X04}";
@@ -506,6 +517,12 @@
         public struct AppSettings
         {
             public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+        }
+
+        public struct EAIStatuses
+        {
+            public const string True = "True";
+            public const string False = "False";
         }
     }
 }
