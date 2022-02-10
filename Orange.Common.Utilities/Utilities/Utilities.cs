@@ -464,7 +464,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes = null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
@@ -475,6 +475,21 @@ namespace Orange.Common.Utilities
             {
                 System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
             }
+        }
+
+        public double ReturnCostInPiasters(double cost)
+        {
+            return cost * 100;
+        }
+
+        public string AddZeroToDial(string dial)
+        {
+            return !string.IsNullOrEmpty(dial) && !dial.StartsWith(Strings.Numbers.Zero) ? dial.Insert(0, Strings.Numbers.Zero).Trim() : dial;
+        }
+
+        public string AddTwoToDial(string dial)
+        {
+            return dial.Insert(0, Strings.Numbers.Two).Trim();
         }
     }
 }

@@ -59,6 +59,10 @@ namespace Orange.Common.Utilities
         List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records);
         List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
-        void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
+        void AddValueToCache(string CacheKey, object obj, int? Minutes = null);
+
+        double ReturnCostInPiasters(double cost);
+        string AddZeroToDial(string dial);
+        string AddTwoToDial(string dial);
     }
 }

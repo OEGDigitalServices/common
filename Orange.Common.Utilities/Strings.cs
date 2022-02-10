@@ -507,5 +507,10 @@
         {
             public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
         }
+
+        public struct Headers
+        {
+            public const string Authorization = "Authorization";
+        }
     }
 }
