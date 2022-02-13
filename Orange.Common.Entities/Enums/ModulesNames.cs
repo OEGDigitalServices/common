@@ -277,6 +277,7 @@
         OnBoarding = 281,
         ProductCatalogs = 282,
         DialManagement = 283,
+        ProductCatalogTask = 284,
     }
 }
 
