@@ -265,18 +265,21 @@
         UControlBillPayment = 261,
         HybirdOffer = 262,
         RamadanMassOffer = 263,
-        RamadanVasOffer = 264,
+        SummerOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,
-        StudentProgram = 268,
+        RamadanVasOffer = 268,
         TriplePlay = 266,
         MyOrangeGounaFilmFestival = 273,
         MyOrangeGrandMaster = 274,
-        AhsanNasPayment = 275,
+        StudentProgram = 275,
         Home4GEducation = 276,
         MegaPromo = 277,
-        EagleRevamp = 278,
+        AhsanNasPayment = 278,
+        EagleRevamp = 279,
+        TaxAuthorityEBill = 280,
+        ABSManagment = 281
     }
 }
 
