@@ -64,6 +64,18 @@ namespace Orange.Common.Utilities
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
+
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null) where TBody : class
+        {
+            FillHeaders(headers);
+            string serializedContent = JsonConvert.SerializeObject((object)body);
+            StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
+            return JsonConvert.DeserializeObject<object>(formatted);
+        }
+
         #endregion
 
         #region Helpers

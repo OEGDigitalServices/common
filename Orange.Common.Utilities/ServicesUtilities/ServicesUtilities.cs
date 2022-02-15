@@ -311,6 +311,13 @@ namespace Orange.Common.Utilities
             }
         }
 
+        public bool IsStagingEnviroment()
+        {
+            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
+            return isStagingEnviroment;
+        }
+        
+
         #endregion
     }
 }

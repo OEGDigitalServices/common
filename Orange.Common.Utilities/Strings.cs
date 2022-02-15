@@ -377,6 +377,8 @@
             public const string SemiColon = ";";
             public const string SemiColonHash = ";#";
             public const string WhiteSpace = " ";
+            public const string DoubleDots = ":";
+            public const string Comma = ",";
         }
         public struct ErrorDescriptions
         {
@@ -488,6 +490,7 @@
             public const string SecureIntegrationBusUrl = "SecureIntegrationBusUrl";
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
+            public const string IsStagingEnviroment = "IsStagingEnviroment";
         }
         public struct CommandXmlTags
         {
