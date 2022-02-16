@@ -279,6 +279,7 @@
         DialManagement = 283,
         ProductCatalogTask = 284,
         SubscriberInfo = 285,
+        Charges = 286,
     }
 }
 
