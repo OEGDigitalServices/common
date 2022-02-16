@@ -470,6 +470,7 @@
         {
             public const string PostVerb = "POST";
             public const string GetVerb = "GET";
+            public const string DeleteVerb = "DELETE";
             public const string XmlContentType = "text/xml";
             public const string JsonContentType = "application/json";
         }
