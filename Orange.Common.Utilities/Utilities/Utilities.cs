@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -13,6 +14,8 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Script.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Orange.Common.Utilities
 {
@@ -479,6 +482,45 @@ namespace Orange.Common.Utilities
             {
                 System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
             }
+        }
+        public string GetSoapXml<T>(T obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return string.Empty;
+
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                var xmlWriterSetting = new XmlWriterSettings()
+                {
+                    Indent = false,
+                    OmitXmlDeclaration = true,
+                    NewLineOnAttributes = false,
+                    DoNotEscapeUriAttributes = false,
+                };
+                using (var textWriter = new StringWriter())
+                {
+                    using (var xmlWriter = XmlWriter.Create(textWriter, xmlWriterSetting))
+                    {
+                        XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                        ns.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                        xmlSerializer.Serialize(xmlWriter, obj, ns);
+                        return textWriter.ToString().Replace(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty).Replace(" xsi:nil=\"true\"", string.Empty);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return string.Empty;
+            }
+        }
+        public System.Net.CredentialCache GetCredentialCache(string URL)
+        {
+            System.Net.NetworkCredential objNetworkCredential = new System.Net.NetworkCredential("Interface", "Scarface");
+            System.Net.CredentialCache objCredentialCache = new System.Net.CredentialCache();
+            objCredentialCache.Add(new Uri(URL), "BasicNW", objNetworkCredential);
+            return objCredentialCache;
         }
     }
 }

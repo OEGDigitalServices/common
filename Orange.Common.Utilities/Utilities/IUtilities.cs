@@ -61,5 +61,7 @@ namespace Orange.Common.Utilities
         List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
         void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
+        System.Net.CredentialCache GetCredentialCache(string URL);
+        string GetSoapXml<T>(T obj);
     }
 }
