@@ -377,6 +377,9 @@
         {
             public const string SemiColon = ";";
             public const string SemiColonHash = ";#";
+            public const string WhiteSpace = " ";
+            public const string DoubleDots = ":";
+            public const string Comma = ",";
         }
         public struct ErrorDescriptions
         {
@@ -488,6 +491,7 @@
             public const string SecureIntegrationBusUrl = "SecureIntegrationBusUrl";
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
+            public const string IsStagingEnviroment = "IsStagingEnviroment";
         }
         public struct CommandXmlTags
         {
@@ -507,6 +511,25 @@
         public struct AppSettings
         {
             public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+        }
+
+        public struct EAIStatuses
+        {
+            public const string Zero = "0";
+            public const string One = "1";
+            public const string Ok = "OK";
+            public const string APISuccess = "1";
+            public const string APIFailed = "2";
+            public const int ZeroNumber = 0;
+            public const int OneNumber = 1;
+            public const int TwoNumber = 2;
+            public const string True = "True";
+            public const string False = "False";
+        }
+
+        public struct Headers
+        {
+            public const string Authorization = "Authorization";
         }
     }
 }
