@@ -270,10 +270,12 @@
         SummerPromotion = 266,
         UControlManagePremier = 267,
         MegaPromo = 268,
-        TriplePlay = 266,
-        MyOrangeGounaFilmFestival = 273,
-        MyOrangeGrandMaster = 274,
-        AhsanNasPayment = 275 
+        EagleRevamp = 269,
+        WatchiTOffer = 270,
+        TriplePlay = 271,
+        MyOrangeGounaFilmFestival = 272,
+        MyOrangeGrandMaster = 273,
+        AhsanNasPayment = 274 
     }
 }
 
