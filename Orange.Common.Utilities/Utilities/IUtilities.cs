@@ -64,5 +64,6 @@ namespace Orange.Common.Utilities
         double ReturnCostInPiasters(double cost);
         string AddZeroToDial(string dial);
         string AddTwoToDial(string dial);
+        string GenerateRandomNumber();
     }
 }

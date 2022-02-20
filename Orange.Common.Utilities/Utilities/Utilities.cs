@@ -8,6 +8,7 @@ using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -490,6 +491,18 @@ namespace Orange.Common.Utilities
         public string AddTwoToDial(string dial)
         {
             return dial.Insert(0, Strings.Numbers.Two).Trim();
+        }
+
+        public string GenerateRandomNumber()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomNumber(100000, 999999));
+            return builder.ToString();
+        }
+        int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
         }
     }
 }
