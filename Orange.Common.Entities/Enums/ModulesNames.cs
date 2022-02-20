@@ -280,6 +280,7 @@
         ProductCatalogTask = 284,
         SubscriberInfo = 285,
         Charges = 286,
+        EBill = 287,
     }
 }
 
