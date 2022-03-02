@@ -268,6 +268,7 @@
         SummerOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
+        TriplePlay = 266,
         UControlManagePremier = 267,
         RamadanVasOffer = 268,
         GounaFilmFestival = 273,
