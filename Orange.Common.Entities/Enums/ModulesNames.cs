@@ -270,11 +270,11 @@
         SummerPromotion = 266,
         UControlManagePremier = 267,
         MegaPromo = 268,
-        TriplePlay = 266,
+        TriplePlay = 269,
         GounaFilmFestival = 273,
         GrandMaster = 274,
         AhsanNasPayment = 275,
-        TaxAuthorityEBill = 276,
+        TaxAuthorityEBill = 276
     }
 }
 
