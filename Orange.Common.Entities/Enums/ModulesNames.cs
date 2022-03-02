@@ -271,8 +271,8 @@
         UControlManagePremier = 267,
         MegaPromo = 268,
         TriplePlay = 266,
-        MyOrangeGounaFilmFestival = 273,
-        MyOrangeGrandMaster = 274,
+        GounaFilmFestival = 273,
+        GrandMaster = 274,
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
     }
