@@ -203,6 +203,7 @@
         public struct Numbers
         {
             public const string Zero = "0";
+            public const string One = "1";
             public const string UpperCaseHexaDecimalChar = "X2";
             public const string DecimalFormat = "0.#";
             public const string MoneyFormat = "0.00";
