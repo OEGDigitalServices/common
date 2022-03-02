@@ -280,9 +280,11 @@
         EagleRevamp = 279,
         TaxAuthorityEBill = 280,
         ABSManagment = 281,
-        RamadanHome4GOffer = 282,
-        RamadanDataOffer = 283,
-        RamadanDSLAndTPOffer = 284
+        ChangePin = 282,
+        Insallments = 283,
+        RamadanHome4GOffer = 284,
+        RamadanDataOffer = 285,
+        RamadanDSLAndTPOffer = 286
     }
 }
 
