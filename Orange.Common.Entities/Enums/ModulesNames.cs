@@ -268,13 +268,16 @@
         RamadanVasOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
+        TriplePlay = 266,
         UControlManagePremier = 267,
         MegaPromo = 268,
-        TriplePlay = 266,
-        MyOrangeGounaFilmFestival = 273,
-        MyOrangeGrandMaster = 274,
+        GounaFilmFestival = 273,
+        GrandMaster = 274,
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
+        RamadanHome4GOffer = 277,
+        RamadanDataOffer = 278,
+        RamadanDSLAndTPOffer = 279
     }
 }
 
