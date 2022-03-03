@@ -203,6 +203,7 @@
         public struct Numbers
         {
             public const string Zero = "0";
+            public const string One = "1";
             public const string UpperCaseHexaDecimalChar = "X2";
             public const string DecimalFormat = "0.#";
             public const string MoneyFormat = "0.00";
@@ -376,6 +377,9 @@
         {
             public const string SemiColon = ";";
             public const string SemiColonHash = ";#";
+            public const string WhiteSpace = " ";
+            public const string DoubleDots = ":";
+            public const string Comma = ",";
         }
         public struct ErrorDescriptions
         {
@@ -488,6 +492,7 @@
             public const string SecureIntegrationBusUrl = "SecureIntegrationBusUrl";
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
+            public const string IsStagingEnviroment = "IsStagingEnviroment";
         }
         public struct CommandXmlTags
         {
@@ -499,14 +504,6 @@
             public const string EncodingTag = "<?xml version=\"1.0\"?><!DOCTYPE COMMAND PUBLIC \" -//Ocam//DTD XML Command 1.0//EN\" \"xml/command.dtd\">";
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
-        }
-        public struct OrderDescriptions
-        {
-            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
-            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
-            public const string DSLRechargeOrderDescription = "MODSLRecharge";
-            public const string DSLAddBillOrderDescription = "MODSLAddBill";
-            public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
         }
         public struct SMSFormats
         {
@@ -520,6 +517,12 @@
         public struct Headers
         {
             public const string Authorization = "Authorization";
+        }
+
+        public struct EAIStatuses
+        {
+            public const string True = "True";
+            public const string False = "False";
         }
     }
 }

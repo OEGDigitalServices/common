@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 
 namespace Orange.Common.Utilities
 {
@@ -264,6 +266,10 @@ namespace Orange.Common.Utilities
         {
             return Thread.CurrentThread.CurrentCulture.Parent.Name;
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
         public void RemoveCache(string cacheKey)
         {
             System.Web.HttpContext.Current.Cache.Remove(cacheKey);
@@ -504,5 +510,37 @@ namespace Orange.Common.Utilities
             Random random = new Random();
             return random.Next(min, max);
         }
+
+        public System.Net.CredentialCache GetCredentialCache(string URL)
+        {
+            System.Net.NetworkCredential objNetworkCredential = new System.Net.NetworkCredential("portal", "portal");
+            System.Net.CredentialCache objCredentialCache = new System.Net.CredentialCache();
+            objCredentialCache.Add(new Uri(URL), "Basic", objNetworkCredential);
+            return objCredentialCache;
+        }
+
+        public string GetSoapXml<T>(T obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return string.Empty;
+
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                using (var textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, obj);
+                    return textWriter.ToString().Replace("  ", "").Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", string.Empty)
+                    .Replace(" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty)
+                    .Replace(">    <", "><").Replace(">  <", "><").Replace(">      <", "><").Trim(); ;
+                }
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp);
+                return string.Empty;
+            }
+        }
+
     }
 }
