@@ -340,14 +340,6 @@ namespace Orange.Common.Utilities
             bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
             return isStagingEnviroment;
         }
-
-        public bool IsStagingEnviroment()
-        {
-            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
-            return isStagingEnviroment;
-        }
-        
-
         #endregion
     }
 }
