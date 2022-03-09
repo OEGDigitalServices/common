@@ -131,7 +131,8 @@ namespace Orange.Common.Utilities
                 httpWebRequest.Method = requestVerb;
                 if (!string.IsNullOrEmpty(headers))
                 {
-                    //httpWebRequest.Headers["Authorization"] = headers;
+                    httpWebRequest.Headers["Authorization"] = "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=";
+                    //httpWebRequest.Headers["Accept"] = "*/*";
                 }
                 InitiateSSLTrust();
 
@@ -419,14 +420,6 @@ namespace Orange.Common.Utilities
                 return serviceOutput;
             }
         }
-
-        public bool IsStagingEnviroment()
-        {
-            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
-            return isStagingEnviroment;
-        }
-        
-
         #endregion
     }
 }
