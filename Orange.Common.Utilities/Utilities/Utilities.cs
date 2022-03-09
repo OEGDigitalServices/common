@@ -483,6 +483,40 @@ namespace Orange.Common.Utilities
                 System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
             }
         }
+        public System.Net.CredentialCache GetCredentialCache(string URL)
+        {
+            System.Net.NetworkCredential objNetworkCredential = new System.Net.NetworkCredential("portal", "portal");
+            System.Net.CredentialCache objCredentialCache = new System.Net.CredentialCache();
+            objCredentialCache.Add(new Uri(URL), "Basic", objNetworkCredential);
+            return objCredentialCache;
+        }
+
+        public string GetSoapXml<T>(T obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return string.Empty;
+
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                using (var textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, obj);
+                    return textWriter.ToString().Replace("  ", "").Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", string.Empty)
+                    .Replace(" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty)
+                    .Replace(">    <", "><").Replace(">  <", "><").Replace(">      <", "><").Trim(); ;
+                }
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp);
+                return string.Empty;
+            }
+        }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
 
         public double ReturnCostInPiasters(double cost)
         {
