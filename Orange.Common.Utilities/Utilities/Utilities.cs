@@ -508,5 +508,9 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
     }
 }
