@@ -274,7 +274,8 @@
         GounaFilmFestival = 273,
         GrandMaster = 274,
         AhsanNasPayment = 275,
-        TaxAuthorityEBill = 276
+        TaxAuthorityEBill = 276,
+        Installments = 283
     }
 }
 
