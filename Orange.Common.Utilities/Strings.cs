@@ -538,12 +538,5 @@
         {
             public const string Authorization = "Authorization";
         }
-        public struct OrderDescriptions
-        {
-            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
-            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
-            public const string DSLRechargeOrderDescription = "MODSLRecharge";
-            public const string DSLAddBillOrderDescription = "MODSLAddBill";
-        }
     }
 }
