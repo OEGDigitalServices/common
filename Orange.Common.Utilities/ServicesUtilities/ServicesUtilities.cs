@@ -310,6 +310,30 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+        public DialType GetDialType(string rpCode)
+        {
+            int.TryParse(rpCode, out int iRpCode);
+            if (rpCode == "20")
+            {
+                return DialType.PrePaid;
+            }
+            else if (iRpCode >= 248 && iRpCode <= 321)
+            {
+                return DialType.CallAndControl;
+            }
+            else if (rpCode == "87" || rpCode == "97" || rpCode == "152")
+            {
+                return DialType.DataPersonalPostPaid;
+            }
+            else if (rpCode == "108" || rpCode == "109")
+            {
+                return DialType.DataCorporatePostPaid;
+            }
+            else
+            {
+                return DialType.PostPaid;
+            }
+        }
 
         public bool IsStagingEnviroment()
         {
