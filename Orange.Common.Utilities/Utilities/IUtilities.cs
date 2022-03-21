@@ -63,6 +63,5 @@ namespace Orange.Common.Utilities
         void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetSoapXml<T>(T obj);
-        string GetUICurrentLanguage();
     }
 }
