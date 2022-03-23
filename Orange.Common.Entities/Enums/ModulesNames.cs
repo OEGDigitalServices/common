@@ -280,6 +280,7 @@
         EagleRevamp = 279,
         TaxAuthorityEBill = 280,
         ABSManagment = 281,
+        RamadanDataOffer = 282,
         Installments = 283
     }
 }
