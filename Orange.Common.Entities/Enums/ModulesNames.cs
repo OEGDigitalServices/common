@@ -271,6 +271,7 @@
         TriplePlay = 266,
         UControlManagePremier = 267,
         MegaPromo = 268,
+        TriplePlay = 269,
         GounaFilmFestival = 273,
         GrandMaster = 274,
         AhsanNasPayment = 275,
@@ -278,6 +279,9 @@
         RamadanDataOffer = 278,
         RamadanDSLAndTPOffer = 279,
         RamadanHome4GOffer = 280,
+        EagleRevamp = 277,
+        Installments = 283,
+        PostpaidMigrations = 284
     }
 }
 
