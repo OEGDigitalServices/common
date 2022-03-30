@@ -281,8 +281,7 @@
         TaxAuthorityEBill = 280,
         ABSManagment = 281,
         RamadanDataOffer = 282,
-        Installments = 283,
-        ProfileInfoPrepaid = 285
+        Installments = 283
     }
 }
 
