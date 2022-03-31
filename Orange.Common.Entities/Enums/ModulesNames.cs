@@ -269,19 +269,15 @@
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,
-        RamadanVasOffer = 268,
-        TriplePlay = 266,
-        MyOrangeGounaFilmFestival = 273,
-        MyOrangeGrandMaster = 274,
-        StudentProgram = 275,
-        Home4GEducation = 276,
-        MegaPromo = 277,
-        AhsanNasPayment = 278,
-        EagleRevamp = 279,
-        TaxAuthorityEBill = 280,
-        ABSManagment = 281,
-        RamadanDataOffer = 282,
-        Installments = 283
+        MegaPromo = 268,
+        TriplePlay = 269,
+        GounaFilmFestival = 273,
+        GrandMaster = 274,
+        AhsanNasPayment = 275,
+        TaxAuthorityEBill = 276,
+        EagleRevamp = 277,
+        Installments = 283,
+        PostpaidMigrations = 284
     }
 }
 
