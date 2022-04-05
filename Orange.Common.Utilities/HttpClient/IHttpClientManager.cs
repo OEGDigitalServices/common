@@ -15,8 +15,5 @@ namespace Orange.Common.Utilities
 
         Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class;
-        //Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
-        //    where TBody : class;
-        //Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null) where TBody : class;
     }
 }
