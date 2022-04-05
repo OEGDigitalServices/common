@@ -273,13 +273,23 @@
         TriplePlay = 266,
         MyOrangeGounaFilmFestival = 273,
         MyOrangeGrandMaster = 274,
-        StudentProgram = 275,
-        Home4GEducation = 276,
-        MegaPromo = 277,
-        AhsanNasPayment = 278,
+        AhsanNasPayment = 275,
+        StudentProgram = 276,
+        Home4GEducation = 278,
         EagleRevamp = 279,
         TaxAuthorityEBill = 280,
-        ABSManagment = 281
+        ABSManagment = 281,
+        OnBoarding = 295,
+        ProductCatalogs = 296,
+        DialManagement = 297,
+        ProductCatalogTask = 298,
+        SubscriberInfo = 299,
+        Charges = 300,
+        EBill = 301,
+        Payment = 302,
+        ActivateViaCreditCard = 303,
+        Buckets = 304,
+        Tariffs = 305,
     }
 }
 

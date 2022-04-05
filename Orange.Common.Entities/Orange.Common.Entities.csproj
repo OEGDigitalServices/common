@@ -63,6 +63,7 @@
     <Compile Include="Output\Output.cs" />
     <Compile Include="Output\SecureOutput.cs" />
     <Compile Include="Output\SecureResponse.cs" />
+    <Compile Include="Output\ServiceCallOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFailedRequestsErrorCodes.cs" />
     <Compile Include="ServicesFailedRequest.cs" />

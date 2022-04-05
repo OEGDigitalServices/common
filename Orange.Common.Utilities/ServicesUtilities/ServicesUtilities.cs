@@ -342,6 +342,84 @@ namespace Orange.Common.Utilities
             return isStagingEnviroment;
         }
 
+        public ServiceCallOutput SendGatewayRequest(string url, string request)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.XmlContentType;
+                httpWebRequest.Method = Strings.Services.PostVerb;
+                InitiateSSLTrust();
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(request);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
+
+        public ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.JsonContentType;
+                httpWebRequest.Method = requestVerb;
+                if (!string.IsNullOrEmpty(headers))
+                    httpWebRequest.Headers[Strings.Headers.Authorization] = headers;
+                InitiateSSLTrust();
+
+                if (!string.IsNullOrEmpty(request))
+                {
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(request);
+                        streamWriter.Flush();
+                    }
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
         #endregion
     }
 }
