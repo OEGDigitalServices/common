@@ -440,6 +440,10 @@
             public const string AddComplaint = "AddComplaint";
             public const string SuperRechargeCheckEligibility = "SuperRechargeCheckEligibility";
             public const string SuperRechargeProvisionPromo = "SuperRechargeProvisionPromo";
+            public const string AddBucket = "AddBucket";
+            public const string DeleteBucket = "DeleteBucket";
+            public const string ManageTariff = "ManageTariff";
+            public const string RenewTariff = "RenewTariff";
         }
         public struct ConvenienceFeeType
         {
@@ -475,6 +479,7 @@
             public const string PostVerb = "POST";
             public const string GetVerb = "GET";
             public const string DeleteVerb = "DELETE";
+            public const string PutVerb = "PUT";
             public const string XmlContentType = "text/xml";
             public const string JsonContentType = "application/json";
         }
