@@ -290,6 +290,7 @@
         ActivateViaCreditCard = 303,
         Buckets = 304,
         Tariffs = 305,
+        NextTopUpViaCreditCard = 306
     }
 }
 
