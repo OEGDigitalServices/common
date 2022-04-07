@@ -17,6 +17,7 @@ namespace Orange.Common.Business
 
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
+            Common.Profile.UnityConfig.RegisterTypes(container);
         }
     }
 }
