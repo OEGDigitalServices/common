@@ -291,6 +291,8 @@
         Buckets = 304,
         Tariffs = 305,
         NextTopUpViaCreditCard = 306
+        RamadanDataOffer = 282,
+        Installments = 283
     }
 }
 

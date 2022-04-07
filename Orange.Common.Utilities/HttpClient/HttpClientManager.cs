@@ -112,7 +112,6 @@ namespace Orange.Common.Utilities
             var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
             return desrializedContent;
         }
-
         #endregion
 
         #region Helpers
