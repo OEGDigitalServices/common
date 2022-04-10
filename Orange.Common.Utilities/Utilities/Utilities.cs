@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -470,7 +471,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes = null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
@@ -482,7 +483,6 @@ namespace Orange.Common.Utilities
                 System.Web.HttpContext.Current.Cache.Add(CacheKey, obj, null, DateTime.Now.AddMinutes(Minutes.Value), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
             }
         }
-
         public System.Net.CredentialCache GetCredentialCache(string URL)
         {
             System.Net.NetworkCredential objNetworkCredential = new System.Net.NetworkCredential("portal", "portal");
@@ -512,6 +512,33 @@ namespace Orange.Common.Utilities
                 _logger.LogError(exp.Message, exp);
                 return string.Empty;
             }
+        }
+
+        public double ReturnCostInPiasters(double cost)
+        {
+            return cost * 100;
+        }
+
+        public string AddZeroToDial(string dial)
+        {
+            return !string.IsNullOrEmpty(dial) && !dial.StartsWith(Strings.Numbers.Zero) ? dial.Insert(0, Strings.Numbers.Zero).Trim() : dial;
+        }
+
+        public string AddTwoToDial(string dial)
+        {
+            return dial.Insert(0, Strings.Numbers.Two).Trim();
+        }
+
+        public string GenerateRandomNumber()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomNumber(100000, 999999));
+            return builder.ToString();
+        }
+        int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
         }
     }
 }
