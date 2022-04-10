@@ -21,7 +21,7 @@ namespace Orange.Common.Utilities
             container.RegisterType<IOutputFillerManager, OutputFillerManager>(TypeLifetime.PerResolve);
             container.RegisterType<ICachingUtilities, CachingUtilities>();
             container.RegisterType<ISharePointUtilities, SharePointUtilities>();
-
+            container.RegisterType<ISecureManager, SecureManager>();
         }
     }
 }

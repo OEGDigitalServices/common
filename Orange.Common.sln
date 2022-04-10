@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.WebApi", "Ora
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.GenericRepository", "Orange.Common.GenericRepository\Orange.Common.GenericRepository.csproj", "{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Connectors", "Orange.Common.Connectors\Orange.Common.Connectors.csproj", "{A3442EDE-7441-431C-8A44-A4EA71D9D92B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile.Membership", "Orange.Common.Profile.Membership\Orange.Common.Profile.Membership.csproj", "{96B01082-8202-46D4-A438-ED5BE3374B07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile", "Orange.Common.Profile\Orange.Common.Profile.csproj", "{5868AB0F-49C9-45B7-8860-3F057FF24AF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +57,22 @@ Global
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B01082-8202-46D4-A438-ED5BE3374B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B01082-8202-46D4-A438-ED5BE3374B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B01082-8202-46D4-A438-ED5BE3374B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B01082-8202-46D4-A438-ED5BE3374B07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

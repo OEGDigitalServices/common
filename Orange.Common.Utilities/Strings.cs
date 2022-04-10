@@ -440,6 +440,10 @@
             public const string AddComplaint = "AddComplaint";
             public const string SuperRechargeCheckEligibility = "SuperRechargeCheckEligibility";
             public const string SuperRechargeProvisionPromo = "SuperRechargeProvisionPromo";
+            public const string AddBucket = "AddBucket";
+            public const string DeleteBucket = "DeleteBucket";
+            public const string ManageTariff = "ManageTariff";
+            public const string RenewTariff = "RenewTariff";
         }
         public struct ConvenienceFeeType
         {
@@ -474,6 +478,8 @@
         {
             public const string PostVerb = "POST";
             public const string GetVerb = "GET";
+            public const string DeleteVerb = "DELETE";
+            public const string PutVerb = "PUT";
             public const string XmlContentType = "text/xml";
             public const string JsonContentType = "application/json";
         }
@@ -503,6 +509,15 @@
             public const string EncodingTag = "<?xml version=\"1.0\"?><!DOCTYPE COMMAND PUBLIC \" -//Ocam//DTD XML Command 1.0//EN\" \"xml/command.dtd\">";
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
+        }
+        public struct OrderDescriptions
+        {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string DSLRechargeOrderDescription = "MODSLRecharge";
+            public const string DSLAddBillOrderDescription = "MODSLAddBill";
+            public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
+            public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
         }
         public struct SMSFormats
         {

@@ -131,7 +131,8 @@ namespace Orange.Common.Utilities
                 httpWebRequest.Method = requestVerb;
                 if (!string.IsNullOrEmpty(headers))
                 {
-                    //httpWebRequest.Headers["Authorization"] = headers;
+                    httpWebRequest.Headers["Authorization"] = "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=";
+                    //httpWebRequest.Headers["Accept"] = "*/*";
                 }
                 InitiateSSLTrust();
 
@@ -228,7 +229,7 @@ namespace Orange.Common.Utilities
         {
             if (channel == Channel.Portal)
                 return "28";
-            else if (channel == Channel.MobinilAndMe)
+            else if (channel == Channel.MobinilAndMe || channel == Channel.MyOrange)
                 return "60";
             if (channel == Channel.OrangeMoney)
                 return "65";
@@ -310,6 +311,30 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+        public DialType GetDialType(string rpCode)
+        {
+            int.TryParse(rpCode, out int iRpCode);
+            if (rpCode == "20")
+            {
+                return DialType.PrePaid;
+            }
+            else if (iRpCode >= 248 && iRpCode <= 321)
+            {
+                return DialType.CallAndControl;
+            }
+            else if (rpCode == "87" || rpCode == "97" || rpCode == "152")
+            {
+                return DialType.DataPersonalPostPaid;
+            }
+            else if (rpCode == "108" || rpCode == "109")
+            {
+                return DialType.DataCorporatePostPaid;
+            }
+            else
+            {
+                return DialType.PostPaid;
+            }
+        }
 
         public bool IsStagingEnviroment()
         {
@@ -317,7 +342,84 @@ namespace Orange.Common.Utilities
             return isStagingEnviroment;
         }
 
+        public ServiceCallOutput SendGatewayRequest(string url, string request)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.XmlContentType;
+                httpWebRequest.Method = Strings.Services.PostVerb;
+                InitiateSSLTrust();
 
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(request);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
+
+        public ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.JsonContentType;
+                httpWebRequest.Method = requestVerb;
+                if (!string.IsNullOrEmpty(headers))
+                    httpWebRequest.Headers[Strings.Headers.Authorization] = headers;
+                InitiateSSLTrust();
+
+                if (!string.IsNullOrEmpty(request))
+                {
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(request);
+                        streamWriter.Flush();
+                    }
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
         public DialType GetDialType(string rpCode)
         {
             int.TryParse(rpCode, out int iRpCode);
