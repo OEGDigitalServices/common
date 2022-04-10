@@ -27,6 +27,5 @@ namespace Orange.Common.Utilities
         ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null);
         DialType GetDialType(string rpCode);
         bool IsStagingEnviroment();
-        DialType GetDialType(string rpCode);
     }
 }
