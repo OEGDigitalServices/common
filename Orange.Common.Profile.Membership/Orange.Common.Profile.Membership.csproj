@@ -84,12 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orange.Common.Entities\Orange.Common.Entities.csproj">
-      <Project>{0170b2a4-9a05-4627-ab02-ccb1ca6740ca}</Project>
-      <Name>Orange.Common.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Utilities\Orange.Common.Utilities.csproj">
-      <Project>{7f058844-4319-47c3-b86f-5fc48bee93e6}</Project>
+      <Project>{7F058844-4319-47C3-B86F-5FC48BEE93E6}</Project>
       <Name>Orange.Common.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
