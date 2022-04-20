@@ -274,7 +274,24 @@
         GounaFilmFestival = 273,
         GrandMaster = 274,
         AhsanNasPayment = 275,
-        TaxAuthorityEBill = 276
+        StudentProgram = 276,
+        Home4GEducation = 278,
+        EagleRevamp = 279,
+        TaxAuthorityEBill = 280,
+        ABSManagment = 281,
+        OnBoarding = 295,
+        ProductCatalogs = 296,
+        DialManagement = 297,
+        ProductCatalogTask = 298,
+        SubscriberInfo = 299,
+        Charges = 300,
+        EBill = 301,
+        Payment = 302,
+        ActivateViaCreditCard = 303,
+        Buckets = 304,
+        Tariffs = 305,
+        NextTopUpViaCreditCard = 306,
+        FailedTransaction = 307,
     }
 }
 
