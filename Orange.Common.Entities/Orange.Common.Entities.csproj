@@ -48,6 +48,7 @@
     <Compile Include="Channel\ChannelToken.cs" />
     <Compile Include="Channel\OrangeClaims.cs" />
     <Compile Include="Entites\ErrorModel.cs" />
+    <Compile Include="Entites\HttpResponseModel.cs" />
     <Compile Include="Enums\DialStatus.cs" />
     <Compile Include="Enums\DialType.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />
@@ -58,6 +59,8 @@
     <Compile Include="Inputs\CommonInput.cs" />
     <Compile Include="Inputs\HeaderData.cs" />
     <Compile Include="Inputs\Input.cs" />
+    <Compile Include="Secure\Input\SIInput.cs" />
+    <Compile Include="Secure\Output\SIOutput.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="Output\SecureResponse.cs" />
     <Compile Include="Output\ServiceCallOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Secure\ErrorDoc.cs" />
     <Compile Include="ServiceFailedRequestsErrorCodes.cs" />
     <Compile Include="ServicesFailedRequest.cs" />
     <Compile Include="SMS\MessageDetails.cs" />

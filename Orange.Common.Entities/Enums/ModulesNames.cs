@@ -279,6 +279,7 @@
         EagleRevamp = 279,
         TaxAuthorityEBill = 280,
         ABSManagment = 281,
+        Installments = 283,
         OnBoarding = 295,
         ProductCatalogs = 296,
         DialManagement = 297,

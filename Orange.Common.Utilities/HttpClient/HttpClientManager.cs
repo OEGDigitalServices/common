@@ -112,6 +112,31 @@ namespace Orange.Common.Utilities
             var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
             return desrializedContent;
         }
+        public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance<TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var serializedContent = JsonConvert.SerializeObject(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
 
         #endregion
 
