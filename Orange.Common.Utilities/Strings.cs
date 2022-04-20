@@ -517,6 +517,7 @@
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
             public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
+            public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
         }
         public struct SMSFormats
         {
