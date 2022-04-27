@@ -483,6 +483,7 @@
             public const string SMSUsername = "SMSUsername";
             public const string SMSPassword = "SMSPassword";
             public const string IsItTestEnviroment = "IsItTestEnviroment";
+            public const string IsItNextTestEnviroment = "IsItNextTestEnviroment";
             public const string IsMongoEnabled = "IsMongoEnabled";
             public const string SMTPAddress = "SMTPAddress";
             public const string Port = "Port";

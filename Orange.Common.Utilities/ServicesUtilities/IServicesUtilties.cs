@@ -17,6 +17,7 @@ namespace Orange.Common.Utilities
         string SerializeXmlRequest<T>(T input, bool isSpecialEncodingTagsRequired = false);
         XElement ExtractDataFromXmlDocument(XDocument doc, string value);
         bool IsItTestEnviroment();
+        bool IsItNextTestEnviroment();
         bool IsMongoEnabled();
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetEAISource(Channel channel);
