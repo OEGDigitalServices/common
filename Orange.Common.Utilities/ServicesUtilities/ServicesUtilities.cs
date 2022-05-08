@@ -212,6 +212,11 @@ namespace Orange.Common.Utilities
             return isItTestEnviroment;
         }
 
+        public bool IsItNextTestEnviroment()
+        {
+            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsItNextTestEnviroment), out bool isItNextTestEnviroment);
+            return isItNextTestEnviroment;
+        }
         public bool IsMongoEnabled()
         {
             bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsMongoEnabled), out bool isMongoEnabled);
