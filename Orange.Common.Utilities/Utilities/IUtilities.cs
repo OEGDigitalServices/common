@@ -63,5 +63,6 @@ namespace Orange.Common.Utilities
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetSoapXml<T>(T obj);
         string GetUICurrentLanguage();
+        T XMLToObject<T>(string xml) where T : class;
     }
 }
