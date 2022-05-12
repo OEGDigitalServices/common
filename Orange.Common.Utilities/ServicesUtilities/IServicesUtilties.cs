@@ -17,12 +17,16 @@ namespace Orange.Common.Utilities
         string SerializeXmlRequest<T>(T input, bool isSpecialEncodingTagsRequired = false);
         XElement ExtractDataFromXmlDocument(XDocument doc, string value);
         bool IsItTestEnviroment();
+        bool IsItNextTestEnviroment();
         bool IsMongoEnabled();
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetEAISource(Channel channel);
         Object XMLToObject(string xml, Type objectType);
         string GetSoapXml<T>(T obj);
-        bool IsStagingEnviroment();
+
+        ServiceCallOutput SendGatewayRequest(string url, string request);
+        ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null);
         DialType GetDialType(string rpCode);
+        bool IsStagingEnviroment();
     }
 }
