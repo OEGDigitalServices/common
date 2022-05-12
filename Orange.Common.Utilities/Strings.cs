@@ -504,6 +504,16 @@
             public const string XmlVersionTag = "<?xml version=\"1.0\"?>";
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
+        public struct OrderDescriptions
+        {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string DSLRechargeOrderDescription = "MODSLRecharge";
+            public const string DSLAddBillOrderDescription = "MODSLAddBill";
+            public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
+            public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
+            public const string PurchaseOfferOrderDescription = "PurchaseOfferOrderDescription";
+        }
         public struct SMSFormats
         {
             public const string BodyFormat = "{0:X04}";

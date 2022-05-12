@@ -292,6 +292,7 @@
         Tariffs = 305,
         NextTopUpViaCreditCard = 306,
         FailedTransaction = 307,
+        PurchaseOfferViaCreditCard = 308
     }
 }
 
