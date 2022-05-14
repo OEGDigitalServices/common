@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
@@ -10,70 +12,105 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-        private static readonly HttpClient _client = new HttpClient();
+
+        private readonly HttpClient _client;
+        private readonly ILogger _logger;
         #endregion
 
         #region CTOR
-        public HttpClientManager()
+
+        public HttpClientManager(HttpClient client, ILogger logger)
         {
+            _client = client;
+            _logger = logger;
         }
+
         #endregion
 
         #region Methods
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
-            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var content = JsonConvert.DeserializeObject<T>(stringContent);
             return content;
         }
 
-        public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> Post<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
-            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            var response = await _client.PostAsync(url, null, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
-        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
 
-        public async Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        public async Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
-        { 
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
             var serializedContent = JsonConvert.SerializeObject(body);
-            var content = new StringContent(serializedContent, Encoding.UTF8, Strings.Services.XmlContentType);
-            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
 
-        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null) where TBody : class
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
             FillHeaders(headers);
-            string serializedContent = JsonConvert.SerializeObject((object)body);
-            StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
-            return JsonConvert.DeserializeObject<object>(formatted);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
+        }
+
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+            where TBody : class
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
+            FillHeaders(headers);
+            var serializedContent = JsonConvert.SerializeObject(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
+            var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
+            return desrializedContent;
         }
 
         #endregion
@@ -103,14 +140,6 @@ namespace Orange.Common.Utilities
             if (concatenatedURL.EndsWith("&"))
                 concatenatedURL.Remove(concatenatedURL.Length - 2, 1);
             return concatenatedURL;
-        }
-
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null)
-        {
-            FillHeaders(headers);
-            var response = await _client.GetAsync(url).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
         }
         #endregion
     }

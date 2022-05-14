@@ -266,6 +266,10 @@ namespace Orange.Common.Utilities
         {
             return Thread.CurrentThread.CurrentCulture.Parent.Name;
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
         public void RemoveCache(string cacheKey)
         {
             System.Web.HttpContext.Current.Cache.Remove(cacheKey);
