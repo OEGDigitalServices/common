@@ -124,10 +124,10 @@
     <Compile Include="OutputFillerManager\IOutputFillerManager.cs" />
     <Compile Include="OutputFillerManager\OutputFillerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureManager\ISecureManager.cs" />
-    <Compile Include="SecureManager\SecureManager.cs" />
     <Compile Include="ResourceReader\GlobalResourceReader.cs" />
     <Compile Include="ResourceReader\IGlobalResourceReader.cs" />
+    <Compile Include="SecureManager\ISecureManager.cs" />
+    <Compile Include="SecureManager\SecureManager.cs" />
     <Compile Include="Security\CachingUtilities.cs" />
     <Compile Include="Security\ICachingUtilities.cs" />
     <Compile Include="Security\ISecurityUtilities.cs" />

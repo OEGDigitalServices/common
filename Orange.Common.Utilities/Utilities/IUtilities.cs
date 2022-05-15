@@ -68,5 +68,6 @@ namespace Orange.Common.Utilities
         string GenerateRandomNumber();
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetSoapXml<T>(T obj);
+        T XMLToObject<T>(string xml) where T : class;
     }
 }
