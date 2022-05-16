@@ -64,6 +64,9 @@
     <Compile Include="Output\SecureOutput.cs" />
     <Compile Include="Output\SecureResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Secure\ErrorDoc.cs" />
+    <Compile Include="Secure\Input\SIInput.cs" />
+    <Compile Include="Secure\Output\SIOutput.cs" />
     <Compile Include="ServiceFailedRequestsErrorCodes.cs" />
     <Compile Include="ServicesFailedRequest.cs" />
     <Compile Include="SMS\MessageDetails.cs" />
