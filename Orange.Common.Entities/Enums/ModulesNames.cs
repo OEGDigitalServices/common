@@ -304,18 +304,6 @@
         GounaFreeRides = 299,
         NextTopUpViaCreditCard = 300,
         EndPointSecurity = 301,
-        MegaPromo = 268,
-        TriplePlay = 269,
-        GounaFilmFestival = 273,
-        GrandMaster = 274,
-        AhsanNasPayment = 275,
-        TaxAuthorityEBill = 276,
-        RamadanDataOffer = 278,
-        RamadanDSLAndTPOffer = 279,
-        RamadanHome4GOffer = 280,
-        EagleRevamp = 277,
-        Installments = 283,
-        PostpaidMigrations = 284
     }
 }
 
