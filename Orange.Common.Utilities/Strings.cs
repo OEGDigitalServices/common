@@ -519,6 +519,7 @@
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
             public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
             public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
+            public const string PurchaseOfferOrderDescription = "PurchaseOfferOrderDescription";
         }
         public struct SMSFormats
         {
