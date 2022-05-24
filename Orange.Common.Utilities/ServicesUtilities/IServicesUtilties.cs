@@ -23,7 +23,6 @@ namespace Orange.Common.Utilities
         string GetEAISource(Channel channel);
         Object XMLToObject(string xml, Type objectType);
         string GetSoapXml<T>(T obj);
-<<<<<<<<< Temporary merge branch 1
         DialType GetDialType(string rpCode);
         bool IsStagingEnviroment();
         string GenerateXMLRequest<T>(T xmlClass, string parentNode = "");
