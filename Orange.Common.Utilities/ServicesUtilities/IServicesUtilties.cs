@@ -24,5 +24,6 @@ namespace Orange.Common.Utilities
         string GetSoapXml<T>(T obj);
         DialType GetDialType(string rpCode);
         bool IsStagingEnviroment();
+        string GenerateXMLRequest<T>(T xmlClass, string parentNode = "");
     }
 }

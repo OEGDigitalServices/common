@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Reflection;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Xml;
@@ -340,6 +341,87 @@ namespace Orange.Common.Utilities
         {
             bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
             return isStagingEnviroment;
+        }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
+
+        public ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.JsonContentType;
+                httpWebRequest.Method = requestVerb;
+                if (!string.IsNullOrEmpty(headers))
+                    httpWebRequest.Headers[Strings.Headers.Authorization] = headers;
+                InitiateSSLTrust();
+
+                if (!string.IsNullOrEmpty(request))
+                {
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(request);
+                        streamWriter.Flush();
+                    }
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                serviceOutput.Response = response;
+                return serviceOutput;
+            }
+            catch (Exception exp)
+            {
+                serviceOutput.IsException = true;
+                serviceOutput.ExceptionMessage = exp.Message;
+                _logger.LogError(exp.Message, exp, false);
+                return serviceOutput;
+            }
+        }
+
+        public string GenerateXMLRequest<T>(T xmlClass, string parentNode = "")
+        {
+            string xmlString = string.IsNullOrEmpty(parentNode) ? "<?xml version=\"1.0\"?><COMMAND>" : "<?xml version=\"1.0\"?><" + parentNode + ">";
+            foreach (PropertyInfo prop in xmlClass.GetType().GetProperties())
+            {
+                object value = prop.GetValue(xmlClass, null);
+                if (value != null && !string.IsNullOrEmpty(value.ToString()))
+                {
+                    xmlString += "<" + prop.Name.ToString() + ">" + prop.GetValue(xmlClass, null).ToString() + "</" + prop.Name.ToString() + ">";
+                }
+                else
+                {
+                    xmlString += "<" + prop.Name.ToString() + "></" + prop.Name.ToString() + ">";
+                }
+            }
+            xmlString += string.IsNullOrEmpty(parentNode) ? "</COMMAND>" : "</" + parentNode + ">";
+            return xmlString;
         }
 
         #endregion
