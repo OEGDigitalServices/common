@@ -203,6 +203,7 @@
         public struct Numbers
         {
             public const string Zero = "0";
+            public const string One = "1";
             public const string UpperCaseHexaDecimalChar = "X2";
             public const string DecimalFormat = "0.#";
             public const string MoneyFormat = "0.00";
@@ -439,6 +440,10 @@
             public const string AddComplaint = "AddComplaint";
             public const string SuperRechargeCheckEligibility = "SuperRechargeCheckEligibility";
             public const string SuperRechargeProvisionPromo = "SuperRechargeProvisionPromo";
+            public const string AddBucket = "AddBucket";
+            public const string DeleteBucket = "DeleteBucket";
+            public const string ManageTariff = "ManageTariff";
+            public const string RenewTariff = "RenewTariff";
         }
         public struct ConvenienceFeeType
         {
@@ -473,6 +478,8 @@
         {
             public const string PostVerb = "POST";
             public const string GetVerb = "GET";
+            public const string DeleteVerb = "DELETE";
+            public const string PutVerb = "PUT";
             public const string XmlContentType = "text/xml";
             public const string JsonContentType = "application/json";
         }
@@ -482,6 +489,7 @@
             public const string SMSUsername = "SMSUsername";
             public const string SMSPassword = "SMSPassword";
             public const string IsItTestEnviroment = "IsItTestEnviroment";
+            public const string IsItNextTestEnviroment = "IsItNextTestEnviroment";
             public const string IsMongoEnabled = "IsMongoEnabled";
             public const string SMTPAddress = "SMTPAddress";
             public const string Port = "Port";
@@ -509,6 +517,9 @@
             public const string GSMAddBillOrderDescription = "MOGSMAddBill";
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
+            public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
+            public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
+            public const string PurchaseOfferOrderDescription = "PurchaseOfferOrderDescription";
         }
         public struct SMSFormats
         {
@@ -521,8 +532,21 @@
 
         public struct EAIStatuses
         {
+            public const string Zero = "0";
+            public const string One = "1";
+            public const string Ok = "OK";
+            public const string APISuccess = "1";
+            public const string APIFailed = "2";
+            public const int ZeroNumber = 0;
+            public const int OneNumber = 1;
+            public const int TwoNumber = 2;
             public const string True = "True";
             public const string False = "False";
+        }
+
+        public struct Headers
+        {
+            public const string Authorization = "Authorization";
         }
     }
 }

@@ -213,6 +213,11 @@ namespace Orange.Common.Utilities
             return isItTestEnviroment;
         }
 
+        public bool IsItNextTestEnviroment()
+        {
+            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsItNextTestEnviroment), out bool isItNextTestEnviroment);
+            return isItNextTestEnviroment;
+        }
         public bool IsMongoEnabled()
         {
             bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsMongoEnabled), out bool isMongoEnabled);
@@ -343,6 +348,23 @@ namespace Orange.Common.Utilities
             return isStagingEnviroment;
         }
 
+        public ServiceCallOutput SendGatewayRequest(string url, string request)
+        {
+            var serviceOutput = new ServiceCallOutput();
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.XmlContentType;
+                httpWebRequest.Method = Strings.Services.PostVerb;
+                InitiateSSLTrust();
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(request);
+                    streamWriter.Flush();
+                }
+
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpResponse.StatusCode == HttpStatusCode.OK)
                 {
@@ -405,6 +427,7 @@ namespace Orange.Common.Utilities
             }
         }
 
+
         public string GenerateXMLRequest<T>(T xmlClass, string parentNode = "")
         {
             string xmlString = string.IsNullOrEmpty(parentNode) ? "<?xml version=\"1.0\"?><COMMAND>" : "<?xml version=\"1.0\"?><" + parentNode + ">";
@@ -423,7 +446,6 @@ namespace Orange.Common.Utilities
             xmlString += string.IsNullOrEmpty(parentNode) ? "</COMMAND>" : "</" + parentNode + ">";
             return xmlString;
         }
-
         #endregion
     }
 }
