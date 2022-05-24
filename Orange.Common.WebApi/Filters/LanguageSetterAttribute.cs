@@ -1,4 +1,5 @@
-﻿using Orange.Common.Utilities;
+﻿using Orange.Common.Entities;
+using Orange.Common.Utilities;
 using System;
 using System.Globalization;
 using System.Net;
@@ -28,6 +29,13 @@ namespace Orange.Common.WebApi
                 if (IsValidLanguage(header.Language))
                 {
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(header.Language);
+                    var obj = actionContext.ActionArguments["input"];
+                    if (obj is Input)
+                    {
+                        var input = obj as Input;
+                        input.Language = header.Language;
+                        actionContext.ActionArguments["input"] = input;
+                    }
                     return;
                 }
 

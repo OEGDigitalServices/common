@@ -9,5 +9,7 @@ namespace Orange.Common.Entities
         public string Language { get; set; }
         public Guid UserId { get; set; }
         public Channel Channel { get; set; }
+        public ModulesNames ModuleName { get; set; }
+        public Guid RequestId { get; set; }
     }
 }

@@ -304,6 +304,8 @@
         GounaFreeRides = 299,
         NextTopUpViaCreditCard = 300,
         EndPointSecurity = 301,
+        FailedTransaction = 302,
+        PurchaseOfferViaCreditCard = 303,
     }
 }
 
