@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Reflection;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Xml;
@@ -427,6 +428,24 @@ namespace Orange.Common.Utilities
         }
 
 
+        public string GenerateXMLRequest<T>(T xmlClass, string parentNode = "")
+        {
+            string xmlString = string.IsNullOrEmpty(parentNode) ? "<?xml version=\"1.0\"?><COMMAND>" : "<?xml version=\"1.0\"?><" + parentNode + ">";
+            foreach (PropertyInfo prop in xmlClass.GetType().GetProperties())
+            {
+                object value = prop.GetValue(xmlClass, null);
+                if (value != null && !string.IsNullOrEmpty(value.ToString()))
+                {
+                    xmlString += "<" + prop.Name.ToString() + ">" + prop.GetValue(xmlClass, null).ToString() + "</" + prop.Name.ToString() + ">";
+                }
+                else
+                {
+                    xmlString += "<" + prop.Name.ToString() + "></" + prop.Name.ToString() + ">";
+                }
+            }
+            xmlString += string.IsNullOrEmpty(parentNode) ? "</COMMAND>" : "</" + parentNode + ">";
+            return xmlString;
+        }
         #endregion
     }
 }
