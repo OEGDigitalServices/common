@@ -166,6 +166,17 @@ namespace Orange.Common.Utilities
                 concatenatedURL.Remove(concatenatedURL.Length - 2, 1);
             return concatenatedURL;
         }
+
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds  = 100)
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
+        }
         #endregion
     }
 }
