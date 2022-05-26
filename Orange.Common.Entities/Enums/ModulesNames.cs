@@ -275,7 +275,7 @@
         GrandMaster = 274,
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
-        EndPointSecurity = 277
+        OrangeWebSecurity = 277
     }
 }
 
