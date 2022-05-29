@@ -306,6 +306,7 @@
         EndPointSecurity = 301,
         FailedTransaction = 302,
         PurchaseOfferViaCreditCard = 303,
+        CocacolaSummerOffer = 304,
         WalletBalanceInquiry = 305,
         TariffMigrations = 306
     }
