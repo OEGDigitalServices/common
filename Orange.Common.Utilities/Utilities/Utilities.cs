@@ -543,6 +543,23 @@ namespace Orange.Common.Utilities
             }
             return obj as T;
         }
+        public string SerializeXML<T>(T dataToSerialize)
+        {
+            try
+            {
+                var stringwriter = new StringWriter();
+                var serializer = new XmlSerializer(typeof(T));
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+                serializer.Serialize(stringwriter, dataToSerialize, ns);
+
+                return stringwriter.ToString();
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
     }
 }

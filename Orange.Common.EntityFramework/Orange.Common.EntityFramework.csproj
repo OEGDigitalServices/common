@@ -90,7 +90,9 @@
     <Compile Include="Models\CommonModel.cs" />
     <Compile Include="Models\MobinilProfileModel.cs" />
     <Compile Include="Models\NotificationsModel.cs" />
+    <Compile Include="Models\OrangeActionLogsModel.cs" />
     <Compile Include="Models\OrangeServicesModel.cs" />
+    <Compile Include="Models\TangoRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\ServicesFailedRequest.cs" />
   </ItemGroup>
