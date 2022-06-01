@@ -307,7 +307,8 @@
         FailedTransaction = 302,
         PurchaseOfferViaCreditCard = 303,
         WalletBalanceInquiry = 305,
-        TariffMigrations = 306
+        TariffMigrations = 306,
+        MassOffer = 307,
     }
 }
 
