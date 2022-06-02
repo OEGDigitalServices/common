@@ -8,6 +8,8 @@ using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -571,5 +573,72 @@ namespace Orange.Common.Utilities
             }
             return obj as T;
         }
+        public string SerializeXML<T>(T dataToSerialize)
+        {
+            try
+            {
+                var stringwriter = new StringWriter();
+                var serializer = new XmlSerializer(typeof(T));
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+                serializer.Serialize(stringwriter, dataToSerialize, ns);
+
+                return stringwriter.ToString();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        #region SendRequest
+
+        public string SendPostRequest(string url, string request)
+        {
+            try
+            {
+                string response = string.Empty;
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.ContentType = Strings.Services.XmlContentType;
+                httpWebRequest.Method = Strings.Services.PostVerb;
+                InitiateSSLTrust();
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(request);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        response = streamReader.ReadToEnd();
+                    }
+                }
+                return response;
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return null;
+            }
+        }
+        public void InitiateSSLTrust()
+        {
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate
+                {
+                    return true;
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex, false);
+            }
+        }
+        #endregion
+
     }
 }
