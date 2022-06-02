@@ -308,7 +308,8 @@
         PurchaseOfferViaCreditCard = 303,
         WalletBalanceInquiry = 305,
         TariffMigrations = 306,
-        OrangeCashRecharge = 307
+        FreeMax = 307,
+        OrangeCashRecharge = 308
     }
 }
 
