@@ -65,5 +65,6 @@ namespace Orange.Common.Utilities
         string GetSoapXml<T>(T obj);
         T XMLToObject<T>(string xml) where T : class;
         string SerializeXML<T>(T dataToSerialize);
+        string SendPostRequest(string url, string request);
     }
 }
