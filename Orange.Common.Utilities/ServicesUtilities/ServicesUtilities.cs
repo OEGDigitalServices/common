@@ -421,6 +421,11 @@ namespace Orange.Common.Utilities
             }
         }
 
+        public bool IsItNextTestEnviroment()
+        {
+            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsItNextTestEnviroment), out bool isItNextTestEnviroment);
+            return isItNextTestEnviroment;
+        }
 
         #endregion
     }

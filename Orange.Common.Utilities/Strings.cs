@@ -498,6 +498,7 @@
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
             public const string IsStagingEnviroment = "IsStagingEnviroment";
+            public const string IsItNextTestEnviroment = "IsItNextTestEnviroment";
         }
         public struct CommandXmlTags
         {
