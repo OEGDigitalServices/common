@@ -427,6 +427,7 @@ namespace Orange.Common.Utilities
             }
         }
 
+
         public string GenerateXMLRequest<T>(T xmlClass, string parentNode = "")
         {
             string xmlString = string.IsNullOrEmpty(parentNode) ? "<?xml version=\"1.0\"?><COMMAND>" : "<?xml version=\"1.0\"?><" + parentNode + ">";
