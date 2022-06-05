@@ -430,14 +430,14 @@ namespace Orange.Common.Utilities
             DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
             return formattedDate;
         }
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey)
+        public List<T> GetAllCachedRecords<T>(string cacheKey)
         {
             List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
             if (allCachedRecords == null) return null;
             return allCachedRecords;
         }
 
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        public List<T> GetAllCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
         {
             if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
             {
