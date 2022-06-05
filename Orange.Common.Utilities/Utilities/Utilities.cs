@@ -429,33 +429,23 @@ namespace Orange.Common.Utilities
             DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
             return formattedDate;
         }
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records)
+        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey)
         {
             List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
-            if (allCachedRecords == null)
-            {
-                allCachedRecords = records;
-                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
-                    null,
-                    Cache.NoAbsoluteExpiration,
-                    Cache.NoSlidingExpiration);
-            }
+            if (allCachedRecords == null) return null;
             return allCachedRecords;
         }
 
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        public void InsertCachedRecordsToDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
         {
-            if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
-            {
-                allCachedRecords = fetchingMethod.Invoke();
-                var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
-                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
-                    null,
-                    expirationDate,
-                    Cache.NoSlidingExpiration);
-            }
-            return allCachedRecords;
+            List<T> allCachedRecords = fetchingMethod.Invoke();
+            var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+            HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
+                null,
+                expirationDate,
+                Cache.NoSlidingExpiration);
         }
+
         public T Deserialize<T>(string json)
         {
             object obj = null;

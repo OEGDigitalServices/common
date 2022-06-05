@@ -295,11 +295,9 @@
             public const string DataGatheringDistricts = "__Data____Gathering__Districts___Cache___Key____{0}{1}{2}{3}";
             public const string DataGatheringAttachments = "__Data____Gathering__Attachments___Cache___Key____{0}{1}{2}{3}";
             public const string OrangeCashWalletConfiguration = "__Oran__ge_Cash___AddMon______eyContent_CaChe_____Key____{0}{1}{2}";
-
             public const string ShopHomepageMenu = "__Shop___Home___Page__Menu____Cache___Key____{0}{1}{2}";
-
             public const string JoinOrangeRequestReport = "__Join____Orange__Request___Report___Cache___Key____{0}{1}{2}";
-
+            public const string RequestErrorCodeHandlingCachedKey = "Req___ue__st_Er____ror____Code_Handl____ings";
         }
         public struct Entertainment
         {
