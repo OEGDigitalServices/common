@@ -13,11 +13,13 @@ namespace Orange.Common.Utilities
     {
         #region Props
         private static readonly HttpClient _client = new HttpClient();
+        private readonly IUtilities _utilities;
         #endregion
 
         #region CTOR
-        public HttpClientManager()
+        public HttpClientManager(IUtilities utilities)
         {
+            _utilities = utilities;
         }
         #endregion
 
@@ -63,18 +65,22 @@ namespace Orange.Common.Utilities
             return desrializedContent;
         }
 
-        public async Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        public async Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
-        { 
-            FillHeaders(headers);
-            var serializedContent = JsonConvert.SerializeObject(body);
-            var content = new StringContent(serializedContent, Encoding.UTF8, Strings.Services.XmlContentType);
-            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
+            var serializedContent = _utilities.ObjectToXML<TBody>(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+
+            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
-            return desrializedContent;
+
+            return (T)Convert.ChangeType(stringContent, typeof(T));
         }
+
 
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null) where TBody : class
         {
