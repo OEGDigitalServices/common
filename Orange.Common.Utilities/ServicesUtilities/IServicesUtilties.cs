@@ -23,10 +23,11 @@ namespace Orange.Common.Utilities
         string GetEAISource(Channel channel);
         Object XMLToObject(string xml, Type objectType);
         string GetSoapXml<T>(T obj);
-        DialType GetDialType(string rpCode);
-        bool IsStagingEnviroment();
+
         ServiceCallOutput SendGatewayRequest(string url, string request);
         ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null);
+        DialType GetDialType(string rpCode);
+        bool IsStagingEnviroment();
         string GenerateXMLRequest<T>(T xmlClass, string parentNode = "");
     }
 }
