@@ -9,11 +9,13 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Script.Serialization;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Orange.Common.Utilities
@@ -265,6 +267,10 @@ namespace Orange.Common.Utilities
         {
             return Thread.CurrentThread.CurrentCulture.Parent.Name;
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
         public void RemoveCache(string cacheKey)
         {
             System.Web.HttpContext.Current.Cache.Remove(cacheKey);
@@ -424,26 +430,19 @@ namespace Orange.Common.Utilities
             DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
             return formattedDate;
         }
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records)
+        public List<T> GetAllCachedRecords<T>(string cacheKey)
         {
             List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
-            if (allCachedRecords == null)
-            {
-                allCachedRecords = records;
-                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
-                    null,
-                    Cache.NoAbsoluteExpiration,
-                    Cache.NoSlidingExpiration);
-            }
+            if (allCachedRecords == null) return null;
             return allCachedRecords;
         }
 
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        public List<T> GetAllCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
         {
             if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
             {
                 allCachedRecords = fetchingMethod.Invoke();
-                var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+                var expirationDate = daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
                 HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
                     null,
                     expirationDate,
@@ -451,6 +450,7 @@ namespace Orange.Common.Utilities
             }
             return allCachedRecords;
         }
+
         public T Deserialize<T>(string json)
         {
             object obj = null;
@@ -466,7 +466,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes = null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
@@ -508,9 +508,62 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
-        public string GetUICurrentLanguage()
+
+        public double ReturnCostInPiasters(double cost)
         {
-            return Thread.CurrentThread.CurrentUICulture.Name;
+            return cost * 100;
+        }
+
+        public string AddZeroToDial(string dial)
+        {
+            return !string.IsNullOrEmpty(dial) && !dial.StartsWith(Strings.Numbers.Zero) ? dial.Insert(0, Strings.Numbers.Zero).Trim() : dial;
+        }
+
+        public string AddTwoToDial(string dial)
+        {
+            return dial.Insert(0, Strings.Numbers.Two).Trim();
+        }
+
+        public string GenerateRandomNumber()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomNumber(100000, 999999));
+            return builder.ToString();
+        }
+        int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+        public T XMLToObject<T>(string xml) where T : class
+        {
+            StringReader strReader = null;
+            XmlSerializer serializer = null;
+            XmlTextReader xmlReader = null;
+            object obj = null;
+            try
+            {
+                strReader = new StringReader(xml);
+                serializer = new XmlSerializer(typeof(T));
+                xmlReader = new XmlTextReader(strReader);
+                obj = serializer.Deserialize(xmlReader);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError("Error While deserialising object " + xml, exp, false);
+            }
+            finally
+            {
+                if (xmlReader != null)
+                {
+                    xmlReader.Close();
+                }
+                if (strReader != null)
+                {
+                    strReader.Close();
+                }
+            }
+            return obj as T;
         }
     }
 }

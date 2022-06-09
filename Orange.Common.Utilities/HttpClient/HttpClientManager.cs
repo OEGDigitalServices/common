@@ -13,13 +13,19 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-        private static readonly HttpClient _client = new HttpClient();
+
+        private readonly HttpClient _client;
+        private readonly ILogger _logger;
         #endregion
 
         #region CTOR
-        public HttpClientManager()
+
+        public HttpClientManager(HttpClient client, ILogger logger)
         {
+            _client = client;
+            _logger = logger;
         }
+
         #endregion
 
         #region Methods
@@ -83,17 +89,6 @@ namespace Orange.Common.Utilities
             return desrializedContent;
         }
 
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
-        {
-            var cts = new CancellationTokenSource();
-            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
-
-            FillHeaders(headers);
-            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
-        }
-
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
             where TBody : class
         {
@@ -109,6 +104,31 @@ namespace Orange.Common.Utilities
             var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
             var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
             return desrializedContent;
+        }
+        public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance<TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var serializedContent = JsonConvert.SerializeObject(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
         }
 
         #endregion
@@ -138,6 +158,17 @@ namespace Orange.Common.Utilities
             if (concatenatedURL.EndsWith("&"))
                 concatenatedURL.Remove(concatenatedURL.Length - 2, 1);
             return concatenatedURL;
+        }
+
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url, cts.Token).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
         }
         #endregion
     }

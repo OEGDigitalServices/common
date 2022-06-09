@@ -28,6 +28,7 @@ namespace Orange.Common.Utilities
         List<ExpandoObject> GetSpreadsheetData(string workSheet, string filePath);
         string RemoveZeroFromDial(string dial);
         string GetCurrentLanguage();
+        string GetUICurrentLanguage();
         void RemoveCache(string cacheKey);
         string TreatsListUrl { get; }
         string MyOrangeOfferAndPromotionsListUrl { get; }
@@ -56,12 +57,17 @@ namespace Orange.Common.Utilities
         CultureInfo GetCurrentCulture();
         CultureInfo GetCultureInfo(string language);
         DateTime FormatDate(string date, string dateFormat);
-        List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records);
-        List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
+        List<T> GetAllCachedRecords<T>(string cacheKey);
+        List<T> GetAllCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
-        void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
+        void AddValueToCache(string CacheKey, object obj, int? Minutes = null);
+
+        double ReturnCostInPiasters(double cost);
+        string AddZeroToDial(string dial);
+        string AddTwoToDial(string dial);
+        string GenerateRandomNumber();
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetSoapXml<T>(T obj);
-        string GetUICurrentLanguage();
+        T XMLToObject<T>(string xml) where T : class;
     }
 }
