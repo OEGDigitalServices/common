@@ -303,11 +303,17 @@
         DealersOffer = 298,
         GounaFreeRides = 299,
         NextTopUpViaCreditCard = 300,
-        EndPointSecurity = 301,
+        OrangeWebSecurity = 301,
         FailedTransaction = 302,
         PurchaseOfferViaCreditCard = 303,
+        CocacolaSummerOffer = 304,
         WalletBalanceInquiry = 305,
-        TariffMigrations = 306
+        TariffMigrations = 306,
+        FreeMaxOffer = 307,
+        OrangeCashRecharge = 308,
+        HashOneHashOffer = 309,
+        ActivateDial = 310,
+        NextActivationViaWallet = 311
     }
 }
 
