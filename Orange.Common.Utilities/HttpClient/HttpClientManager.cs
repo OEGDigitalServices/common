@@ -15,15 +15,16 @@ namespace Orange.Common.Utilities
         #region Props
 
         private readonly HttpClient _client;
+        private readonly IUtilities _utilities;
         private readonly ILogger _logger;
         #endregion
 
         #region CTOR
-
-        public HttpClientManager(HttpClient client, ILogger logger)
+        public HttpClientManager(HttpClient client, ILogger logger, IUtilities utilities)
         {
             _client = client;
             _logger = logger;
+            _utilities = utilities;
         }
 
         #endregion
@@ -79,14 +80,14 @@ namespace Orange.Common.Utilities
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
-            FillHeaders(headers);
-            var serializedContent = JsonConvert.SerializeObject(body);
+            var serializedContent = _utilities.ObjectToXML<TBody>(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+
             var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
-            return desrializedContent;
+
+            return (T)Convert.ChangeType(stringContent, typeof(T));
         }
 
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
