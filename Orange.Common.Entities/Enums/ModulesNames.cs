@@ -314,7 +314,7 @@
         HashOneHashOffer = 309,
         ActivateDial = 310,
         NextActivationViaWallet = 311,
-        OrangeCashRecharge = 312
+        RechargeViaWallet = 312
     }
 }
 
