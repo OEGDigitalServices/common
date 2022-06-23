@@ -278,6 +278,7 @@
         EagleRevamp = 277,
         Installments = 283,
         PostpaidMigrations = 284,
+        CocacolaSummerOffer = 304,
         HashOneHashOffer = 307,
     }
 }
