@@ -28,6 +28,7 @@ namespace Orange.Common.Utilities
         List<ExpandoObject> GetSpreadsheetData(string workSheet, string filePath);
         string RemoveZeroFromDial(string dial);
         string GetCurrentLanguage();
+        string GetUICurrentLanguage();
         void RemoveCache(string cacheKey);
         string TreatsListUrl { get; }
         string MyOrangeOfferAndPromotionsListUrl { get; }
@@ -62,5 +63,6 @@ namespace Orange.Common.Utilities
         void AddValueToCache(string CacheKey, object obj, int? Minutes=null);
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetSoapXml<T>(T obj);
+        T XMLToObject<T>(string xml) where T : class;
     }
 }
