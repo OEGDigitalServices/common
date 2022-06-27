@@ -276,6 +276,7 @@
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
         HashOneHashOffer = 307,
+        CocacolaSummerOffer = 304
     }
 }
 
