@@ -275,7 +275,8 @@
         GrandMaster = 274,
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
-        CocacolaSummerOffer = 304,
+        HashOneHashOffer = 307,
+        CocacolaSummerOffer = 304
     }
 }
 
