@@ -14,6 +14,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Script.Serialization;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Orange.Common.Utilities
@@ -265,6 +266,10 @@ namespace Orange.Common.Utilities
         {
             return Thread.CurrentThread.CurrentCulture.Parent.Name;
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
         public void RemoveCache(string cacheKey)
         {
             System.Web.HttpContext.Current.Cache.Remove(cacheKey);
@@ -508,5 +513,36 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+        public T XMLToObject<T>(string xml) where T : class
+        {
+            StringReader strReader = null;
+            XmlSerializer serializer = null;
+            XmlTextReader xmlReader = null;
+            object obj = null;
+            try
+            {
+                strReader = new StringReader(xml);
+                serializer = new XmlSerializer(typeof(T));
+                xmlReader = new XmlTextReader(strReader);
+                obj = serializer.Deserialize(xmlReader);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError("Error While deserialising object " + xml, exp, false);
+            }
+            finally
+            {
+                if (xmlReader != null)
+                {
+                    xmlReader.Close();
+                }
+                if (strReader != null)
+                {
+                    strReader.Close();
+                }
+            }
+            return obj as T;
+        }
+
     }
 }
