@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -76,11 +77,14 @@ namespace Orange.Common.Utilities
             return desrializedContent;
         }
 
-        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null) where TBody : class
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
         {
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            if(disableSSLVerification)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
