@@ -86,11 +86,11 @@ namespace Orange.Common.WebApi
                 ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsNull, ErrorDescription = "", ControllerName = ctrl, ActionName = action });
                 return false;
             }
-            if (!IUtilities.IsValidDial(claims.Dial))
-            {
-                ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsInvalid, ControllerName = ctrl, ActionName = action });
-                return false;
-            }
+            //if (!IUtilities.IsValidDial(claims.Dial))
+            //{
+            //    ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsInvalid, ControllerName = ctrl, ActionName = action });
+            //    return false;
+            //}
             if (string.IsNullOrWhiteSpace(claims.Password))
             {
                 ServicesFailedRequestsManager.Add(new ServicesFailedRequest { Dial = claims.Dial, ErrorCode = (int)ServiceFailedRequestsErrorCodes.PasswordIsNull, ControllerName = ctrl, ActionName = action });
