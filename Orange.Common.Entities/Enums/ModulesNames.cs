@@ -314,7 +314,7 @@
         ActivateDial = 310,
         NextActivationViaWallet = 311,
         RechargeViaWallet = 312,
-        FreeMaxOffer = 313,
+        FreeMaxOffer = 314, 
     }
 }
 
