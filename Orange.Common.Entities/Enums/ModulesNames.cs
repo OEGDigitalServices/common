@@ -277,7 +277,9 @@
         TaxAuthorityEBill = 276,
         EagleRevamp = 277,
         Installments = 283,
-        PostpaidMigrations = 284
+        PostpaidMigrations = 284,
+        GounaFreeRides = 285,
+        OrangeCashRecharge = 286
     }
 }
 
