@@ -265,7 +265,7 @@
         UControlBillPayment = 261,
         HybirdOffer = 262,
         RamadanMassOffer = 263,
-        RamadanVasOffer = 264,
+        SummerOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,
@@ -279,7 +279,8 @@
         Installments = 283,
         PostpaidMigrations = 284,
         GounaFreeRides = 285,
-        OrangeCashRecharge = 286
+        OrangeCashRecharge = 286,
+        ABSManagment = 287
     }
 }
 
