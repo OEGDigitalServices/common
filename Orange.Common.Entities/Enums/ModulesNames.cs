@@ -274,7 +274,24 @@
         GounaFilmFestival = 273,
         GrandMaster = 274,
         AhsanNasPayment = 275,
-        TaxAuthorityEBill = 276
+        TaxAuthorityEBill = 276,
+        EagleRevamp = 277,
+        RamadanDataOffer = 278,
+        RamadanDSLAndTPOffer = 279,
+        RamadanHome4GOffer = 280,
+        Installments = 281,
+        PostpaidMigrations = 282,
+        GounaFreeRides = 283,
+        OrangeCashRecharge = 284,
+        ABSManagment = 285,
+        CocacolaSummerOffer = 306,
+        HashOneHashOffer = 307,
+        WalletBalanceInquiry = 308,
+        FreeMaxOffer = 309,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 313,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 314,
+        OrangeGSMForOthersRechargeViaCreditCard = 315,
+        OrangeGSMAddBillViaScratchCard = 316,
     }
 }
 
