@@ -314,7 +314,12 @@
         HashOneHashOffer = 309,
         ActivateDial = 310,
         NextActivationViaWallet = 311,
-        RechargeViaWallet = 312
+        RechargeViaWallet = 312,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 313,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 314,
+        OrangeGSMForOthersRechargeViaCreditCard = 315,
+        OrangeGSMAddBillViaScratchCard = 316,
+        
     }
 }
 
