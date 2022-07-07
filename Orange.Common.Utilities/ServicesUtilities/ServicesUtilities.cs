@@ -228,7 +228,7 @@ namespace Orange.Common.Utilities
         {
             if (channel == Channel.Portal)
                 return "28";
-            else if (channel == Channel.MobinilAndMe)
+            else if (channel == Channel.MobinilAndMe || channel == Channel.MyOrange)
                 return "60";
             if (channel == Channel.OrangeMoney)
                 return "65";

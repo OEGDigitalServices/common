@@ -279,6 +279,8 @@
         RamadanDataOffer = 278,
         RamadanDSLAndTPOffer = 279,
         RamadanHome4GOffer = 280,
+        Installments = 283,
+        PostpaidMigrations = 284,
         HashOneHashOffer = 307,
         CocacolaSummerOffer = 304
     }
