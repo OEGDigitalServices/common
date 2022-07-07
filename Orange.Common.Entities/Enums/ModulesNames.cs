@@ -275,6 +275,10 @@
         GrandMaster = 274,
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
+        EagleRevamp = 277,
+        RamadanDataOffer = 278,
+        RamadanDSLAndTPOffer = 279,
+        RamadanHome4GOffer = 280,
         HashOneHashOffer = 307,
         CocacolaSummerOffer = 304
     }
