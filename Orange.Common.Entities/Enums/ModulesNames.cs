@@ -276,11 +276,18 @@
         AhsanNasPayment = 275,
         TaxAuthorityEBill = 276,
         EagleRevamp = 277,
-        Installments = 283,
-        PostpaidMigrations = 284,
-        GounaFreeRides = 285,
-        OrangeCashRecharge = 286,
-        ABSManagment = 287
+        RamadanDataOffer = 278,
+        RamadanDSLAndTPOffer = 279,
+        RamadanHome4GOffer = 280,
+        Installments = 281,
+        PostpaidMigrations = 282,
+        GounaFreeRides = 283,
+        OrangeCashRecharge = 284,
+        ABSManagment = 285,
+        CocacolaSummerOffer = 306,
+        HashOneHashOffer = 307,
+        WalletBalanceInquiry = 308,
+        FreeMaxOffer = 309
     }
 }
 
