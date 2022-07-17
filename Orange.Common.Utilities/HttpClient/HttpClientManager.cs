@@ -13,10 +13,15 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client;
+        private object obj = new object();
         #endregion
 
         #region CTOR
+        static HttpClientManager()
+        {
+            _client = new HttpClient();
+        }
         public HttpClientManager()
         {
         }
@@ -82,7 +87,7 @@ namespace Orange.Common.Utilities
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            if(disableSSLVerification)
+            if (disableSSLVerification)
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
@@ -96,13 +101,15 @@ namespace Orange.Common.Utilities
         #region Helpers
         private void FillHeaders(Dictionary<string, string> headers)
         {
-            _client.DefaultRequestHeaders.Clear();
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            if (headers == null || headers.Count == 0) return;
-            foreach (var header in headers)
+            lock (obj)
             {
-                _client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                _client.DefaultRequestHeaders.Clear();
+                _client.DefaultRequestHeaders.Accept.Clear();
+                if (!_client.DefaultRequestHeaders.Accept.Contains(new MediaTypeWithQualityHeaderValue("application/json")))
+                    _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if (headers == null || headers.Count == 0) return;
+                foreach (var header in headers)
+                    _client.DefaultRequestHeaders.Add(header.Key, header.Value);
             }
         }
 
