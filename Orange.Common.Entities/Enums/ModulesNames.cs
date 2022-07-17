@@ -315,7 +315,8 @@
         ActivateDial = 310,
         NextActivationViaWallet = 311,
         RechargeViaWallet = 312,
-        GOMoveOffer = 313
+        EndUserDataGathering = 313,
+        GOMoveOffer = 314
     }
 }
 
