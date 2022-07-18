@@ -315,8 +315,8 @@
         NextActivationViaWallet = 311,
         RechargeViaWallet = 312,
         EndUserDataGathering = 313,
-        GOMoveOffer = 314,
-        FreeMaxOffer = 315,
+        FreeMaxOffer = 314,
+        GOMoveOffer = 315,
         IPTvAddons = 316,
     }
 }
