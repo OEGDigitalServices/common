@@ -61,6 +61,7 @@
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Secure\Input\SIInput.cs" />
     <Compile Include="Secure\Output\SIOutput.cs" />
+    <Compile Include="Inputs\MobileInput.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />
