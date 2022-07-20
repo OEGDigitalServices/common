@@ -1,5 +1,7 @@
 ﻿using log4net;
 using log4net.Config;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 
 namespace Orange.Common.Utilities
@@ -12,6 +14,8 @@ namespace Orange.Common.Utilities
         }
         static Logger()
         {
+            var mongoConnectionString = System.Configuration.ConfigurationManager.AppSettings["MongoExceptionsConnectionString"];
+            _client = new MongoClient(mongoConnectionString);
             Initialize();
         }
         public static void Initialize()
@@ -22,6 +26,7 @@ namespace Orange.Common.Utilities
         /// 
         /// </summary>
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly MongoClient _client;
         /// <summary>
         /// Log Error
         /// </summary>
@@ -35,6 +40,7 @@ namespace Orange.Common.Utilities
                 message = message.Substring(0, 4000);//4000 maximum size of Message field in DB
             }
             _log.Error(message, exception);
+            LogToMongo(message);
 
             if (rethrowException)
             {
@@ -49,6 +55,14 @@ namespace Orange.Common.Utilities
         public void LogDebug(string message)
         {
             _log.Debug(message);
+        }
+
+        private static void LogToMongo(string message)
+        {
+            var doccument = new BsonDocument { { "Message", message } };
+            _client.GetDatabase("Logging")
+                .GetCollection<BsonDocument>("EAI_Exceptions")
+                .InsertOne(doccument);
         }
     }
 }
