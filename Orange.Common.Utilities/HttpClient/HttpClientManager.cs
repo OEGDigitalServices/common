@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,17 +13,21 @@ namespace Orange.Common.Utilities
     public class HttpClientManager : IHttpClientManager
     {
         #region Props
-
-        private readonly HttpClient _client;
+        private static readonly HttpClient _client;
+        private readonly IUtilities _utilities;
         private readonly ILogger _logger;
+        private object obj = new object();
         #endregion
 
         #region CTOR
-
-        public HttpClientManager(HttpClient client, ILogger logger)
+        static HttpClientManager()
         {
-            _client = client;
+            _client = new HttpClient();
+        }
+        public HttpClientManager(ILogger logger, IUtilities utilities)
+        {
             _logger = logger;
+            _utilities = utilities;
         }
 
         #endregion
@@ -53,9 +58,12 @@ namespace Orange.Common.Utilities
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
-        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
             where TBody : class
         {
+            if (disableSSL)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;             
+
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -75,31 +83,30 @@ namespace Orange.Common.Utilities
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
-            FillHeaders(headers);
-            var serializedContent = JsonConvert.SerializeObject(body);
+            var serializedContent = _utilities.ObjectToXML<TBody>(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+
             var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
-            return desrializedContent;
+
+            return (T)Convert.ChangeType(stringContent, typeof(T));
         }
 
-        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
-            where TBody : class
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSLVerification = false) where TBody : class
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
-
             FillHeaders(headers);
-            var serializedContent = JsonConvert.SerializeObject(body);
-            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
+            string serializedContent = JsonConvert.SerializeObject((object)body);
+            StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            if (disableSSLVerification)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+            HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
-            var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
-            return desrializedContent;
+            string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
+            return JsonConvert.DeserializeObject<object>(formatted);
         }
         public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
         {
@@ -132,13 +139,15 @@ namespace Orange.Common.Utilities
         #region Helpers
         private void FillHeaders(Dictionary<string, string> headers)
         {
-            _client.DefaultRequestHeaders.Clear();
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            if (headers == null || headers.Count == 0) return;
-            foreach (var header in headers)
+            lock (obj)
             {
-                _client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                _client.DefaultRequestHeaders.Clear();
+                _client.DefaultRequestHeaders.Accept.Clear();
+                if (!_client.DefaultRequestHeaders.Accept.Contains(new MediaTypeWithQualityHeaderValue("application/json")))
+                    _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if (headers == null || headers.Count == 0) return;
+                foreach (var header in headers)
+                    _client.DefaultRequestHeaders.Add(header.Key, header.Value);
             }
         }
 
