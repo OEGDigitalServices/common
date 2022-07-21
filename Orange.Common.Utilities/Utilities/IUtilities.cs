@@ -58,7 +58,7 @@ namespace Orange.Common.Utilities
         CultureInfo GetCultureInfo(string language);
         DateTime FormatDate(string date, string dateFormat);
         List<T> GetAllCachedRecords<T>(string cacheKey);
-        List<T> GetAllCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
+        List<T> InsertCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null);
         T Deserialize<T>(string json);
         void AddValueToCache(string CacheKey, object obj, int? Minutes = null);
 
