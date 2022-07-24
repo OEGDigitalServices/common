@@ -3,6 +3,7 @@ using log4net.Config;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
 {
@@ -14,7 +15,7 @@ namespace Orange.Common.Utilities
         }
         static Logger()
         {
-            var mongoConnectionString = System.Configuration.ConfigurationManager.AppSettings["MongoExceptionsConnectionString"];
+            string mongoConnectionString = GetAppSetting("EAI_Exceptions_ConnectionString");
             _client = new MongoClient(mongoConnectionString);
             Initialize();
         }
@@ -40,7 +41,11 @@ namespace Orange.Common.Utilities
                 message = message.Substring(0, 4000);//4000 maximum size of Message field in DB
             }
             _log.Error(message, exception);
-            LogToMongo(message);
+
+            if (LoggingExceptionsToMongoEnabled())
+            {
+                LogToMongo(exception);
+            }
 
             if (rethrowException)
             {
@@ -57,12 +62,31 @@ namespace Orange.Common.Utilities
             _log.Debug(message);
         }
 
-        private static void LogToMongo(string message)
+        private static bool LoggingExceptionsToMongoEnabled()
         {
-            var doccument = new BsonDocument { { "Message", message } };
-            _client.GetDatabase("Logging")
-                .GetCollection<BsonDocument>("EAI_Exceptions")
-                .InsertOne(doccument);
+            bool.TryParse(GetAppSetting("EAI_Exceptions_IsEnabled"), out bool enabled);
+            return enabled;
+        }
+
+        private static void LogToMongo(Exception exception)
+        {
+            var doccument = new BsonDocument
+            {
+                { "Message", exception.Message },
+                { "Stack Trace", exception.StackTrace },
+            };
+
+            Task.Run(() =>
+            {
+                _client.GetDatabase(GetAppSetting("EAI_Exceptions_Database"))
+                    .GetCollection<BsonDocument>(GetAppSetting("EAI_Exceptions_Collection"))
+                    .InsertOne(doccument);
+            });
+        }
+
+        private static string GetAppSetting(string key)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings[key];
         }
     }
 }
