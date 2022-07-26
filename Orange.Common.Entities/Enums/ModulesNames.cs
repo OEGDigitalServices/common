@@ -317,9 +317,11 @@
         RechargeViaWallet = 312,
         OrangeGSMInAdvanceBillPaymentViaCreditCard = 313,
         OrangeGSMForOthersBillPaymentViaCreditCard = 314,
-        OrangeGSMForOthersRechargeViaCreditCard = 315,
-        OrangeGSMAddBillViaScratchCard = 316,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 315,
+        OrangeGSMForOthersRechargeViaCreditCard = 316,
+        OrangeGSMAddBillViaScratchCard = 317
         
+
     }
 }
 

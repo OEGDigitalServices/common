@@ -513,6 +513,10 @@
         {
             public const string GSMRechargeOrderDescription = "MOGSMRecharge";
             public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
+            public const string PortalGSMAddBillOrderDescription = "PortalGSMAddBillOrderDescription";
+            public const string PortalGSMAddBillForOthersOrderDescription = "PortalGSMAddBillForOthersOrderDescription";
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
             public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
