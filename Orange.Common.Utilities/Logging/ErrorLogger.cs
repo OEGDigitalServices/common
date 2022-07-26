@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 
 namespace Orange.Common.Utilities
 {
@@ -73,7 +74,9 @@ namespace Orange.Common.Utilities
             var doccument = new BsonDocument
             {
                 { "Message", exception.Message },
-                { "Stack Trace", exception.StackTrace },
+                { "Trace", exception.StackTrace },
+                { "Site", HostingEnvironment.ApplicationHost.GetSiteName() },
+                { "Directory", HostingEnvironment.ApplicationHost.GetVirtualPath() },
             };
 
             Task.Run(() =>
