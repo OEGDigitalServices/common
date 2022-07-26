@@ -318,6 +318,11 @@
         FreeMaxOffer = 314,
         GOMoveOffer = 315,
         IPTvAddons = 316,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 318,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
+        OrangeGSMForOthersRechargeViaCreditCard = 320,
+        OrangeGSMAddBillViaScratchCard = 321
     }
 }
 
