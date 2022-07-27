@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Hosting;
 
 namespace Orange.Common.Utilities
@@ -41,11 +42,13 @@ namespace Orange.Common.Utilities
             {
                 message = message.Substring(0, 4000);//4000 maximum size of Message field in DB
             }
-            _log.Error(message, exception);
+
+            string logId = Guid.NewGuid().ToString();
+            _log.Error($"LogId: {logId}: {message}", exception);
 
             if (LoggingExceptionsToMongoEnabled())
             {
-                LogToMongo(exception);
+                LogToMongo(exception, logId);
             }
 
             if (rethrowException)
@@ -69,7 +72,7 @@ namespace Orange.Common.Utilities
             return enabled;
         }
 
-        private static void LogToMongo(Exception exception)
+        private static void LogToMongo(Exception exception, string logId)
         {
             var doccument = new BsonDocument
             {
@@ -77,6 +80,9 @@ namespace Orange.Common.Utilities
                 { "Trace", exception.StackTrace },
                 { "Site", HostingEnvironment.ApplicationHost.GetSiteName() },
                 { "Directory", HostingEnvironment.ApplicationHost.GetVirtualPath() },
+                { "ServerIP", GetInternalServerIP() },
+                { "CreatedDate" , DateTime.Now.ToString() },
+                { "LogId", logId }
             };
 
             Task.Run(() =>
@@ -90,6 +96,11 @@ namespace Orange.Common.Utilities
         private static string GetAppSetting(string key)
         {
             return System.Configuration.ConfigurationManager.AppSettings[key];
+        }
+
+        private static string GetInternalServerIP()
+        {
+            return HttpContext.Current?.Request.ServerVariables["LOCAL_ADDR"] ?? string.Empty;
         }
     }
 }
