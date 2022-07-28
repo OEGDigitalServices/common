@@ -288,7 +288,7 @@
         HashOneHashOffer = 307,
         WalletBalanceInquiry = 308,
         FreeMaxOffer = 309,
-        WeelOfFortuen = 310
+        WheelOfFortune = 310
     }
 }
 
