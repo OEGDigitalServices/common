@@ -317,7 +317,8 @@
         EndUserDataGathering = 313,
         FreeMaxOffer = 314,
         GOMoveOffer = 315,
-        IPTvAddons = 316,
+        TriplePlayDashboard = 316,
+        IPTvAddons = 317,
     }
 }
 
