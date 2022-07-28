@@ -27,7 +27,9 @@ namespace Orange.Common.WebApi
                     _isAndroid = false;
                 else
                     _isAndroid = isAndroid.Value.FirstOrDefault().ToLower() != Strings.Keys.False;
-                if (string.IsNullOrEmpty(appVersion.Value.FirstOrDefault()) || string.IsNullOrEmpty(osVersion.Value.FirstOrDefault()) || string.IsNullOrEmpty(isAndroid.Value.FirstOrDefault()))
+                if (string.IsNullOrEmpty(appVersion.Value?.FirstOrDefault())
+                    || string.IsNullOrEmpty(osVersion.Value?.FirstOrDefault())
+                    || string.IsNullOrEmpty(isAndroid.Value?.FirstOrDefault()))
                 {
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
                     return;
