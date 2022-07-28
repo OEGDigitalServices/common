@@ -8,7 +8,7 @@ using Orange.Common.Entities;
 using Orange.Common.Utilities;
 using Unity;
 
-namespace Orange.Common.WebApiFramework
+namespace Orange.Common.WebApi
 {
     public class MobileAppVersionAttribute : ActionFilterAttribute
     {
