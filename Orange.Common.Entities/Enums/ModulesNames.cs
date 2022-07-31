@@ -319,6 +319,7 @@
         GOMoveOffer = 315,
         TriplePlayDashboard = 316,
         IPTvAddons = 317,
+        IPTvPayments = 318,
     }
 }
 
