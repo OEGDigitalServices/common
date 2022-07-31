@@ -44,8 +44,8 @@ namespace Orange.Common.WebApi
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             Common.Utilities.UnityConfig.RegisterTypes(container);
-
             Common.Business.UnityConfig.RegisterTypes(container);
+            //Orange.GSM.Profile.Auth.TokenAuthentication.BL.UnityConfig.RegisterTypes(container);
         }
     }
 }
