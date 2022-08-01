@@ -309,15 +309,17 @@
         CocacolaSummerOffer = 304,
         WalletBalanceInquiry = 305,
         TariffMigrations = 306,
+        FreeMaxOffer = 307,
         OrangeCashRecharge = 308,
         HashOneHashOffer = 309,
         ActivateDial = 310,
         NextActivationViaWallet = 311,
         RechargeViaWallet = 312,
-        EndUserDataGathering = 313,
-        FreeMaxOffer = 314,
+        NextTopUpViaWallet = 313,
+        EndUserDataGathering = 314,
         GOMoveOffer = 315,
         IPTvAddons = 316,
+        WheelOfFortune = 317
     }
 }
 
