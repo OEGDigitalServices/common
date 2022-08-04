@@ -42,20 +42,5 @@ namespace Orange.Common.Profile
             else
                 return false;
         }
-        public string GetPrimaryUserDial(Guid userID)
-        {
-            try
-            {
-                using (MobinilProfileModel context = new MobinilProfileModel())
-                {
-                    return context.UserDials.FirstOrDefault(D => D.UserID == userID & D.IsPrimary.HasValue && D.IsPrimary.Value)?.Dial;
-                }
-            }
-            catch (Exception exp)
-            {
-                _logger.LogError(exp.Message, exp, false);
-                return null;
-            }
-        }
     }
 }
