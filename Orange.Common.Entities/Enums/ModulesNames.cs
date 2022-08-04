@@ -324,7 +324,7 @@
         OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
         OrangeGSMForOthersRechargeViaCreditCard = 320,
         OrangeGSMAddBillViaScratchCard = 321
-        WheelOfFortune = 317
+        WheelOfFortune = 322
     }
 }
 
