@@ -11,6 +11,5 @@ namespace Orange.Common.Profile
     {
         List<UserDial> GetUserDialsByUserID(Guid userID);
         bool CheckIfDialBelongToThisAccount(Guid userGuid, string dial);
-        string GetPrimaryUserDial(Guid userID);
     }
 }
