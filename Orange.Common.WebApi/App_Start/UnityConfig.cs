@@ -1,6 +1,7 @@
 using System;
 
 using Unity;
+using Unity.Lifetime;
 
 namespace Orange.Common.WebApi
 {
@@ -44,8 +45,12 @@ namespace Orange.Common.WebApi
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             Common.Utilities.UnityConfig.RegisterTypes(container);
-
             Common.Business.UnityConfig.RegisterTypes(container);
+            var types = Orange.GSM.Profile.Auth.TokenAuthentication.BL.UnityConfig.GetRegistrationTypes();
+            foreach (var item in types)
+            {
+                container.RegisterType(item.Key, item.Value,new PerResolveLifetimeManager());
+            }
         }
     }
 }

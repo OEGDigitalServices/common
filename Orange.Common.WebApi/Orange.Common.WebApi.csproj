@@ -104,13 +104,13 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Abstractions.5.11.7\lib\net46\Unity.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Unity.5.11.10\lib\net46\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AspNet.WebApi, Version=5.11.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.AspNet.WebApi.5.11.2\lib\net46\Unity.AspNet.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Container.5.11.8\lib\net46\Unity.Container.dll</HintPath>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
@@ -155,6 +155,14 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL.csproj">
+      <Project>{69c5b3b3-e1b6-490c-8bca-ffa5acdaf05c}</Project>
+      <Name>Orange.GSM.Profile.Auth.TokenAuthentication.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.Entities\Orange.GSM.Profile.Auth.TokenAuthentication.Entities.csproj">
+      <Project>{f9ac52b3-46c9-41e5-b532-5ad57f7c6bd7}</Project>
+      <Name>Orange.GSM.Profile.Auth.TokenAuthentication.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Business\Orange.Common.Business.csproj">
       <Project>{f76cda6a-cfda-449a-830a-92a016c18d80}</Project>
       <Name>Orange.Common.Business</Name>
