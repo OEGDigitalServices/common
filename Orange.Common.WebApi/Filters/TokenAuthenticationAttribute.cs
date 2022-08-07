@@ -19,6 +19,11 @@ namespace Orange.Common.WebApi
 {
     public class TokenAuthenticationAttribute : ActionFilterAttribute
     {
+
+        public TokenAuthenticationAttribute(bool injectDial = true)
+        {
+            _injectDial = injectDial;
+        }
         [Dependency]
         public IServicesFailedRequestsManager ServicesFailedRequestsManager { get; set; }
         [Dependency]
@@ -34,6 +39,8 @@ namespace Orange.Common.WebApi
         [Dependency]
         public ITokenUtilities TokenUtilities { get; set; }
         private string ctrl, action;
+        private readonly bool _injectDial;
+
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             try
@@ -68,7 +75,8 @@ namespace Orange.Common.WebApi
                         actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                         return;
                     }
-                    InjectDialInInput(actionContext);
+                    if (_injectDial)
+                        InjectDialInInput(actionContext);
                     return;
                 }
 
