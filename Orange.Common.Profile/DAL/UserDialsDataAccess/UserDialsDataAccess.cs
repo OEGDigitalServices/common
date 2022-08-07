@@ -3,11 +3,6 @@ using Orange.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Orange.Common.Profile
 {
@@ -26,7 +21,8 @@ namespace Orange.Common.Profile
             {
                 using (MobinilProfileModel context = new MobinilProfileModel())
                 {
-                    return context.UserDials.Where(D => D.UserID == userID).OrderByDescending(a=>a.IsPrimary).ToList();
+                    return context.UserDials.Where(D => D.UserID == userID && D.IsDeleted.HasValue && !D.IsDeleted.Value)
+                        .OrderByDescending(a=>a.IsPrimary).ToList();
                 }
             }
             catch (Exception exp)

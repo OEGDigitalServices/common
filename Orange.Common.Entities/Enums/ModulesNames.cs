@@ -318,10 +318,15 @@
         NextTopUpViaWallet = 313,
         EndUserDataGathering = 314,
         GOMoveOffer = 315,
-        TriplePlayDashboard = 316,
-        IPTvAddons = 317,
-        IPTvPaymentsViaCreditCard = 318,
-        WheelOfFortune = 319
+        IPTvAddons = 316,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 318,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
+        OrangeGSMForOthersRechargeViaCreditCard = 320,
+        OrangeGSMAddBillViaScratchCard = 321,
+        WheelOfFortune = 322,
+        TriplePlayDashboard = 323,
+        IPTvPaymentsViaCreditCard = 324,
     }
 }
 
