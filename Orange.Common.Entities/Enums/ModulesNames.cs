@@ -313,7 +313,18 @@
         OrangeCashRecharge = 308,
         HashOneHashOffer = 309,
         ActivateDial = 310,
-        NextActivationViaWallet = 311
+        NextActivationViaWallet = 311,
+        RechargeViaWallet = 312,
+        NextTopUpViaWallet = 313,
+        EndUserDataGathering = 314,
+        GOMoveOffer = 315,
+        IPTvAddons = 316,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 318,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
+        OrangeGSMForOthersRechargeViaCreditCard = 320,
+        OrangeGSMAddBillViaScratchCard = 321,
+        WheelOfFortune = 322
     }
 }
 
