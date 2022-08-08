@@ -50,33 +50,7 @@ namespace Orange.Common.WebApi
                 var jwtToken = GetJWTToken(actionContext);
                 if (!string.IsNullOrWhiteSpace(jwtToken))
                 {
-                    var isValid = IsValidToken(jwtToken);
-                    if (isValid == TokenValidationOutput.Invalid)
-                    {
-                        ILogger.LogDebug(Strings.ErrorDescriptions.TokenInvalidErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
-                        actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
-                        {
-                            Content = new StringContent(Strings.ErrorDescriptions.TokenInvalid)
-                        };
-                        return;
-                    }
-                    if (isValid == TokenValidationOutput.Expired)
-                    {
-                        ILogger.LogDebug(Strings.ErrorDescriptions.TokenExpiredErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
-                        actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
-                        {
-                            Content = new StringContent(Strings.ErrorDescriptions.TokenExpired)
-                        };
-                        return;
-                    }
-                    if (!IsUserSet(jwtToken, actionContext))
-                    {
-                        ILogger.LogDebug(Strings.ErrorDescriptions.UserIsNotSetErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
-                        actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-                        return;
-                    }
-                    if (_injectDial)
-                        InjectDialInInput(actionContext);
+                    ValidateJWTToken(actionContext, jwtToken);
                     return;
                 }
 
@@ -117,18 +91,48 @@ namespace Orange.Common.WebApi
             }
 
         }
+
         private bool CheckTestingEnvironment()
         {
             bool.TryParse(Utilities.GetAppSetting(Strings.AppSettings.IsTokenEnabled), out bool isEnabled);
             return isEnabled;
         }
 
-
         #region JWT
         private string GetJWTToken(HttpActionContext actionContext)
         {
             var token = actionContext.Request.Headers.FirstOrDefault(a => a.Key == Strings.Keys.Token || a.Key == Strings.Keys.Token.ToLower());
             return token.Value?.FirstOrDefault();
+        }
+        private void ValidateJWTToken(HttpActionContext actionContext, string jwtToken)
+        {
+            var isValid = IsValidToken(jwtToken);
+            if (isValid == TokenValidationOutput.Invalid)
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.TokenInvalidErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(Strings.ErrorDescriptions.TokenInvalid)
+                };
+                return;
+            }
+            if (isValid == TokenValidationOutput.Expired)
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.TokenExpiredErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(Strings.ErrorDescriptions.TokenExpired)
+                };
+                return;
+            }
+            if (!IsUserSet(jwtToken, actionContext))
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.UserIsNotSetErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+                return;
+            }
+            if (_injectDial)
+                InjectDialInInput(actionContext);
         }
         private TokenValidationOutput IsValidToken(string token)
         {
