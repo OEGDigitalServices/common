@@ -48,7 +48,8 @@ namespace Orange.Common.Utilities
 
             if (LoggingExceptionsToMongoEnabled())
             {
-                LogToMongo(exception, logId);
+                var caller = new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name;
+                LogToMongo(exception, logId, caller);
             }
 
             if (rethrowException)
@@ -72,7 +73,7 @@ namespace Orange.Common.Utilities
             return enabled;
         }
 
-        private static void LogToMongo(Exception exception, string logId)
+        private static void LogToMongo(Exception exception, string logId, string caller)
         {
             var doccument = new BsonDocument
             {
@@ -81,6 +82,7 @@ namespace Orange.Common.Utilities
                 { "Site", HostingEnvironment.ApplicationHost.GetSiteName() },
                 { "Directory", HostingEnvironment.ApplicationHost.GetVirtualPath() },
                 { "ServerIP", GetInternalServerIP() },
+                { "Caller" , caller },
                 { "CreatedDate" , DateTime.Now.ToString() },
                 { "LogId", logId }
             };
