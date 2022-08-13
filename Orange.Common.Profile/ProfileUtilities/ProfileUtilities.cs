@@ -43,6 +43,12 @@ namespace Orange.Common.Profile
             subDials = subDials.OrderBy(d => d.ID).ThenByDescending(d => d.IsPrimary).ToList();
             return subDials[currentIndex].Dial;
         }
+        public string GetLoggedInDial()
+        {
+            if (_authenticationContext.IsAnonymousUser() || _profileContext.CurrectUserTicketData == null)
+                return null;
+            return _profileContext.CurrectUserTicketData.DialNumber;
+        }
         public bool IsRequestFromPortal()
         {
             return HttpContext.Current.Request.Cookies[Strings.Keys.NopCustomer] != null;

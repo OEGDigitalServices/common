@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Orange.Common.Profile
 {
-  public  interface IProfileUtilities
+  public interface IProfileUtilities
     {
         bool IsAuthenticated();
         Guid GetCurrentUserId();
         string GetCurrentDial();
         bool IsRequestFromPortal();
+        string GetLoggedInDial();
     }
 }
