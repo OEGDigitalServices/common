@@ -131,6 +131,10 @@
     <Compile Include="Filters\ChannelBodyAttribute.cs" />
     <Compile Include="Filters\InputValidationAttribute.cs" />
     <Compile Include="Filters\LanguageSetterAttribute.cs" />
+    <Compile Include="Filters\PortalAuthenticationAttribute.cs" />
+    <Compile Include="Filters\PortalInjectCurrentDialAttribute.cs" />
+    <Compile Include="Filters\PortalInjectLoggedInDialAttribute.cs" />
+    <Compile Include="Filters\PortalSourceAuthenticationAttribute.cs" />
     <Compile Include="Filters\TokenAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
