@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Orange.Common.Entities;
 using Orange.Common.Profile;
 using Orange.Common.Utilities;
 using Unity;
 
 namespace Orange.Common.WebApi
 {
-    public class PortalInjectCurrentDialAttribute : ActionFilterAttribute
+    public class PortalInjectLoggedInDialAttribute : ActionFilterAttribute
     {
         [Dependency]
         public ILogger Logger { get; set; }
@@ -23,14 +18,23 @@ namespace Orange.Common.WebApi
             try
             {
                 if (!(actionContext.ActionArguments.ContainsKey("input"))) return;
-                var currentDial = ProfileUtilities.GetCurrentDial();
-                if (currentDial == null) return;
+
+                var loggedInDial = ProfileUtilities.GetLoggedInDial();
+                if (loggedInDial == null) return;
+
+                var selectedUserDial = ProfileUtilities.GetCurrentDial();
+                if (selectedUserDial == null) return;
 
                 var obj = actionContext.ActionArguments["input"];
 
                 if (obj.GetType().GetProperty("Dial") != null && obj.GetType().GetProperty("Dial").PropertyType == typeof(string))
                 {
-                    obj.GetType().GetProperty("Dial").SetValue(obj, currentDial);
+                    obj.GetType().GetProperty("Dial").SetValue(obj, loggedInDial);
+                }
+                var selectedUserDialProperty = obj.GetType().GetProperty("SelectedUserDial");
+                if (selectedUserDialProperty != null && selectedUserDialProperty.PropertyType == typeof(string))
+                {
+                    selectedUserDialProperty.SetValue(obj, selectedUserDial);
                 }
                 if (obj.GetType().GetProperty("UserId") != null && obj.GetType().GetProperty("UserId").PropertyType == typeof(Guid))
                 {
@@ -43,5 +47,6 @@ namespace Orange.Common.WebApi
             }
 
         }
+
     }
 }
