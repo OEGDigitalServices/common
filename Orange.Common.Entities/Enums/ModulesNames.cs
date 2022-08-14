@@ -319,7 +319,11 @@
         EndUserDataGathering = 314,
         GOMoveOffer = 315,
         IPTvAddons = 316,
-        WheelOfFortune = 317
+        WheelOfFortune = 317,
+        OrangeCashCashIn = 318,
+        OrangeCashCashOut = 319,
+        OrangeCashAddBill = 320,
+        PrepaidMigrations = 321
     }
 }
 
