@@ -132,7 +132,7 @@ namespace Orange.Common.WebApi
                 return;
             }
             if (_injectDial)
-                InjectDialInInput(actionContext);
+                InjectUserClaimsInInput(actionContext);
         }
         private TokenValidationOutput IsValidToken(string token)
         {
@@ -147,7 +147,7 @@ namespace Orange.Common.WebApi
             actionContext.RequestContext.Principal = user;
             return true;
         }
-        private void InjectDialInInput(HttpActionContext actionContext)
+        private void InjectUserClaimsInInput(HttpActionContext actionContext)
         {
             var argumentDict = actionContext.ActionArguments.FirstOrDefault();
             if (argumentDict.Equals(new KeyValuePair<string, IEnumerable<string>>())) return;
@@ -155,7 +155,9 @@ namespace Orange.Common.WebApi
             var inputKey = argumentDict.Key;
             if (input == null) return;
             var identifier = TokenUtilities.GetUserDial() ?? TokenUtilities.GetUserEmail();
+            var email = TokenUtilities.GetUserEmail();
             SetPropertyForObject(input, Strings.PropertyNames.Dial, identifier);
+            SetPropertyForObject(input, Strings.PropertyNames.Email, email);
             actionContext.ActionArguments[inputKey] = input;
         }
 
@@ -163,8 +165,6 @@ namespace Orange.Common.WebApi
         {
             var property = objectToMutate.GetType().GetProperties()
                 .FirstOrDefault(p => p.Name.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase));
-            var propertyCurrentValue = property?.GetValue(objectToMutate) as string;
-            if (propertyCurrentValue != null && !string.IsNullOrWhiteSpace(propertyCurrentValue)) return;
             property?.SetValue(objectToMutate, propertyValue);
         }
         #endregion
