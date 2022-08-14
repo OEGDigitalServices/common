@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -27,17 +28,10 @@ namespace Orange.Common.WebApi
                     _isAndroid = false;
                 else
                     _isAndroid = isAndroid.Value.FirstOrDefault().ToLower() != Strings.Keys.False;
-                if (string.IsNullOrEmpty(appVersion.Value?.FirstOrDefault())
-                    || string.IsNullOrEmpty(osVersion.Value?.FirstOrDefault())
-                    || string.IsNullOrEmpty(isAndroid.Value?.FirstOrDefault()))
-                {
-                    actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
-                    return;
-                }
 
                 if (!(actionContext.ActionArguments.ContainsKey("input") && actionContext.ActionArguments["input"] is MobileInput input)) return;
-                input.AppVersion = appVersion.Value.FirstOrDefault();
-                input.OsVersion = osVersion.Value.FirstOrDefault();
+                input.AppVersion = !appVersion.Equals(default(KeyValuePair<string, IEnumerable<string>>)) && !string.IsNullOrEmpty(appVersion.Value?.FirstOrDefault()) ? appVersion.Value.FirstOrDefault() : string.Empty;
+                input.OsVersion = !osVersion.Equals(default(KeyValuePair<string, IEnumerable<string>>)) && !string.IsNullOrEmpty(osVersion.Value?.FirstOrDefault()) ? osVersion.Value.FirstOrDefault() : string.Empty;
                 input.IsAndroid = _isAndroid;
                 actionContext.ActionArguments["input"] = input;
             }
