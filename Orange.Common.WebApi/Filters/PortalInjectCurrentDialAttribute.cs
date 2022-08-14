@@ -11,7 +11,7 @@ using Orange.Common.Utilities;
 using Unity;
 
 namespace Orange.Common.WebApi
-{ 
+{
     public class PortalInjectCurrentDialAttribute : ActionFilterAttribute
     {
         [Dependency]
@@ -24,17 +24,21 @@ namespace Orange.Common.WebApi
             {
                 if (!(actionContext.ActionArguments.ContainsKey("input"))) return;
                 var currentDial = ProfileUtilities.GetCurrentDial();
-                if (currentDial == null) return;
+                if (currentDial == null) return;      
 
                 var obj = actionContext.ActionArguments["input"];
 
-                if(obj.GetType().GetProperty("Dial") != null && obj.GetType().GetProperty("Dial").PropertyType == typeof(string))
+                if (obj.GetType().GetProperty("Dial") != null && obj.GetType().GetProperty("Dial").PropertyType == typeof(string))
                 {
                     obj.GetType().GetProperty("Dial").SetValue(obj, currentDial);
                 }
                 if (obj.GetType().GetProperty("UserId") != null && obj.GetType().GetProperty("UserId").PropertyType == typeof(Guid))
                 {
                     obj.GetType().GetProperty("UserId").SetValue(obj, ProfileUtilities.GetCurrentUserId());
+                }
+                if (obj.GetType().GetProperty("LoggedInDial") != null && obj.GetType().GetProperty("LoggedInDial").PropertyType == typeof(string))
+                {
+                    obj.GetType().GetProperty("LoggedInDial").SetValue(obj, ProfileUtilities.GetLoggedInDial());
                 }
             }
             catch (Exception exp)
