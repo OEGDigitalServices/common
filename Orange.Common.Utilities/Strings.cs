@@ -67,6 +67,9 @@
             public const string Password = "Password";
 
             public const string RequestErrorCodeHandlingCachedKey = "Request_Error____Code_Handl____ings";
+            public const string AppVersion = "appversion";
+            public const string OSVersion = "osversion";
+            public const string IsAndroid = "isandroid";
         }
 
         public struct DateFormats
