@@ -320,10 +320,16 @@
         GOMoveOffer = 315,
         IPTvAddons = 316,
         WheelOfFortune = 317,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
         OrangeCashCashIn = 318,
         OrangeCashCashOut = 319,
         OrangeCashAddBill = 320,
-        PrepaidMigrations = 321
+        OrangeGSMForOthersBillPaymentViaCreditCard = 318,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
+        OrangeGSMForOthersRechargeViaCreditCard = 320,
+        OrangeGSMAddBillViaScratchCard = 321,
+        PrepaidMigrations = 322
+
     }
 }
 
