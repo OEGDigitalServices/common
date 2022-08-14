@@ -1059,7 +1059,7 @@ namespace Orange.Common.Profile.Membership
                 {
                     if (DbContext.Database.Exists())
                     {
-                        User user = DbContext.Users.FirstOrDefault(u => u.UserName == username);
+                        User user = DbContext.Users.FirstOrDefault(u => u.UserName == username || u.PhoneNumber == username || u.LoweredEmail == username.ToLower());
                         if (user != null)
                         {
                             if (userIsOnline)
@@ -1654,7 +1654,7 @@ namespace Orange.Common.Profile.Membership
                 {
                     if (DbContext.Database.Exists())
                     {
-                        User user = DbContext.Users.FirstOrDefault(u => u.UserName == username);
+                        User user = DbContext.Users.FirstOrDefault(u => u.UserName == username || u.PhoneNumber == username || u.LoweredEmail == username.ToLower());
                         if (user != null)
                         {
 
