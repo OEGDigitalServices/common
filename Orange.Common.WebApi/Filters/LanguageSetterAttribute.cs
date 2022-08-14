@@ -27,16 +27,10 @@ namespace Orange.Common.WebApi
         {
             try
             {
-                var info = GetLanguage(actionContext);
-                var header = _servicesUtilities.GetHeaderData(actionContext);
-                if (IsValidLanguage(header.Language))
+                var lang = GetLanguage(actionContext);
+                if (IsValidLanguage(lang))
                 {
-                    SetLanguageFromHeader(actionContext, header);
-                    return;
-                }
-                else if (IsValidLanguage(info.Language))
-                {
-                    SetLanguageFromBody(actionContext, info);
+                    SetLanguageFromHeaderOrBody(actionContext, lang);
                     return;
                 }
 
@@ -52,14 +46,20 @@ namespace Orange.Common.WebApi
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
         }
-        private LanguageInfo GetLanguage(HttpActionContext actionContext)
+        private string GetLanguage(HttpActionContext actionContext)
         {
-            var stream = new StreamReader(actionContext.Request.Content.ReadAsStreamAsync().Result);
+            var lang = string.Empty;
 
+            var header = _servicesUtilities.GetHeaderData(actionContext);
+            lang = !string.IsNullOrEmpty(header.Language) ? header.Language : lang;
+
+            var stream = new StreamReader(actionContext.Request.Content.ReadAsStreamAsync().Result);
             stream.BaseStream.Position = 0;
             var rawRequest = stream.ReadToEnd();
+            var langInfo= JsonConvert.DeserializeObject<LanguageInfo>(rawRequest);
+            lang = !string.IsNullOrEmpty(langInfo.Language) ? langInfo.Language : lang;
 
-            return JsonConvert.DeserializeObject<LanguageInfo>(rawRequest);
+            return lang;
         }
 
         private bool IsValidLanguage(string language)
@@ -69,29 +69,17 @@ namespace Orange.Common.WebApi
             return true;
         }
 
-        private static void SetLanguageFromHeader(HttpActionContext actionContext, HeaderData header)
+        private static void SetLanguageFromHeaderOrBody(HttpActionContext actionContext, string lang)
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(header.Language);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
             var obj = actionContext.ActionArguments["input"];
             if (obj is Input)
             {
                 var input = obj as Input;
-                input.Language = header.Language;
+                input.Language = lang;
                 actionContext.ActionArguments["input"] = input;
             }
             return;
-        }
-        private static void SetLanguageFromBody(HttpActionContext actionContext, LanguageInfo info)
-        {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(info.Language);
-            var obj = actionContext.ActionArguments["input"];
-            if (obj is Input)
-            {
-                var input = obj as Input;
-                input.Language = info.Language;
-                actionContext.ActionArguments["input"] = input;
-            }
-        }
-        
+        }        
     }
 }
