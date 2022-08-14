@@ -1,7 +1,9 @@
-﻿using Orange.Common.Entities;
+﻿using Newtonsoft.Json;
+using Orange.Common.Entities;
 using Orange.Common.Utilities;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
@@ -25,17 +27,16 @@ namespace Orange.Common.WebApi
         {
             try
             {
+                var info = GetLanguage(actionContext);
                 var header = _servicesUtilities.GetHeaderData(actionContext);
                 if (IsValidLanguage(header.Language))
                 {
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(header.Language);
-                    var obj = actionContext.ActionArguments["input"];
-                    if (obj is Input)
-                    {
-                        var input = obj as Input;
-                        input.Language = header.Language;
-                        actionContext.ActionArguments["input"] = input;
-                    }
+                    SetLanguageFromHeader(actionContext, header);
+                    return;
+                }
+                else if (IsValidLanguage(info.Language))
+                {
+                    SetLanguageFromBody(actionContext, info);
                     return;
                 }
 
@@ -51,11 +52,46 @@ namespace Orange.Common.WebApi
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
         }
+        private LanguageInfo GetLanguage(HttpActionContext actionContext)
+        {
+            var stream = new StreamReader(actionContext.Request.Content.ReadAsStreamAsync().Result);
+
+            stream.BaseStream.Position = 0;
+            var rawRequest = stream.ReadToEnd();
+
+            return JsonConvert.DeserializeObject<LanguageInfo>(rawRequest);
+        }
+
         private bool IsValidLanguage(string language)
         {
             if (!_utilities.ValidateLanguageInput(language))
                 return false;
             return true;
         }
+
+        private static void SetLanguageFromHeader(HttpActionContext actionContext, HeaderData header)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(header.Language);
+            var obj = actionContext.ActionArguments["input"];
+            if (obj is Input)
+            {
+                var input = obj as Input;
+                input.Language = header.Language;
+                actionContext.ActionArguments["input"] = input;
+            }
+            return;
+        }
+        private static void SetLanguageFromBody(HttpActionContext actionContext, LanguageInfo info)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(info.Language);
+            var obj = actionContext.ActionArguments["input"];
+            if (obj is Input)
+            {
+                var input = obj as Input;
+                input.Language = info.Language;
+                actionContext.ActionArguments["input"] = input;
+            }
+        }
+        
     }
 }
