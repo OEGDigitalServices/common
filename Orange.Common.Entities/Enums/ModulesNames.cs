@@ -319,7 +319,11 @@
         EndUserDataGathering = 314,
         GOMoveOffer = 315,
         IPTvAddons = 316,
+        WheelOfFortune = 317,
         OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
+        OrangeCashCashIn = 318,
+        OrangeCashCashOut = 319,
+        OrangeCashAddBill = 320,
         OrangeGSMForOthersBillPaymentViaCreditCard = 318,
         OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
         OrangeGSMForOthersRechargeViaCreditCard = 320,
@@ -327,6 +331,7 @@
         WheelOfFortune = 322,
         TriplePlayDashboard = 323,
         IPTvPaymentsViaCreditCard = 324,
+        PrepaidMigrations = 325
     }
 }
 
