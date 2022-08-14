@@ -75,6 +75,7 @@
         public struct PropertyNames
         {
             public const string Dial = "Dial";
+            public const string Email = "Email";
         }
     }
 }
