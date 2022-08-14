@@ -27,10 +27,10 @@ namespace Orange.Common.WebApi
         {
             try
             {
-                var lang = GetLanguage(actionContext);
+                var lang = GetLanguageFromHeaderOrBody(actionContext);
                 if (IsValidLanguage(lang))
                 {
-                    SetLanguageFromHeaderOrBody(actionContext, lang);
+                    SetLanguageToInput(actionContext, lang);
                     return;
                 }
 
@@ -46,20 +46,18 @@ namespace Orange.Common.WebApi
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
         }
-        private string GetLanguage(HttpActionContext actionContext)
+        private string GetLanguageFromHeaderOrBody(HttpActionContext actionContext)
         {
-            var lang = string.Empty;
-
             var header = _servicesUtilities.GetHeaderData(actionContext);
-            lang = !string.IsNullOrEmpty(header.Language) ? header.Language : lang;
+            if (!string.IsNullOrEmpty(header?.Language))
+                return header?.Language;
 
             var stream = new StreamReader(actionContext.Request.Content.ReadAsStreamAsync().Result);
             stream.BaseStream.Position = 0;
             var rawRequest = stream.ReadToEnd();
-            var langInfo= JsonConvert.DeserializeObject<LanguageInfo>(rawRequest);
-            lang = !string.IsNullOrEmpty(langInfo.Language) ? langInfo.Language : lang;
-
-            return lang;
+            var langInfo = JsonConvert.DeserializeObject<LanguageInfo>(rawRequest);
+            
+            return langInfo?.Language;
         }
 
         private bool IsValidLanguage(string language)
@@ -69,7 +67,7 @@ namespace Orange.Common.WebApi
             return true;
         }
 
-        private static void SetLanguageFromHeaderOrBody(HttpActionContext actionContext, string lang)
+        private static void SetLanguageToInput(HttpActionContext actionContext, string lang)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
             var obj = actionContext.ActionArguments["input"];
@@ -80,6 +78,6 @@ namespace Orange.Common.WebApi
                 actionContext.ActionArguments["input"] = input;
             }
             return;
-        }        
+        }
     }
 }
