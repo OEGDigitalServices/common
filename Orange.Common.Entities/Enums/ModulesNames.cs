@@ -328,8 +328,10 @@
         OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
         OrangeGSMForOthersRechargeViaCreditCard = 320,
         OrangeGSMAddBillViaScratchCard = 321,
-        PrepaidMigrations = 322
-
+        WheelOfFortune = 322,
+        TriplePlayDashboard = 323,
+        IPTvPaymentsViaCreditCard = 324,
+        PrepaidMigrations = 325
     }
 }
 
