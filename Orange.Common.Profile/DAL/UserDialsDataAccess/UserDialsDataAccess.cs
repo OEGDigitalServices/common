@@ -35,7 +35,7 @@ namespace Orange.Common.Profile
         {
             if (!dial.StartsWith("0"))
                 dial = "0" + dial;
-            List<UserDial> dials = GetUserDialsByUserID(userGuid);
+            List<UserDial> dials = GetUserDialsByUserID(userGuid); 
             var exist = dials.Where(x => x.Dial == dial).FirstOrDefault();
             if (exist != null)
                 return true;
