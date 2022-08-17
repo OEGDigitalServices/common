@@ -320,18 +320,17 @@
         GOMoveOffer = 315,
         IPTvAddons = 316,
         WheelOfFortune = 317,
-        OrangeGSMInAdvanceBillPaymentViaCreditCard = 317,
-        OrangeCashCashIn = 318,
-        OrangeCashCashOut = 319,
-        OrangeCashAddBill = 320,
-        OrangeGSMForOthersBillPaymentViaCreditCard = 318,
-        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 319,
-        OrangeGSMForOthersRechargeViaCreditCard = 320,
-        OrangeGSMAddBillViaScratchCard = 321,
-        WheelOfFortune = 322,
-        TriplePlayDashboard = 323,
-        IPTvPaymentsViaCreditCard = 324,
-        PrepaidMigrations = 325
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 318,
+        OrangeCashCashIn = 319,
+        OrangeCashCashOut = 320,
+        OrangeCashAddBill = 321,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 322,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 323,
+        OrangeGSMForOthersRechargeViaCreditCard = 324,
+        OrangeGSMAddBillViaScratchCard = 325,
+        TriplePlayDashboard = 326,
+        PrepaidMigrations = 327,
+        IPTvPaymentsViaCreditCard = 328
     }
 }
 
