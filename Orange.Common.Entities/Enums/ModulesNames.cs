@@ -287,7 +287,10 @@
         CocacolaSummerOffer = 306,
         HashOneHashOffer = 307,
         WalletBalanceInquiry = 308,
-        FreeMaxOffer = 309
+        FreeMaxOffer = 309,
+        OrangeCashCashIn = 318,
+        OrangeCashCashOut = 319,
+        OrangeCashAddBill = 320,
     }
 }
 
