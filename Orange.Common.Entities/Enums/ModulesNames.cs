@@ -333,6 +333,7 @@
         IPTvPaymentsViaCreditCard = 332,
         NextSallefnyServices = 333,
         CreditManagement = 334,
+        SubscriptionDeepLink = 335,
     }
 }
 
