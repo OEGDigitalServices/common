@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Captcha\CaptchaResponse.cs" />
     <Compile Include="Channel\Channel.cs" />
     <Compile Include="Channel\ChannelClaims.cs" />
     <Compile Include="Channel\ChannelInfo.cs" />
@@ -69,5 +70,6 @@
     <Compile Include="SMS\MessageDetails.cs" />
     <Compile Include="TokenConsumptionStatus.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

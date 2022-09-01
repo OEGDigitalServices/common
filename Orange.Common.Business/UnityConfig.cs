@@ -13,8 +13,8 @@ namespace Orange.Common.Business
             container.RegisterType<IChannelsPrivilegesManager, ChannelsPrivilegesManager>();
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
             container.RegisterType<IProfileManager, ProfileManager>();
-
-
+            container.RegisterType<ICaptchaService, CaptchaService>();
+            
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
             Common.Profile.UnityConfig.RegisterTypes(container);
