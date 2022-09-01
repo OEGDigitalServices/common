@@ -11,6 +11,7 @@
             public const string EnrichmentHeaderDecryptKey = "EnrichmentHeaderDecryptKey";
             public const string IsTestingEnvironment = "IsTestingEnvironment";
             public const string TestingDial = "TestingDial";
+            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct Keys
@@ -50,6 +51,8 @@
             public const string Pin = "Pin";
             public const string PaymentSerialNumber = "PaymentSerialNumber";
             public const string Token ="Token";
+            public const string SecretKey = "SecretKey";
+            public const string CaptchaThreshold = "CaptchaThreshold";
         }
 
         public struct OrangeServicesSecuirtyErrorMessages

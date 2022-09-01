@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="OrangePortal\IProfileManager.cs" />
     <Compile Include="OrangePortal\ProfileManager.cs" />
+    <Compile Include="CaptchaSrevice\CaptchaService.cs" />
+    <Compile Include="CaptchaSrevice\ICaptchaService.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />
