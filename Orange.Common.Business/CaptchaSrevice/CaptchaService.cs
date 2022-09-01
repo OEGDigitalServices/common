@@ -1,47 +1,73 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Orange.Common.Entities;
+using Orange.Common.Utilities;
 
 namespace Orange.Common.Business
 {
     public class CaptchaService : ICaptchaService
     {
-        private readonly string googleCaptchaUrl = "https://www.google.com/recaptcha/api/siteverify";
-        private readonly string SecretKey = "Secret_Key";
+        #region Prop
+        private readonly IHttpClientManager _httpClientManager;
+        private readonly IUtilities _utilities;
+        private readonly ILogger _logger;
+        #endregion
 
-        public async Task<bool> isValidCaptcha(string token)
+        #region CTOR
+        public CaptchaService(IHttpClientManager httpClientManager,
+            IUtilities utilities,
+            ILogger logger)
         {
-            var params_ = $"?secret={SecretKey}&response={token}";
-            var fullUrl = googleCaptchaUrl + params_;
+            _httpClientManager = httpClientManager;
+            _utilities = utilities;
+            _logger = logger;
+        }
+        #endregion
 
-            using (var client = new HttpClient())
+        #region Methods
+        public bool IsValidCaptcha(string token)
+        {
+            try
             {
-                var response = await client.GetStringAsync(fullUrl);
+                var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token))
+                    .GetAwaiter()
+                    .GetResult();
 
-                if (response != null)
-                {
-                    var result = JsonConvert.DeserializeObject<CaptchaResponse>(response);
-
-                    if (result.success == true && result.score >= .4)
-                        return true;
-                    return false;
-                }
-
+                if (response.success == true && response.score >= GetCaptchaThreshold())
+                    return true;
+                return false;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message, e);
                 return false;
             }
         }
-    }
+        #endregion
 
-    public class CaptchaResponse
-    {
-        public bool success { get; set; }
-        public DateTime challenge_ts { get; set; }
-        public string hostname { get; set; }
-        public double score { get; set; }
-        public string action { get; set; }
+        #region Helpers
+        private string GetCaptchaUrl(string token)
+        {
+            var CaptchaUrl = _utilities.GetAppSetting(Strings.AppSettings.CaptchaUrl);
+            var SecretKey = _utilities.GetAppSetting(Strings.Keys.SecretKey);
+            return string.Concat(
+                CaptchaUrl,
+                $"?secret={SecretKey}&response={token}");
+        }
+        private double GetCaptchaThreshold()
+        {
+            try
+            {
+                var CaptchaThreshold = Convert.ToDouble(
+                        _utilities.GetAppSetting(Strings.Keys.CaptchaThreshold));
+
+                return CaptchaThreshold; 
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e.Message, e);
+                return 0.4;
+            }
+        }
+        #endregion
     }
 }
