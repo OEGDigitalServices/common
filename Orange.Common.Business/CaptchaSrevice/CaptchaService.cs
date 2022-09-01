@@ -26,6 +26,10 @@ namespace Orange.Common.Business
         #region Methods
         public bool IsValidCaptcha(string token)
         {
+            // TODO: after validate, remove this check
+            //var isCaptchaEnabled = bool.Parse(_utilities.GetAppSetting(Strings.Keys.IsCaptchaEnabled));
+            //if (!isCaptchaEnabled)
+            //    return true;
             try
             {
                 var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token))
