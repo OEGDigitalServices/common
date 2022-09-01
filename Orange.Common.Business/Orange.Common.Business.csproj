@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalLibraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -53,6 +57,8 @@
   <ItemGroup>
     <Compile Include="OrangePortal\IProfileManager.cs" />
     <Compile Include="OrangePortal\ProfileManager.cs" />
+    <Compile Include="CaptchaSrevice\CaptchaService.cs" />
+    <Compile Include="CaptchaSrevice\ICaptchaService.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />

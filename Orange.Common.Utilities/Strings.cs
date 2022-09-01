@@ -505,7 +505,8 @@
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
         public struct OrderDescriptions
-        {            
+        {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
             public const string MyOrangeGSMRechargeOrderDescription = "MOGSMRecharge";
             public const string PortalGSMRechargeOrderDescription = "PortalGSMRecharge";
             public const string MyOrangeGSMRechargeForOthersOrderDescription = "MOGSMRechargeForOthers";
@@ -546,12 +547,6 @@
         {
             public const string Authorization = "Authorization";
         }
-        public struct OrderDescriptions
-        {
-            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
-            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
-            public const string DSLRechargeOrderDescription = "MODSLRecharge";
-            public const string DSLAddBillOrderDescription = "MODSLAddBill";
-        }
+  
     }
 }
