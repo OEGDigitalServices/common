@@ -11,7 +11,6 @@
             public const string EnrichmentHeaderDecryptKey = "EnrichmentHeaderDecryptKey";
             public const string IsTestingEnvironment = "IsTestingEnvironment";
             public const string TestingDial = "TestingDial";
-            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct Keys
@@ -54,6 +53,7 @@
             public const string SecretKey = "SecretKey";
             public const string CaptchaThreshold = "CaptchaThreshold";
             public const string IsCaptchaEnabled = "isCaptchaEnabled";
+            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct OrangeServicesSecuirtyErrorMessages
