@@ -33,11 +33,11 @@ namespace Orange.Common.Business
 
             try
             {
-                var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token))
+                var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token),disableSSL: true)
                     .GetAwaiter()
                     .GetResult();
 
-                if (response.success == true && response.score >= GetCaptchaThreshold())
+                if (response.success == true)
                         return true;
 
                 return false;
@@ -70,20 +70,24 @@ namespace Orange.Common.Business
                 CaptchaUrl,
                 $"?secret={SecretKey}&response={token}");
         }
-        private double GetCaptchaThreshold()
-        {
-            try
-            {
-                var CaptchaThreshold = Convert.ToDouble(GetAppSetting(Keys.CaptchaThreshold));
 
-                return CaptchaThreshold; 
-            }
-            catch(Exception e)
-            {
-                _logger.LogError(e.Message, e);
-                return 0.4;
-            }
-        }
+        #region CaptchaV3Threshold
+        //private double GetCaptchaThreshold()
+        //{
+        //    try
+        //    {
+        //        var CaptchaThreshold = Convert.ToDouble(GetAppSetting(Keys.CaptchaThreshold));
+
+        //        return CaptchaThreshold; 
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        _logger.LogError(e.Message, e);
+        //        return 0.4;
+        //    }
+        //}
+        #endregion
+
         private string GetAppSetting(string key)
         {
             var value = _utilities.GetAppSetting(key);
