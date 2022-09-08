@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptchaSrevice\CaptchaService.cs" />
+    <Compile Include="CaptchaSrevice\ICaptchaService.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />
