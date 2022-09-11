@@ -325,15 +325,7 @@
         OrangeGSMForOthersRechargeViaCreditCard = 320,
         OrangeGSMAddBillViaScratchCard = 321,
         WheelOfFortune = 322
-        Installments = 281,
-        PostpaidMigrations = 282,
-        GounaFreeRides = 283,
-        OrangeCashRecharge = 284,
-        ABSManagment = 285,
-        CocacolaSummerOffer = 306,
-        HashOneHashOffer = 307,
-        WalletBalanceInquiry = 308,
-        FreeMaxOffer = 309
+
     }
 }
 
