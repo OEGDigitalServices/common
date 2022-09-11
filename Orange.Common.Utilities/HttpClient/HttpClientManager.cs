@@ -14,8 +14,9 @@ namespace Orange.Common.Utilities
     {
         #region Props
         private static readonly HttpClient _client;
-        private object obj = new object();
         private readonly IUtilities _utilities;
+        private readonly ILogger _logger;
+        private object obj = new object();
         #endregion
 
         #region CTOR
@@ -23,15 +24,20 @@ namespace Orange.Common.Utilities
         {
             _client = new HttpClient();
         }
-        public HttpClientManager(IUtilities utilities)
+        public HttpClientManager(ILogger logger, IUtilities utilities)
         {
+            _logger = logger;
             _utilities = utilities;
         }
+
         #endregion
 
         #region Methods
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
         {
+            if (disableSSL)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -55,9 +61,12 @@ namespace Orange.Common.Utilities
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
-        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        public async Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
             where TBody : class
         {
+            if (disableSSL)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;             
+
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -86,18 +95,45 @@ namespace Orange.Common.Utilities
             return (T)Convert.ChangeType(stringContent, typeof(T));
         }
 
-        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSLVerification = false) where TBody : class
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            if(disableSSLVerification)
+            if (disableSSLVerification)
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
             return JsonConvert.DeserializeObject<object>(formatted);
+        }
+        public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance<TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var serializedContent = JsonConvert.SerializeObject(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
         }
 
         #endregion
@@ -131,7 +167,7 @@ namespace Orange.Common.Utilities
             return concatenatedURL;
         }
 
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds  = 100)
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));

@@ -29,6 +29,10 @@ namespace Orange.Common.WebApi
         {
             try
             {
+
+                if (IsJWTToken(actionContext))
+                    return;
+
                 ctrl = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
                 action = actionContext.ActionDescriptor.ActionName;
                 var claims = GetRequestBody(actionContext);
@@ -52,6 +56,13 @@ namespace Orange.Common.WebApi
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
 
+        }
+
+
+        private bool IsJWTToken(HttpActionContext httpActionContext)
+        {
+            var token = httpActionContext.Request.Headers.FirstOrDefault(a => a.Key == Strings.Keys.Token || a.Key == Strings.Keys.Token.ToLower());
+            return !string.IsNullOrWhiteSpace(token.Value?.FirstOrDefault());
         }
 
         private ChannelClaims GetRequestBody(HttpActionContext actionContext)
@@ -86,11 +97,11 @@ namespace Orange.Common.WebApi
                 ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsNull, ErrorDescription = "", ControllerName = ctrl, ActionName = action });
                 return false;
             }
-            if (!IUtilities.IsValidDial(claims.Dial))
-            {
-                ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsInvalid, ControllerName = ctrl, ActionName = action });
-                return false;
-            }
+            //if (!IUtilities.IsValidDial(claims.Dial))
+            //{
+            //    ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.DialIsInvalid, ControllerName = ctrl, ActionName = action });
+            //    return false;
+            //}
             if (string.IsNullOrWhiteSpace(claims.Password))
             {
                 ServicesFailedRequestsManager.Add(new ServicesFailedRequest { Dial = claims.Dial, ErrorCode = (int)ServiceFailedRequestsErrorCodes.PasswordIsNull, ControllerName = ctrl, ActionName = action });
