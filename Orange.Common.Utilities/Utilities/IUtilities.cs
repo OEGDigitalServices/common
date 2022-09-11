@@ -65,5 +65,7 @@ namespace Orange.Common.Utilities
         string GetSoapXml<T>(T obj);
         T XMLToObject<T>(string xml) where T : class;
         string ObjectToXML<T>(T dataToSerialize);
+        string HashDial(string dial);
+        string DSLBaseSiteUrl { get; }
     }
 }
