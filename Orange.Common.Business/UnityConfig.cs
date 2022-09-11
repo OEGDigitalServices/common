@@ -15,6 +15,8 @@ namespace Orange.Common.Business
             container.RegisterType<IProfileManager, ProfileManager>();
 
 
+            container.RegisterType<ICaptchaService, CaptchaService>();
+            
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
             Common.Profile.UnityConfig.RegisterTypes(container);
