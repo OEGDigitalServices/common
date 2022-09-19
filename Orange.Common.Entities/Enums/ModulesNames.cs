@@ -291,8 +291,8 @@
         OrangeCashCashIn = 318,
         OrangeCashCashOut = 319,
         OrangeCashAddBill = 320,
-        WheelOfFortune = 321
-
+        WheelOfFortune = 321,
+        PrepaidMigrations = 322
     }
 }
 
