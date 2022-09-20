@@ -287,7 +287,9 @@
         CocacolaSummerOffer = 306,
         HashOneHashOffer = 307,
         WalletBalanceInquiry = 308,
-        FreeMaxOffer = 309
+        FreeMaxOffer = 309,
+        IPTvAddons = 320,
+        TriplePlayDashboard = 330,
     }
 }
 
