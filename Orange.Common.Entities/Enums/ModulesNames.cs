@@ -265,7 +265,7 @@
         UControlBillPayment = 261,
         HybirdOffer = 262,
         RamadanMassOffer = 263,
-        RamadanVasOffer = 264,
+        SummerOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,
@@ -288,13 +288,15 @@
         HashOneHashOffer = 307,
         WalletBalanceInquiry = 308,
         FreeMaxOffer = 309,
-        OrangeGSMInAdvanceBillPaymentViaCreditCard = 313,
-        OrangeGSMForOthersBillPaymentViaCreditCard = 314,
-        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 315,
-        OrangeGSMForOthersRechargeViaCreditCard = 316,
-        OrangeGSMAddBillViaScratchCard = 317
-        
-
+        TOD=310,
+        IPTvAddons = 320,
+        TriplePlayDashboard = 330,
+        IPTvPaymentsViaCreditCard = 332,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 333,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 334,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 335,
+        OrangeGSMForOthersRechargeViaCreditCard = 336,
+        OrangeGSMAddBillViaScratchCard = 337
     }
 }
 

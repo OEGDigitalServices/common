@@ -266,6 +266,10 @@ namespace Orange.Common.Utilities
         {
             return Thread.CurrentThread.CurrentCulture.Parent.Name;
         }
+        public string GetUICurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
+        }
         public void RemoveCache(string cacheKey)
         {
             System.Web.HttpContext.Current.Cache.Remove(cacheKey);
@@ -539,10 +543,22 @@ namespace Orange.Common.Utilities
             }
             return obj as T;
         }
-        public string GetUICurrentLanguage()
+        public string ObjectToXML<T>(T dataToSerialize)
         {
-            return Thread.CurrentThread.CurrentUICulture.Name;
-        }
+            try
+            {
+                var stringwriter = new StringWriter();
+                var serializer = new XmlSerializer(typeof(T));
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+                serializer.Serialize(stringwriter, dataToSerialize, ns);
 
+                return stringwriter.ToString();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

@@ -23,6 +23,6 @@ namespace Orange.Common.Utilities
         Object XMLToObject(string xml, Type objectType);
         string GetSoapXml<T>(T obj);
         DialType GetDialType(string rpCode);
-        bool IsStagingEnviroment();
+        bool IsStagingEnviroment();        
     }
 }
