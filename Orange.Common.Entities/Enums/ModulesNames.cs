@@ -288,6 +288,7 @@
         HashOneHashOffer = 307,
         WalletBalanceInquiry = 308,
         FreeMaxOffer = 309,
+        TOD=310,
         IPTvAddons = 320,
         TriplePlayDashboard = 330,
         IPTvPaymentsViaCreditCard = 332,
