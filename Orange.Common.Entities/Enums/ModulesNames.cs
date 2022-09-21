@@ -290,6 +290,7 @@
         FreeMaxOffer = 309,
         IPTvAddons = 320,
         TriplePlayDashboard = 330,
+        IPTvPaymentsViaCreditCard = 332,
     }
 }
 
