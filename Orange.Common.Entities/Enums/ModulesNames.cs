@@ -297,7 +297,12 @@
         OrangeCashAddBill = 320,
         WheelOfFortune = 321,
         PrepaidMigrations = 322,
-        GOMoveOffer = 323
+        GOMoveOffer = 323,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 333,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 334,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 335,
+        OrangeGSMForOthersRechargeViaCreditCard = 336,
+        OrangeGSMAddBillViaScratchCard = 337
     }
 }
 
