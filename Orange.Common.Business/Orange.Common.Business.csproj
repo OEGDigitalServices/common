@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrangeDSL\DSLAuthenticationTokenManager.cs" />
+    <Compile Include="OrangeDSL\IDSLAuthenticationTokenManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />

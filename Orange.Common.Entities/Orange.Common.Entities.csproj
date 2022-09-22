@@ -60,7 +60,8 @@
     <Compile Include="Inputs\HeaderData.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\MobileInput.cs" />
-    <Compile Include="Inputs\OrangeDSL\DSLInput.cs" />
+    <Compile Include="OrangeDSL\Input\DSLInput.cs" />
+    <Compile Include="OrangeDSL\Output\ValidateDSLBasicAuthenticationTokenOutput.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />

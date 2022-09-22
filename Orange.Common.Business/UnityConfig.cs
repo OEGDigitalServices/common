@@ -12,6 +12,7 @@ namespace Orange.Common.Business
             container.RegisterType<IChannelsDataManager, ChannelsDataManager>();
             container.RegisterType<IChannelsPrivilegesManager, ChannelsPrivilegesManager>();
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
+            container.RegisterType<IDSLAuthenticationTokenManager, DSLAuthenticationTokenManager>();
 
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
