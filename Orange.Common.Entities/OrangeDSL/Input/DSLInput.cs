@@ -4,7 +4,7 @@ namespace Orange.Common.Entities
 {
     public class DSLInput : MobileInput
     {
-        public string LandLineNumber { get; set; } 
+        public string DSLNumber { get; set; } 
         public Guid DSLToken { get; set; } 
         public string DSLUserStatus { get; set; }
         public bool IsPrePaid { get; set; } 

@@ -29,16 +29,19 @@ namespace Orange.Common.WebApi
             try
             {
                 var input = GetRequestBody<DSLInput>(actionContext);
-                var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.LandLineNumber, input.DSLToken);
+                var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.DSLNumber, input.DSLToken);
                 if (dslClaims == null)
                 {
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                     LogToFailedRequests(ServiceFailedRequestsErrorCodes.DSLTokenIsInvalid, actionContext);
                     return;
                 }
-                if (!(actionContext.ActionArguments.ContainsKey("input") && 
-                    actionContext.ActionArguments["input"] is DSLInput dslInput)) return;
 
+                var dslInput = (dynamic)actionContext.ActionArguments["input"];
+                //if (!(actionContext.ActionArguments.ContainsKey("input") && 
+                //actionContext.ActionArguments["input"] is DSLInput dslInput)) return;
+                if (dslInput == null)
+                    return;
                 dslInput.DSLUserStatus = dslClaims.DSLUserStatus;
                 dslInput.IsMigrated = dslClaims.IsMigrated;
                 dslInput.DSLToken = dslClaims.Token.Value;
@@ -83,32 +86,7 @@ namespace Orange.Common.WebApi
             return JsonConvert.DeserializeObject<T>(rawRequest);
         }
 
-        private void InjectMobileInput(ValidateDSLBasicAuthenticationTokenOutput validationResult,
-            HttpActionContext actionContext)
-        {
-            var inputObject = GetRequestBodyAsJObject(actionContext);
-            if (inputObject is null)
-            {
-                ILogger.LogDebug("null");
-                return;
-
-            }
-
-            var mobileProperties = validationResult.GetType().GetProperties()
-                .Select(prop => new JProperty(prop.Name, prop.GetValue(validationResult, null)));
-            inputObject.Add(mobileProperties);
-            ILogger.LogDebug("here");
-
-            foreach (var item in mobileProperties)
-            {
-                ILogger.LogDebug(item.Name + " , " + item.Value);
-
-            }
-        }
-
-        JObject GetRequestBodyAsJObject(HttpActionContext actionContext) =>
-            actionContext.ActionArguments.Values.FirstOrDefault() as JObject;
-
+        
         #endregion
     }
 }
