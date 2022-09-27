@@ -299,6 +299,7 @@
         PrepaidMigrations = 322,
         GOMoveOffer = 323,
         SeasonalPackagesPaymentsViaCreditCard=324,
+        SeasonalPackages=325,
     }
 }
 
