@@ -29,7 +29,7 @@ namespace Orange.Common.WebApi
             try
             {
                 var input = GetRequestBody<DSLInput>(actionContext);
-                var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.DSLNumber, input.DSLToken);
+                var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.DSLToken);
                 if (dslClaims == null)
                 {
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
@@ -42,6 +42,7 @@ namespace Orange.Common.WebApi
                 //actionContext.ActionArguments["input"] is DSLInput dslInput)) return;
                 if (dslInput == null)
                     return;
+                dslInput.DSLNumber = dslClaims.LandLineNumber;
                 dslInput.DSLUserStatus = dslClaims.DSLUserStatus;
                 dslInput.IsMigrated = dslClaims.IsMigrated;
                 dslInput.DSLToken = dslClaims.Token.Value;
@@ -86,7 +87,7 @@ namespace Orange.Common.WebApi
             return JsonConvert.DeserializeObject<T>(rawRequest);
         }
 
-        
+
         #endregion
     }
 }

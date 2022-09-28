@@ -5,5 +5,5 @@ namespace Orange.Common.Business
 {
     public interface IDSLAuthenticationTokenManager
     {
-        ValidateDSLBasicAuthenticationTokenOutput ValidateToken(string dial, string landLineNumber, Guid token);
+        ValidateDSLBasicAuthenticationTokenOutput ValidateToken(string dial, Guid token);
     }}

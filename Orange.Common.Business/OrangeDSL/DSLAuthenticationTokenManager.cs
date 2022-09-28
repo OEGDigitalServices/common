@@ -27,11 +27,11 @@ namespace Orange.Common.Business
         #region Methods
 
 
-        public ValidateDSLBasicAuthenticationTokenOutput ValidateToken(string dial, string landLineNumber, Guid token)
+        public ValidateDSLBasicAuthenticationTokenOutput ValidateToken(string dial, Guid token)
         {
             try
             {
-                var tokenRecord = _dataAccess.ValidateToken(dial, token, landLineNumber);
+                var tokenRecord = _dataAccess.ValidateToken(dial, token);
                 if (tokenRecord == null)
                     return null;
 
