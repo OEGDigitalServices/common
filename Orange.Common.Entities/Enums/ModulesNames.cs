@@ -338,7 +338,9 @@
         MOComplaints = 337,
         SRInquiry = 338,
         NextOffers = 339,
-        SamsungOneOffer = 340
+        SamsungOneOffer = 340,
+        SeasonalPackagesPaymentsViaCreditCard = 341,
+        SeasonalPackages = 342,
     }
 }
 
