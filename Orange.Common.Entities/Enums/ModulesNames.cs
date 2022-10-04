@@ -298,8 +298,8 @@
         WheelOfFortune = 321,
         PrepaidMigrations = 322,
         GOMoveOffer = 323,
-        SeasonalPackagesPaymentsViaCreditCard=324,
-        SeasonalPackages=325,
+        SPPaymentsViaCreditCard=327,
+        SeasonalPackages=328,
     }
 }
 
