@@ -15,5 +15,6 @@ namespace Orange.Common.Entities
         public string UCID { get; set; }
         public string CustomerId { get; set; }
         public string ContractId { get; set; }
+        public DateTime? CreatedDate { get; set; }
     }
 }

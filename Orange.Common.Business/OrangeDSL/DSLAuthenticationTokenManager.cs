@@ -47,6 +47,7 @@ namespace Orange.Common.Business
                     CustomerId = tokenRecord?.CustomerId,
                     UCID = tokenRecord?.UCID,
                     ContractId = tokenRecord?.ContractId,
+                    CreatedDate = tokenRecord?.CreatedDate
                 };
             }
             catch (Exception e)

@@ -23,6 +23,8 @@ namespace Orange.Common.WebApi
         public IServicesFailedRequestsManager ServicesFailedRequestsManager { get; set; }
         [Dependency]
         public ILogger ILogger { get; set; }
+        [Dependency]
+        public IUtilities Utilities { get; set; }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
@@ -30,7 +32,7 @@ namespace Orange.Common.WebApi
             {
                 var input = GetRequestBody<DSLInput>(actionContext);
                 var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.DSLToken);
-                if (dslClaims == null)
+                if (dslClaims == null || IsTokenExpired(dslClaims))
                 {
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                     LogToFailedRequests(ServiceFailedRequestsErrorCodes.DSLTokenIsInvalid, actionContext);
@@ -60,6 +62,13 @@ namespace Orange.Common.WebApi
                 ILogger.LogError(exp.Message, exp, false);
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
+        }
+
+        private bool IsTokenExpired(ValidateDSLBasicAuthenticationTokenOutput dslClaims)
+        {
+            string expiryHours = Utilities.GetAppSetting(Business.Strings.AppSettings.TokenExpiryHours);
+            double.TryParse(expiryHours, out double expHours);
+            return DateTime.Now.Subtract(dslClaims.CreatedDate.Value).TotalHours >= expHours;
         }
 
         #region Helpers
