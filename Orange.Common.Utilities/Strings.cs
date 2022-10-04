@@ -158,6 +158,7 @@
             public const string DataGatheringFilesListName = "DataGatheringFilesListName";
 
             public const string JoinOrangeRequestReportListUrl = "JoinOrangeRequestReportListUrl";
+            public const string DSLBaseSiteUrl = "DSLBaseSiteUrl";
 
         }
         public struct Mails
@@ -537,6 +538,7 @@
         public struct AppSettings
         {
             public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+            public const string HashingDial = "XXXXX";
         }
 
         public struct EAIStatuses

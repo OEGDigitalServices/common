@@ -1,4 +1,5 @@
 ﻿using Orange.Common.Entities;
+using System;
 
 namespace Orange.Common.Utilities
 {
@@ -9,5 +10,8 @@ namespace Orange.Common.Utilities
         T FillOutput<T, ErrorCodeEnum>(T output, ErrorCodeEnum errorCode, string errorDesc)
             where T : SecureOutput<ErrorCodeEnum>
             where ErrorCodeEnum : struct, System.IConvertible;
+        T OutputFiller<T, ErrorCodeEnum>(T output, ErrorCodeEnum errorCode, string errorDesc) where T :
+            OutputFiller<ErrorCodeEnum> where ErrorCodeEnum : struct, IConvertible;
+
     }
 }
