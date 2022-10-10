@@ -298,6 +298,8 @@
         IPTvAddons = 324,
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
+        Spotify = 327,
+        Jawwy = 328
     }
 }
 
