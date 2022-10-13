@@ -298,6 +298,7 @@
         IPTvAddons = 324,
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
+        SendDeviceToken = 341,
     }
 }
 
