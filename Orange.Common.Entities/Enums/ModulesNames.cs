@@ -338,7 +338,11 @@
         MOComplaints = 337,
         SRInquiry = 338,
         NextOffers = 339,
-        SamsungOneOffer = 340
+        SamsungOneOffer = 340,
+        SendDeviceToken = 341,
+        Gamification = 342,
+        Spotify = 343,
+        Jawwy = 344
     }
 }
 
