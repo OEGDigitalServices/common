@@ -89,12 +89,14 @@ namespace Orange.Common.Utilities
             return (T)Convert.ChangeType(stringContent, typeof(T));
         }
 
-        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
+        public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSLVerification = false) where TBody : class
         {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            if(disableSSLVerification)
+            if (disableSSLVerification)
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
