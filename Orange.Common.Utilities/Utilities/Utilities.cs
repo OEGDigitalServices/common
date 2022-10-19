@@ -560,5 +560,19 @@ namespace Orange.Common.Utilities
                 throw;
             }
         }
+
+        public bool IsValidAccountNumber(string accountNumber)
+        {
+            try
+            {
+                Regex regexDial = new Regex(@"^[0-9]*\.[0-9]*$", RegexOptions.Compiled);
+                return regexDial.IsMatch(accountNumber);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return false;
+            }
+        }
     }
 }

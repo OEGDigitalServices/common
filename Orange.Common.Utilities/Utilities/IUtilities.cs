@@ -39,6 +39,7 @@ namespace Orange.Common.Utilities
         string OrangeCashFawryCategories { get; }
         string LinePurchaseAssetsListUrl { get; }
         CultureInfo GetLanguageCulture(string language);
+        bool IsValidAccountNumber(string dial);
         bool IsValidPin(string pin);
         string GetSuperRechargeTransactionID(string dial);
         string MobileAdministrationWebUrl { get; }
