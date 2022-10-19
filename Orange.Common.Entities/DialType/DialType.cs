@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orange.Common.Entities.DialType
+namespace Orange.Common.Entities
 {
     public enum DialType
     {

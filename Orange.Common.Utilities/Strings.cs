@@ -298,11 +298,9 @@
             public const string DataGatheringDistricts = "__Data____Gathering__Districts___Cache___Key____{0}{1}{2}{3}";
             public const string DataGatheringAttachments = "__Data____Gathering__Attachments___Cache___Key____{0}{1}{2}{3}";
             public const string OrangeCashWalletConfiguration = "__Oran__ge_Cash___AddMon______eyContent_CaChe_____Key____{0}{1}{2}";
-
             public const string ShopHomepageMenu = "__Shop___Home___Page__Menu____Cache___Key____{0}{1}{2}";
-
             public const string JoinOrangeRequestReport = "__Join____Orange__Request___Report___Cache___Key____{0}{1}{2}";
-
+            public const string RequestErrorCodeHandlingCachedKey = "Req___ue__st_Er____ror____Code_Handl____ings";
         }
         public struct Entertainment
         {
@@ -443,6 +441,10 @@
             public const string AddComplaint = "AddComplaint";
             public const string SuperRechargeCheckEligibility = "SuperRechargeCheckEligibility";
             public const string SuperRechargeProvisionPromo = "SuperRechargeProvisionPromo";
+            public const string AddBucket = "AddBucket";
+            public const string DeleteBucket = "DeleteBucket";
+            public const string ManageTariff = "ManageTariff";
+            public const string RenewTariff = "RenewTariff";
         }
         public struct ConvenienceFeeType
         {
@@ -477,6 +479,8 @@
         {
             public const string PostVerb = "POST";
             public const string GetVerb = "GET";
+            public const string DeleteVerb = "DELETE";
+            public const string PutVerb = "PUT";
             public const string XmlContentType = "text/xml";
             public const string JsonContentType = "application/json";
         }
@@ -486,6 +490,7 @@
             public const string SMSUsername = "SMSUsername";
             public const string SMSPassword = "SMSPassword";
             public const string IsItTestEnviroment = "IsItTestEnviroment";
+            public const string IsItNextTestEnviroment = "IsItNextTestEnviroment";
             public const string IsMongoEnabled = "IsMongoEnabled";
             public const string SMTPAddress = "SMTPAddress";
             public const string Port = "Port";
@@ -508,9 +513,22 @@
             public const string XmlVersionWithEncodingTag = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
         }
         public struct OrderDescriptions
-        {
+        {            
+            public const string MyOrangeGSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string PortalGSMRechargeOrderDescription = "PortalGSMRecharge";
+            public const string MyOrangeGSMRechargeForOthersOrderDescription = "MOGSMRechargeForOthers";
+            public const string PortalGSMRechargeForOthersOrderDescription = "PortalGSMRechargeForOthers";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
+            public const string PortalGSMAddBillOrderDescription = "PortalGSMAddBill";
+            public const string PortalGSMAddBillForOthersOrderDescription = "PortalGSMAddBillForOthers";
+            public const string MyOrangeGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
+            public const string GSMActivateViaCreditCardOrderDescription = "MOGSMActivateViaCreditCard";
+            public const string GSMNextTopUpOrderDescription = "GSMNextTopUpOrderDescription";
+            public const string PurchaseOfferOrderDescription = "PurchaseOfferOrderDescription";
         }
         public struct SMSFormats
         {

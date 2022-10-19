@@ -11,6 +11,7 @@
             public const string EnrichmentHeaderDecryptKey = "EnrichmentHeaderDecryptKey";
             public const string IsTestingEnvironment = "IsTestingEnvironment";
             public const string TestingDial = "TestingDial";
+            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct Keys
@@ -49,6 +50,9 @@
             public const string XMSISDN = "X-MSISDN";
             public const string Pin = "Pin";
             public const string PaymentSerialNumber = "PaymentSerialNumber";
+            public const string Token ="Token";
+            public const string SecretKey = "SecretKey";
+            public const string CaptchaThreshold = "CaptchaThreshold";
         }
 
         public struct OrangeServicesSecuirtyErrorMessages
@@ -62,6 +66,19 @@
         public struct CustomerTypes
         {
             public const string Corporate = "corporate";
+        }
+        public struct ErrorDescriptions
+        {
+            public const string TokenInvalid = "The access token is invalid";
+            public const string TokenInvalidErrorLog = "The access token is invalid in {{url}} URL";
+            public const string TokenExpired = "The access token is expired";
+            public const string TokenExpiredErrorLog = "The access token is expired in {{url}} URL";
+            public const string UserIsNotSetErrorLog = "The User is not set in {{url}} URL";
+        }
+        public struct PropertyNames
+        {
+            public const string Dial = "Dial";
+            public const string Email = "Email";
         }
     }
 }
