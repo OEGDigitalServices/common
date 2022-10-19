@@ -289,7 +289,6 @@
         WalletBalanceInquiry = 308,
         FreeMaxOffer = 309,
         TOD = 310,
-        EndUserDataGathering = 313,
         OrangeCashCashIn = 318,
         OrangeCashCashOut = 319,
         OrangeCashAddBill = 320,
@@ -300,6 +299,7 @@
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
         SendDeviceToken = 341,
+        EndUserDataGathering = 345
     }
 }
 
