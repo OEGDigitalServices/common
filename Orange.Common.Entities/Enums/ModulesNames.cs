@@ -342,7 +342,8 @@
         SendDeviceToken = 341,
         Gamification = 342,
         Spotify = 343,
-        Jawwy = 344
+        Jawwy = 344,
+        NextMNPServices = 345,
     }
 }
 
