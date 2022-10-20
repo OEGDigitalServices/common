@@ -333,7 +333,7 @@
         IPTvPaymentsViaCreditCard = 332,
         NextSallefnyServices = 333,
         CreditManagement = 334,
-        NextMNPServices = 335,
+        NextMNPServices = 345,
     }
 }
 
