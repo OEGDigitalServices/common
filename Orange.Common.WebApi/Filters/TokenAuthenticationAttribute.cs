@@ -1,11 +1,14 @@
 ﻿using Orange.Common.Business;
 using Orange.Common.Entities;
 using Orange.Common.Utilities;
+using Orange.GSM.Profile.Auth.TokenAuthentication.BL.TokenUtilities;
+using Orange.GSM.Profile.Auth.TokenAuthentication.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Unity;
@@ -16,6 +19,11 @@ namespace Orange.Common.WebApi
 {
     public class TokenAuthenticationAttribute : ActionFilterAttribute
     {
+
+        public TokenAuthenticationAttribute(bool injectDial = true)
+        {
+            _injectDial = injectDial;
+        }
         [Dependency]
         public IServicesFailedRequestsManager ServicesFailedRequestsManager { get; set; }
         [Dependency]
@@ -27,13 +35,25 @@ namespace Orange.Common.WebApi
         [Dependency]
 
         public ILogger ILogger { get; set; }
+
+        [Dependency]
+        public ITokenUtilities TokenUtilities { get; set; }
         private string ctrl, action;
+        private readonly bool _injectDial;
+
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             try
             {
                 if (!CheckTestingEnvironment())
                     return;
+                var jwtToken = GetJWTToken(actionContext);
+                if (!string.IsNullOrWhiteSpace(jwtToken))
+                {
+                    ValidateJWTToken(actionContext, jwtToken);
+                    return;
+                }
+
                 var requestStartDate = DateTime.Now;
                 ctrl = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
                 action = actionContext.ActionDescriptor.ActionName;
@@ -71,11 +91,85 @@ namespace Orange.Common.WebApi
             }
 
         }
+
         private bool CheckTestingEnvironment()
         {
             bool.TryParse(Utilities.GetAppSetting(Strings.AppSettings.IsTokenEnabled), out bool isEnabled);
             return isEnabled;
         }
+
+        #region JWT
+        private string GetJWTToken(HttpActionContext actionContext)
+        {
+            var token = actionContext.Request.Headers.FirstOrDefault(a => a.Key == Strings.Keys.Token || a.Key == Strings.Keys.Token.ToLower());
+            return token.Value?.FirstOrDefault();
+        }
+        private void ValidateJWTToken(HttpActionContext actionContext, string jwtToken)
+        {
+            var isValid = IsValidToken(jwtToken);
+            if (isValid == TokenValidationOutput.Invalid)
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.TokenInvalidErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(Strings.ErrorDescriptions.TokenInvalid)
+                };
+                return;
+            }
+            if (isValid == TokenValidationOutput.Expired)
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.TokenExpiredErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(Strings.ErrorDescriptions.TokenExpired)
+                };
+                return;
+            }
+            if (!IsUserSet(jwtToken, actionContext))
+            {
+                ILogger.LogDebug(Strings.ErrorDescriptions.UserIsNotSetErrorLog.Replace("{{url}}", actionContext.Request.RequestUri.AbsoluteUri));
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+                return;
+            }
+            if (_injectDial)
+                InjectUserClaimsInInput(actionContext);
+        }
+        private TokenValidationOutput IsValidToken(string token)
+        {
+            var isValid = TokenUtilities.IsValidAccessToken(token);
+            return isValid;
+        }
+
+        private bool IsUserSet(string token, HttpActionContext actionContext)
+        {
+            ClaimsPrincipal user = TokenUtilities.ValidateAndPopulateAccessToken(token);
+            if (user == null) return false;
+            actionContext.RequestContext.Principal = user;
+            return true;
+        }
+        private void InjectUserClaimsInInput(HttpActionContext actionContext)
+        {
+            var argumentDict = actionContext.ActionArguments.FirstOrDefault();
+            if (argumentDict.Equals(new KeyValuePair<string, IEnumerable<string>>())) return;
+            var input = argumentDict.Value;
+            var inputKey = argumentDict.Key;
+            if (input == null) return;
+            var identifier = TokenUtilities.GetUserDial() ?? TokenUtilities.GetUserEmail();
+            var email = TokenUtilities.GetUserEmail();
+            SetPropertyForObject(input, Strings.PropertyNames.Dial, identifier);
+            SetPropertyForObject(input, Strings.PropertyNames.Email, email);
+            actionContext.ActionArguments[inputKey] = input;
+        }
+
+        private void SetPropertyForObject(object objectToMutate, string propertyName, string propertyValue)
+        {
+            var property = objectToMutate.GetType().GetProperties()
+                .FirstOrDefault(p => p.Name.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase));
+            property?.SetValue(objectToMutate, propertyValue);
+        }
+        #endregion
+
+
         private bool CheckPlainAndHashed(KeyValuePair<string, IEnumerable<string>> htv, KeyValuePair<string, IEnumerable<string>> ctv)
         {
             if (htv.Value == null || htv.Value.FirstOrDefault() == null)

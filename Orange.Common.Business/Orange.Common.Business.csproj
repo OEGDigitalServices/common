@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrangePortal\IProfileManager.cs" />
+    <Compile Include="OrangePortal\ProfileManager.cs" />
+    <Compile Include="CaptchaSrevice\CaptchaService.cs" />
+    <Compile Include="CaptchaSrevice\ICaptchaService.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />
@@ -82,6 +86,10 @@
     <ProjectReference Include="..\Orange.Common.GenericRepository\Orange.Common.GenericRepository.csproj">
       <Project>{611481af-b1eb-49b8-b2c1-012aa7c62e7c}</Project>
       <Name>Orange.Common.GenericRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orange.Common.Profile\Orange.Common.Profile.csproj">
+      <Project>{5868AB0F-49C9-45B7-8860-3F057FF24AF3}</Project>
+      <Name>Orange.Common.Profile</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Utilities\Orange.Common.Utilities.csproj">
       <Project>{7f058844-4319-47c3-b86f-5fc48bee93e6}</Project>

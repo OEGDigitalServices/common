@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
@@ -429,33 +430,24 @@ namespace Orange.Common.Utilities
             DateTime.TryParseExact(date, dateFormat, GetCultureInfo(Strings.Cultures.EnUs), DateTimeStyles.None, out DateTime formattedDate);
             return formattedDate;
         }
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, List<T> records)
+        public List<T> GetAllCachedRecords<T>(string cacheKey)
         {
             List<T> allCachedRecords = HttpRuntime.Cache.Get(cacheKey) as List<T>;
-            if (allCachedRecords == null)
-            {
-                allCachedRecords = records;
-                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
-                    null,
-                    Cache.NoAbsoluteExpiration,
-                    Cache.NoSlidingExpiration);
-            }
+            if (allCachedRecords == null) return null;
             return allCachedRecords;
         }
 
-        public List<T> GetAllCachedRecordsFromDb<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
+        public List<T> InsertCachedRecords<T>(string cacheKey, Func<List<T>> fetchingMethod, double? daysToExpire = null)
         {
-            if (!(HttpRuntime.Cache.Get(cacheKey) is List<T> allCachedRecords))
-            {
-                allCachedRecords = fetchingMethod.Invoke();
-                var expirationDate = !daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
-                HttpRuntime.Cache.Insert(cacheKey, allCachedRecords,
-                    null,
-                    expirationDate,
-                    Cache.NoSlidingExpiration);
-            }
-            return allCachedRecords;
+            var allRecords = fetchingMethod.Invoke();
+            var expirationDate = daysToExpire.HasValue ? Cache.NoAbsoluteExpiration : DateTime.UtcNow.AddDays(daysToExpire.Value);
+            HttpRuntime.Cache.Insert(cacheKey, allRecords,
+                null,
+                expirationDate,
+                Cache.NoSlidingExpiration);
+            return allRecords;
         }
+
         public T Deserialize<T>(string json)
         {
             object obj = null;
@@ -471,7 +463,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes = null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
@@ -512,6 +504,33 @@ namespace Orange.Common.Utilities
                 _logger.LogError(exp.Message, exp);
                 return string.Empty;
             }
+        }
+
+        public double ReturnCostInPiasters(double cost)
+        {
+            return cost * 100;
+        }
+
+        public string AddZeroToDial(string dial)
+        {
+            return !string.IsNullOrEmpty(dial) && !dial.StartsWith(Strings.Numbers.Zero) ? dial.Insert(0, Strings.Numbers.Zero).Trim() : dial;
+        }
+
+        public string AddTwoToDial(string dial)
+        {
+            return dial.Insert(0, Strings.Numbers.Two).Trim();
+        }
+
+        public string GenerateRandomNumber()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomNumber(100000, 999999));
+            return builder.ToString();
+        }
+        int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
         }
         public T XMLToObject<T>(string xml) where T : class
         {
@@ -558,6 +577,20 @@ namespace Orange.Common.Utilities
             catch
             {
                 throw;
+            }
+        }
+
+        public bool IsValidAccountNumber(string accountNumber)
+        {
+            try
+            {
+                Regex regexDial = new Regex(@"^[0-9]*\.[0-9]*$", RegexOptions.Compiled);
+                return regexDial.IsMatch(accountNumber);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return false;
             }
         }
     }
