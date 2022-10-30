@@ -343,9 +343,8 @@
         Gamification = 342,
         Spotify = 343,
         Jawwy = 344,
-        EndUserDataGathering = 345,
-        SeasonalPackagesPaymentsViaCreditCard = 346,
-        SeasonalPackages = 347,
+        SeasonalPackagesPaymentsViaCreditCard = 345,
+        SeasonalPackages = 346,
     }
 }
 
