@@ -339,8 +339,13 @@
         SRInquiry = 338,
         NextOffers = 339,
         SamsungOneOffer = 340,
-        SeasonalPackagesPaymentsViaCreditCard = 341,
-        SeasonalPackages = 342,
+        SendDeviceToken = 341,
+        Gamification = 342,
+        Spotify = 343,
+        Jawwy = 344,
+        EndUserDataGathering = 345,
+        SeasonalPackagesPaymentsViaCreditCard = 346,
+        SeasonalPackages = 347,
     }
 }
 

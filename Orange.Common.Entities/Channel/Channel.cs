@@ -33,6 +33,7 @@
         OrangeDSLDunningRetrialMechanism = 33,
         LinkDslDunning = 34,
         LinkDslDunningRetrialMechanism = 35,
-        MyOrange = 36
+        MyOrange = 36,
+        MOTP = 37,
     }
 }
