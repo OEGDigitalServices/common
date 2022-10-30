@@ -539,5 +539,11 @@
         {
             public const string Authorization = "Authorization";
         }
+
+        public struct AuthorizationSchemes
+        {
+            public const string Bearer = "Bearer";
+        }
+
     }
 }

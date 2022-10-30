@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -94,7 +95,7 @@ namespace Orange.Common.Utilities
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            if(disableSSLVerification)
+            if (disableSSLVerification)
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
@@ -103,9 +104,21 @@ namespace Orange.Common.Utilities
             return JsonConvert.DeserializeObject<object>(formatted);
         }
 
+        public Task<TOut> PostAsJson<TOut, TBody>(string url,
+            TBody body,
+            Dictionary<string, string> headers = null,
+            bool disableSSLVerification = false,
+            int timeoutInSeconds = 100,
+            string authorizationToken = null,
+            bool useCamelCase = false) where TBody : class
+        {
+            return SendRequestAsJson<TOut, TBody>(url, body, headers, authorizationToken, disableSSLVerification, timeoutInSeconds, useCamelCase, HttpMethod.Post);
+        }
+
         #endregion
 
         #region Helpers
+
         private void FillHeaders(Dictionary<string, string> headers)
         {
             lock (obj)
@@ -134,7 +147,7 @@ namespace Orange.Common.Utilities
             return concatenatedURL;
         }
 
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds  = 100)
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
@@ -144,6 +157,54 @@ namespace Orange.Common.Utilities
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
         }
+
+        private async Task<TOut> SendRequestAsJson<TOut, TBody>(string url,
+            TBody body,
+            Dictionary<string, string> headers,
+            string authorizationToken,
+            bool disableSSLVerification,
+            int timeoutInSeconds,
+            bool useCamelCase,
+            HttpMethod method) where TBody : class
+        {
+            using (var requestMessage = new HttpRequestMessage(method, url))
+            {
+                if (disableSSLVerification)
+                    ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+                var cts = new CancellationTokenSource();
+                cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
+                FillMessageHeaders(requestMessage, headers, authorizationToken);
+                string serializedContent = JsonConvert.SerializeObject(body, new JsonSerializerSettings
+                {
+
+                    ContractResolver = useCamelCase 
+                        ? new CamelCasePropertyNamesContractResolver()
+                        : new DefaultContractResolver()
+                });
+                requestMessage.Content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+                var response = await _client.SendAsync(requestMessage, cts.Token).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                var content = JsonConvert.DeserializeObject<TOut>(stringContent);
+                return content;
+            }
+        }
+
+        private void FillMessageHeaders(HttpRequestMessage requestMessage, Dictionary<string, string> headers, string authorizationToken)
+        {
+            if (authorizationToken != null)
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(Strings.AuthorizationSchemes.Bearer, authorizationToken);
+
+            if (headers == null)
+                return;
+
+            foreach (var header in headers)
+            {
+                requestMessage.Headers.Add(header.Key, header.Value);
+            }
+        }
+
         #endregion
     }
 }

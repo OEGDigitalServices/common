@@ -11,6 +11,13 @@ namespace Orange.Common.Utilities
         Task<T> Post<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
             where TBody : class;
         Task<T> PostXml<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, int timeoutInSeconds = 100) where TBody : class;
-        Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null,bool disableSSLVerification = false) where TBody : class;
+        Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class;
+        Task<TOut> PostAsJson<TOut, TBody>(string url,
+            TBody body,
+            Dictionary<string, string> headers = null,
+            bool disableSSLVerification = false,
+            int timeoutInSeconds = 100,
+            string authorizationToken = null,
+            bool useCamelCase = false) where TBody : class;
     }
 }
