@@ -344,6 +344,7 @@
         Spotify = 343,
         Jawwy = 344,
         EndUserDataGathering = 345
+        TODWorldCup = 346,
     }
 }
 
