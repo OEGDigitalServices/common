@@ -68,8 +68,9 @@ namespace Orange.Common.Utilities
         string AddTwoToDial(string dial);
         string GenerateRandomNumber();
         System.Net.CredentialCache GetCredentialCache(string URL);
-        string GetSoapXml<T>(T obj);
-        T XMLToObject<T>(string xml) where T : class;
+        string GetSoapXml<T>(T obj);        
+        T XMLToObject<T>(string xml) where T : class;        
         string ObjectToXML<T>(T dataToSerialize);
+        string GetInternalServerIPConsoleApp();
     }
 }
