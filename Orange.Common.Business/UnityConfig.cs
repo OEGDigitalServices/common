@@ -14,7 +14,8 @@ namespace Orange.Common.Business
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
             container.RegisterType<IProfileManager, ProfileManager>();
             container.RegisterType<ICaptchaService, CaptchaService>();
-            
+            container.RegisterType<IDSLAuthenticationTokenManager, DSLAuthenticationTokenManager>();
+
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
             Common.Profile.UnityConfig.RegisterTypes(container);
