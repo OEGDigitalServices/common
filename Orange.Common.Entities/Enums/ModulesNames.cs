@@ -343,8 +343,9 @@
         Gamification = 342,
         Spotify = 343,
         Jawwy = 344,
-        EndUserDataGathering = 345
+        NextMNPServices = 345,
         TODWorldCup = 346,
+        DSLMyOrange = 347
     }
 }
 
