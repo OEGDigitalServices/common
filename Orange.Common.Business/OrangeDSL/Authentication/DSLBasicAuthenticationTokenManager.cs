@@ -5,7 +5,7 @@ using System;
 
 namespace Orange.Common.Business
 {
-    public class DSLAuthenticationTokenManager : IDSLAuthenticationTokenManager
+    public class DSLBasicAuthenticationTokenManager : IDSLBasicAuthenticationTokenManager
     {
         #region Props
 
@@ -16,7 +16,7 @@ namespace Orange.Common.Business
 
         #region Ctor
 
-        public DSLAuthenticationTokenManager(IDSLBasicTokenAuthenticationDataAccess dataAccess, ILogger logger)
+        public DSLBasicAuthenticationTokenManager(IDSLBasicTokenAuthenticationDataAccess dataAccess, ILogger logger)
         {
             _dataAccess = dataAccess;
             _logger = logger;
