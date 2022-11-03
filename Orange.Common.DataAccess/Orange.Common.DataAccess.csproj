@@ -67,8 +67,8 @@
     <Compile Include="DAL\EasyLoginRequestsDataAccess.cs" />
     <Compile Include="Mail\IQueuedEmailDataAccess.cs" />
     <Compile Include="Mail\QueuedEmailDataAccess.cs" />
-    <Compile Include="OrangeDSL\DSLBasicTokenAuthenticationDataAccess.cs" />
-    <Compile Include="OrangeDSL\IDSLBasicTokenAuthenticationDataAccess.cs" />
+    <Compile Include="OrangeDSL\Authentication\DSLBasicTokenAuthenticationDataAccess.cs" />
+    <Compile Include="OrangeDSL\Authentication\IDSLBasicTokenAuthenticationDataAccess.cs" />
     <Compile Include="ProfileContexts\AuthenticationContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesFailedRequests\IServicesFailedRequestsDataAccess.cs" />

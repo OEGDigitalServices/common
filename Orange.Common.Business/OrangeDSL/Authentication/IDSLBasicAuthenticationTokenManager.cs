@@ -3,7 +3,7 @@ using System;
 
 namespace Orange.Common.Business
 {
-    public interface IDSLAuthenticationTokenManager
+    public interface IDSLBasicAuthenticationTokenManager
     {
         ValidateDSLBasicAuthenticationTokenOutput ValidateToken(string dial, Guid token);
     }}
