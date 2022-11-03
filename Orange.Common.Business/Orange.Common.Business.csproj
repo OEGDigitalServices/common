@@ -55,8 +55,8 @@
     <Compile Include="OrangePortal\ProfileManager.cs" />
     <Compile Include="CaptchaSrevice\CaptchaService.cs" />
     <Compile Include="CaptchaSrevice\ICaptchaService.cs" />
-    <Compile Include="OrangeDSL\DSLAuthenticationTokenManager.cs" />
-    <Compile Include="OrangeDSL\IDSLAuthenticationTokenManager.cs" />
+    <Compile Include="OrangeDSL\Authentication\DSLBasicAuthenticationTokenManager.cs" />
+    <Compile Include="OrangeDSL\Authentication\IDSLBasicAuthenticationTokenManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsDataManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsPrivilegesManager.cs" />
     <Compile Include="OrangeServices\Channels\ChannelsTokensManager.cs" />

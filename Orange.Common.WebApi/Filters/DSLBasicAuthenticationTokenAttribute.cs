@@ -18,7 +18,7 @@ namespace Orange.Common.WebApi
     public class DSLBasicAuthenticationTokenAttribute : ActionFilterAttribute
     {
         [Dependency]
-        public IDSLAuthenticationTokenManager DSLAuthenticationTokenManager { get; set; }
+        public IDSLBasicAuthenticationTokenManager DSLAuthenticationTokenManager { get; set; }
         [Dependency]
         public IServicesFailedRequestsManager ServicesFailedRequestsManager { get; set; }
         [Dependency]
