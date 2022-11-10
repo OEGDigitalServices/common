@@ -289,20 +289,18 @@
         WalletBalanceInquiry = 308,
         FreeMaxOffer = 309,
         TOD = 310,
-        IPTvAddons = 320,
-        TriplePlayDashboard = 330,
-        IPTvPaymentsViaCreditCard = 332,
         OrangeCashCashIn = 318,
         OrangeCashCashOut = 319,
         OrangeCashAddBill = 320,
         WheelOfFortune = 321,
         PrepaidMigrations = 322,
         GOMoveOffer = 323,
-        OrangeGSMInAdvanceBillPaymentViaCreditCard = 333,
-        OrangeGSMForOthersBillPaymentViaCreditCard = 334,
-        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 335,
-        OrangeGSMForOthersRechargeViaCreditCard = 336,
-        OrangeGSMAddBillViaScratchCard = 337
+        IPTvAddons = 324,
+        TriplePlayDashboard = 325,
+        IPTvPaymentsViaCreditCard = 326,
+        SendDeviceToken = 341,
+        SamsungOneOffer = 342,
+        TariffMigrations = 343
     }
 }
 
