@@ -509,6 +509,17 @@
         }
         public struct OrderDescriptions
         {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string MyOrangeGSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string PortalGSMRechargeOrderDescription = "PortalGSMRecharge";
+            public const string MyOrangeGSMRechargeForOthersOrderDescription = "MOGSMRechargeForOthers";
+            public const string PortalGSMRechargeForOthersOrderDescription = "PortalGSMRechargeForOthers";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
+            public const string PortalGSMAddBillOrderDescription = "PortalGSMAddBill";
+            public const string PortalGSMAddBillForOthersOrderDescription = "PortalGSMAddBillForOthers";
+            public const string MyOrangeGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
         }
@@ -539,5 +550,6 @@
         {
             public const string Authorization = "Authorization";
         }
+  
     }
 }
