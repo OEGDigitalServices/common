@@ -11,6 +11,7 @@
             public const string EnrichmentHeaderDecryptKey = "EnrichmentHeaderDecryptKey";
             public const string IsTestingEnvironment = "IsTestingEnvironment";
             public const string TestingDial = "TestingDial";
+            public const string TokenExpiryHours = "TokenExpiryHours";
         }
 
         public struct Keys
