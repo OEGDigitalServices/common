@@ -300,7 +300,9 @@
         IPTvPaymentsViaCreditCard = 326,
         SendDeviceToken = 341,
         SamsungOneOffer = 342,
-        TariffMigrations = 343
+        TariffMigrations = 343,
+        SPPaymentsViaCreditCard = 344,
+        SeasonalPackages = 345,
     }
 }
 
