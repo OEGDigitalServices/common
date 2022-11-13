@@ -342,8 +342,10 @@
         SendDeviceToken = 341,
         Gamification = 342,
         Spotify = 343,
-        Jawwy = 344,        
-        TODWorldCup = 346
+        Jawwy = 344,
+        NextMNPServices = 345,
+        TODWorldCup = 346,
+        DSLMyOrange = 347
     }
 }
 

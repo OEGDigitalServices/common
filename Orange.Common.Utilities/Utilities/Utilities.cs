@@ -616,5 +616,9 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+        public string DSLBaseSiteUrl
+        {
+            get { return GetAppSetting(Strings.SharePoint.DSLBaseSiteUrl); }
+        }
     }
 }

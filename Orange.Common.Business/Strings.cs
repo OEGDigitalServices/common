@@ -12,6 +12,7 @@
             public const string IsTestingEnvironment = "IsTestingEnvironment";
             public const string TestingDial = "TestingDial";
             public const string CaptchaUrl = "CaptchaUrl";
+            public const string TokenExpiryHours = "TokenExpiryHours";
         }
 
         public struct Keys
