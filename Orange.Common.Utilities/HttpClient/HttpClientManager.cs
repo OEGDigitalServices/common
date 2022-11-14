@@ -33,8 +33,11 @@ namespace Orange.Common.Utilities
         #endregion
 
         #region Methods
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
         {
+            if (disableSSL)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -62,7 +65,7 @@ namespace Orange.Common.Utilities
             where TBody : class
         {
             if (disableSSL)
-                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;             
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
@@ -107,6 +110,7 @@ namespace Orange.Common.Utilities
             string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
             return JsonConvert.DeserializeObject<object>(formatted);
         }
+
         public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
         {
             FillHeaders(headers);

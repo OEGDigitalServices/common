@@ -8,6 +8,8 @@ using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -591,6 +593,27 @@ namespace Orange.Common.Utilities
             {
                 _logger.LogError(exp.Message, exp, false);
                 return false;
+            }
+        }
+
+        public string GetInternalServerIPConsoleApp()
+        {
+            try
+            {
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        return ip.ToString();
+                    }
+                }
+                    throw new Exception("No network adapters with an IPv4 address in the system!");
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return string.Empty;
             }
         }
         public string DSLBaseSiteUrl

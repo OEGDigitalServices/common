@@ -2,6 +2,8 @@
 using Orange.Common.Entities;
 using Orange.Common.Utilities;
 
+using Keys = Orange.Common.Business.Strings.Keys;
+
 namespace Orange.Common.Business
 {
     public class CaptchaService : ICaptchaService
@@ -26,14 +28,18 @@ namespace Orange.Common.Business
         #region Methods
         public bool IsValidCaptcha(string token)
         {
+            if (!IsCaptchaEnabled())
+                return true;
+
             try
             {
-                var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token))
+                var response = _httpClientManager.Get<CaptchaResponse>(GetCaptchaUrl(token),disableSSL: true)
                     .GetAwaiter()
                     .GetResult();
 
-                if (response.success == true && response.score >= GetCaptchaThreshold())
-                    return true;
+                if (response.success == true)
+                        return true;
+
                 return false;
             }
             catch (Exception e)
@@ -42,31 +48,50 @@ namespace Orange.Common.Business
                 return false;
             }
         }
+
         #endregion
 
         #region Helpers
+        private bool IsCaptchaEnabled()
+        {
+            var result = bool.TryParse(GetAppSetting(Keys.IsCaptchaEnabled),out bool isCaptchaEnabled);
+
+            if (result)
+                return isCaptchaEnabled;
+
+            // Disabled By Default
+            return result;
+        }
         private string GetCaptchaUrl(string token)
         {
-            var CaptchaUrl = _utilities.GetAppSetting(Strings.AppSettings.CaptchaUrl);
-            var SecretKey = _utilities.GetAppSetting(Strings.Keys.SecretKey);
+            var CaptchaUrl = GetAppSetting(Keys.CaptchaUrl);
+            var SecretKey = GetAppSetting(Keys.SecretKey);
             return string.Concat(
                 CaptchaUrl,
                 $"?secret={SecretKey}&response={token}");
         }
-        private double GetCaptchaThreshold()
-        {
-            try
-            {
-                var CaptchaThreshold = Convert.ToDouble(
-                        _utilities.GetAppSetting(Strings.Keys.CaptchaThreshold));
 
-                return CaptchaThreshold; 
-            }
-            catch(Exception e)
-            {
-                _logger.LogError(e.Message, e);
-                return 0.4;
-            }
+        #region CaptchaV3Threshold
+        //private double GetCaptchaThreshold()
+        //{
+        //    try
+        //    {
+        //        var CaptchaThreshold = Convert.ToDouble(GetAppSetting(Keys.CaptchaThreshold));
+
+        //        return CaptchaThreshold; 
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        _logger.LogError(e.Message, e);
+        //        return 0.4;
+        //    }
+        //}
+        #endregion
+
+        private string GetAppSetting(string key)
+        {
+            var value = _utilities.GetAppSetting(key);
+            return value;
         }
         #endregion
     }

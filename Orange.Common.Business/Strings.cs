@@ -54,6 +54,8 @@
             public const string Token ="Token";
             public const string SecretKey = "SecretKey";
             public const string CaptchaThreshold = "CaptchaThreshold";
+            public const string IsCaptchaEnabled = "isCaptchaEnabled";
+            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct OrangeServicesSecuirtyErrorMessages
