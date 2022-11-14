@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Orange.GSM.Common.EntityFramework.Models
+namespace Orange.Common.EntityFramework
 {
     public partial class OrangeDSLContext : DbContext
     {
