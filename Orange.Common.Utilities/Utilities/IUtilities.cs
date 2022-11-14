@@ -39,6 +39,7 @@ namespace Orange.Common.Utilities
         string OrangeCashFawryCategories { get; }
         string LinePurchaseAssetsListUrl { get; }
         CultureInfo GetLanguageCulture(string language);
+        bool IsValidAccountNumber(string dial);
         bool IsValidPin(string pin);
         string GetSuperRechargeTransactionID(string dial);
         string MobileAdministrationWebUrl { get; }
@@ -70,5 +71,6 @@ namespace Orange.Common.Utilities
         string GetSoapXml<T>(T obj);
         T XMLToObject<T>(string xml) where T : class;
         string ObjectToXML<T>(T dataToSerialize);
+        string DSLBaseSiteUrl { get; }
     }
 }
