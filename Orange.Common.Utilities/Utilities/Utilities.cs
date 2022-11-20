@@ -471,7 +471,7 @@ namespace Orange.Common.Utilities
             return (T)obj;
         }
 
-        public void AddValueToCache(string CacheKey, object obj, int? Minutes=null)
+        public void AddValueToCache(string CacheKey, object obj, int? Minutes = null)
         {
             Minutes = Minutes ?? 1;
             if (System.Web.HttpContext.Current == null || System.Web.HttpContext.Current.Cache == null)
@@ -559,6 +559,15 @@ namespace Orange.Common.Utilities
             {
                 throw;
             }
+        }
+        public string HashDial(string dial)
+        {
+            return dial.Substring(0, 3) + Strings.AppSettings.HashingDial + dial.Substring(dial.Length - 3, 3);
+
+        }
+        public string DSLBaseSiteUrl
+        {
+            get { return GetAppSetting(Strings.SharePoint.DSLBaseSiteUrl); }
         }
     }
 }
