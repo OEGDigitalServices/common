@@ -296,7 +296,10 @@
         OrangeGSMForOthersBillPaymentViaCreditCard = 334,
         OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 335,
         OrangeGSMForOthersRechargeViaCreditCard = 336,
-        OrangeGSMAddBillViaScratchCard = 337
+        OrangeGSMAddBillViaScratchCard = 337,
+        SendDeviceToken = 341,
+        SamsungOneOffer = 342,
+        TariffMigrations = 343
     }
 }
 
