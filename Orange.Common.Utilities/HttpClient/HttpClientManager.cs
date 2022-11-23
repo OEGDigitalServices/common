@@ -25,7 +25,6 @@ namespace Orange.Common.Utilities
         }
         public HttpClientManager(IUtilities utilities)
         {
-            _client = client;
             _utilities = utilities;
         }
 
