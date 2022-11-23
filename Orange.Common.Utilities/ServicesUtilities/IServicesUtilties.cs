@@ -17,6 +17,7 @@ namespace Orange.Common.Utilities
         string SerializeXmlRequest<T>(T input, bool isSpecialEncodingTagsRequired = false);
         XElement ExtractDataFromXmlDocument(XDocument doc, string value);
         bool IsItTestEnviroment();
+        bool IsItNextTestEnviroment();
         bool IsMongoEnabled();
         System.Net.CredentialCache GetCredentialCache(string URL);
         string GetEAISource(Channel channel);
@@ -24,5 +25,8 @@ namespace Orange.Common.Utilities
         string GetSoapXml<T>(T obj);
         DialType GetDialType(string rpCode);
         bool IsStagingEnviroment();        
+        ServiceCallOutput SendGatewayRequest(string url, string request);
+        ServiceCallOutput SendGatewayRequest(string url, string request, string requestVerb = Strings.Services.PostVerb, string headers = null);
+        string GenerateXMLRequest<T>(T xmlClass, string parentNode = "");
     }
 }
