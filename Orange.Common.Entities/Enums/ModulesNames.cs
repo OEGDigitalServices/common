@@ -302,7 +302,8 @@
         SamsungOneOffer = 342,
         TariffMigrations = 343,
         DSLMyOrange = 344,
-        TODWorldCup = 345
+        TODWorldCup = 345,
+        TheGold = 346,
     }
 }
 
