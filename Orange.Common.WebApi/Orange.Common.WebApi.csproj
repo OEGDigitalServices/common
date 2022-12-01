@@ -126,12 +126,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiUnityActionFilterProvider.cs" />
     <Compile Include="Controllers\AuthenticationFullBodyController.cs" />
+    <Compile Include="Controllers\PortalAuthenticatedUsersController.cs" />
+    <Compile Include="Controllers\PortalBasicController.cs" />
     <Compile Include="Filters\DSLBasicAuthenticationTokenAttribute.cs" />
     <Compile Include="Filters\MobileAppVersionAttribute.cs" />
     <Compile Include="Filters\AuthenticationBodyAttribute.cs" />
     <Compile Include="Filters\ChannelBodyAttribute.cs" />
     <Compile Include="Filters\InputValidationAttribute.cs" />
     <Compile Include="Filters\LanguageSetterAttribute.cs" />
+    <Compile Include="Filters\PortalAuthenticationAttribute.cs" />
+    <Compile Include="Filters\PortalInjectCurrentDialAttribute.cs" />
+    <Compile Include="Filters\PortalSourceAuthenticationAttribute.cs" />
     <Compile Include="Filters\TokenAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,6 +168,10 @@
     <ProjectReference Include="..\Orange.Common.Entities\Orange.Common.Entities.csproj">
       <Project>{0170b2a4-9a05-4627-ab02-ccb1ca6740ca}</Project>
       <Name>Orange.Common.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orange.Common.Profile\Orange.Common.Profile.csproj">
+      <Project>{5868AB0F-49C9-45B7-8860-3F057FF24AF3}</Project>
+      <Name>Orange.Common.Profile</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Utilities\Orange.Common.Utilities.csproj">
       <Project>{7f058844-4319-47c3-b86f-5fc48bee93e6}</Project>

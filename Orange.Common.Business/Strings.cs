@@ -50,6 +50,11 @@
             public const string XMSISDN = "X-MSISDN";
             public const string Pin = "Pin";
             public const string PaymentSerialNumber = "PaymentSerialNumber";
+            public const string Token ="Token";
+            public const string SecretKey = "SecretKey";
+            public const string CaptchaThreshold = "CaptchaThreshold";
+            public const string IsCaptchaEnabled = "isCaptchaEnabled";
+            public const string CaptchaUrl = "CaptchaUrl";
         }
 
         public struct OrangeServicesSecuirtyErrorMessages
