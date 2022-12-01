@@ -30,8 +30,11 @@ namespace Orange.Common.Utilities
         #endregion
 
         #region Methods
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100, bool disableSSL = false)
         {
+            if (disableSSL)
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -59,7 +62,7 @@ namespace Orange.Common.Utilities
             where TBody : class
         {
             if (disableSSL)
-                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;             
 
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));
@@ -90,7 +93,7 @@ namespace Orange.Common.Utilities
         }
 
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
-        {
+        {     
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
@@ -99,8 +102,10 @@ namespace Orange.Common.Utilities
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
-            return JsonConvert.DeserializeObject<object>(formatted);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
+            var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
+            return desrializedContent;
         }
 
         #endregion

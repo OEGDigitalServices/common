@@ -310,14 +310,6 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
-
-        public bool IsStagingEnviroment()
-        {
-            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
-            return isStagingEnviroment;
-        }
-
-
         public DialType GetDialType(string rpCode)
         {
             int.TryParse(rpCode, out int iRpCode);
@@ -342,6 +334,13 @@ namespace Orange.Common.Utilities
                 return DialType.PostPaid;
             }
         }
+
+        public bool IsStagingEnviroment()
+        {
+            bool.TryParse(_utilities.GetAppSetting(Strings.AppSettingKeys.IsStagingEnviroment), out bool isStagingEnviroment);
+            return isStagingEnviroment;
+        }
+   
 
 
         #endregion
