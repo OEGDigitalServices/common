@@ -1,6 +1,4 @@
-﻿using Orange.Common.DataAccess;
-using Orange.Common.Utilities;
-using Unity;
+﻿using Unity;
 namespace Orange.Common.DataAccess
 {
     public class UnityConfig
@@ -12,6 +10,7 @@ namespace Orange.Common.DataAccess
             container.RegisterType<IChannelsTokensDataAccess, ChannelsTokensDataAccess>();
             container.RegisterType<IServicesFailedRequestsDataAccess, ServicesFailedRequestsDataAccess>();
             container.RegisterType<IQueuedEmailDataAccess, QueuedEmailDataAccess>();
+            container.RegisterType<IDSLBasicTokenAuthenticationDataAccess, DSLBasicTokenAuthenticationDataAccess>();
         }
     }
 }

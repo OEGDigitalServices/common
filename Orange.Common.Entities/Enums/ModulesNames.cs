@@ -305,7 +305,9 @@
         OrangeGSMAddBillViaScratchCard = 337,
         SendDeviceToken = 341,
         SamsungOneOffer = 342,
-        TariffMigrations = 343
+        TariffMigrations = 343,
+        DSLMyOrange = 344,
+        TODWorldCup = 345
     }
 }
 
