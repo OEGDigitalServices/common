@@ -60,6 +60,8 @@
     <Compile Include="OrangeServices\Notifications\INotificationManager.cs" />
     <Compile Include="OrangeServices\Notifications\NotificationManager.cs" />
     <Compile Include="OrangeServices\Notifications\SendMailNotificationManager.cs" />
+    <Compile Include="OrangeTriplePlay\IOrangeTPManager.cs" />
+    <Compile Include="OrangeTriplePlay\OrangeTPManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesFailedRequests\IServicesFailedRequestsManager.cs" />
     <Compile Include="ServicesFailedRequests\ServicesFailedRequestsManager.cs" />

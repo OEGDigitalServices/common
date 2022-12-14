@@ -60,6 +60,8 @@
     <Compile Include="Inputs\HeaderData.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\MobileInput.cs" />
+    <Compile Include="OrangeTriplePlay\Inputs\TPInput.cs" />
+    <Compile Include="OrangeTriplePlay\SIBEntities\IdentifyUserResponse.cs" />
     <Compile Include="Output\BaseOutput.cs" />
     <Compile Include="Output\GenericOutput.cs" />
     <Compile Include="Output\Output.cs" />
@@ -70,6 +72,9 @@
     <Compile Include="ServicesFailedRequest.cs" />
     <Compile Include="SMS\MessageDetails.cs" />
     <Compile Include="TokenConsumptionStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OrangeTriplePlay\Outputs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
