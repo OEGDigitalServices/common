@@ -1,4 +1,5 @@
-﻿using Unity;
+﻿using Orange.Common.Business.OrangeTriplePlay;
+using Unity;
 namespace Orange.Common.Business
 {
     public class UnityConfig
@@ -12,6 +13,7 @@ namespace Orange.Common.Business
             container.RegisterType<IChannelsDataManager, ChannelsDataManager>();
             container.RegisterType<IChannelsPrivilegesManager, ChannelsPrivilegesManager>();
             container.RegisterType<IChannelsTokensManager, ChannelsTokensManager>();
+            container.RegisterType<IOrangeTPManager, OrangeTPManager>();
 
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
