@@ -345,7 +345,9 @@
         Jawwy = 344,
         NextMNPServices = 345,
         TODWorldCup = 346,
-        DSLMyOrange = 347
+        DSLMyOrange = 347,
+        SPPaymentsViaCreditCard = 348,
+        SeasonalPackages = 349,
     }
 }
 

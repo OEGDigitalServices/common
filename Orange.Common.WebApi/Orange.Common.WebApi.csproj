@@ -132,6 +132,7 @@
     <Compile Include="Controllers\PortalAuthenticatedUsersController.cs" />
     <Compile Include="Controllers\PortalBasicController.cs" />
     <Compile Include="Filters\DSLBasicAuthenticationTokenAttribute.cs" />
+    <Compile Include="Filters\TriplePlayIdentifyUserAttribute.cs" />
     <Compile Include="Filters\MobileAppVersionAttribute.cs" />
     <Compile Include="Filters\AuthenticationBodyAttribute.cs" />
     <Compile Include="Filters\ChannelBodyAttribute.cs" />
