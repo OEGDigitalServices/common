@@ -4,7 +4,7 @@ using Orange.Common.Utilities;
 using System;
 using System.Linq;
 
-namespace Orange.Common.Business
+namespace Orange.Common.Business.OrangeTriplePlay
 {
     public class OrangeTPManager : IOrangeTPManager
     {
@@ -36,8 +36,9 @@ namespace Orange.Common.Business
         {
             try
             {
+                var endPoint = _utilities.GetAppSetting(Strings.APIs.CommonSecureIntegrationBusURL) + Strings.APIs.OrangeTriplePlayIdentifyUser;
                 var secureOutput = _secureManager.CallSecureConnect<IdentifyUserResponse>(
-                    _utilities.GetAppSetting(Strings.APIs.CommonSecureIntegrationBusURL), MapInput(input, channel, moduleName), Strings.Verbs.Post);
+                    endPoint, MapInput(input, channel, moduleName), Strings.Verbs.Post);
                 if (secureOutput == null || secureOutput.ErrorCode != IdentifyUserResponse.ErrorCodes.Success)
                     return false;
                 return secureOutput.UserNames.Any(user => user == input.TpUserName);

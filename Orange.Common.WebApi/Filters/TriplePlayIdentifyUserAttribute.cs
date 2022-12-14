@@ -21,7 +21,7 @@ namespace Orange.Common.WebApi
         [Dependency]
         public ILogger Logger { get; set; }
         [Dependency]
-        private readonly IOrangeTPManager OrangeTPManager;
+        public IOrangeTPManager OrangeTPManager;
 
         public string Channel { get; set; }
         public string ModuleName { get; set; }
