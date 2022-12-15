@@ -23,8 +23,8 @@ namespace Orange.Common.WebApi
         [Dependency]
         public IOrangeTPManager OrangeTPManager;
 
-        public string Channel { get; set; }
-        public string ModuleName { get; set; }
+        public Channel Channel { get; set; }
+        public ModulesNames ModuleName { get; set; }
 
         private string ctrl, action;
 
@@ -36,12 +36,12 @@ namespace Orange.Common.WebApi
                 action = actionContext.ActionDescriptor.ActionName;
 
                 var input = GetRequestBody<TPInput>(actionContext);
-                if(input == null)
+                if (input == null)
                 {
                     ServicesFailedRequestsManager.Add(new ServicesFailedRequest { ErrorCode = (int)ServiceFailedRequestsErrorCodes.InputIsNull, ControllerName = ctrl, ActionName = action });
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
                 }
-                if(!OrangeTPManager.IsUserIdentified(input,Channel, ModuleName))
+                if (!OrangeTPManager.IsUserIdentified(input, Channel, ModuleName))
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
             catch (Exception exp)
