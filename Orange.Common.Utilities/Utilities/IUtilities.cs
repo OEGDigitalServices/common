@@ -73,5 +73,6 @@ namespace Orange.Common.Utilities
         string ObjectToXML<T>(T dataToSerialize);
         string GetInternalServerIPConsoleApp();
         string DSLBaseSiteUrl { get; }
+        string HashDial(string dial);
     }
 }
