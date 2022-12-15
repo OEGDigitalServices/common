@@ -1,4 +1,5 @@
 ﻿using Orange.Common.Business.OrangeTriplePlay;
+using Orange.Common.Entities;
 using Orange.Common.Entities.OrangeTriplePlay;
 using Orange.Common.Utilities;
 using System;
@@ -32,7 +33,7 @@ namespace Orange.Common.Business.OrangeTriplePlay
 
         #region IsUserIdentified
 
-        public bool IsUserIdentified(TPInput input, string channel, string moduleName)
+        public bool IsUserIdentified(TPInput input, Channel channel, ModulesNames moduleName)
         {
             try
             {
@@ -50,7 +51,7 @@ namespace Orange.Common.Business.OrangeTriplePlay
             }
         }
 
-        private object MapInput(TPInput input, string channel, string moduleName)
+        private object MapInput(TPInput input, Channel channel, ModulesNames moduleName)
         {
             return new
             {
