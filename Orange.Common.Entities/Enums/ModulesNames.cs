@@ -345,7 +345,9 @@
         Jawwy = 344,
         NextMNPServices = 345,
         TODWorldCup = 346,
-        DSLMyOrange = 347
+        DSLMyOrange = 347,
+        NextMigrateServices = 348,
+        NextRoaming = 387,
     }
 }
 
