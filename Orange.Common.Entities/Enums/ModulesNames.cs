@@ -299,7 +299,7 @@
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
         SendDeviceToken = 341,
-        EndUserDataGathering = 345
+        EndUserDataGathering = 346
     }
 }
 
