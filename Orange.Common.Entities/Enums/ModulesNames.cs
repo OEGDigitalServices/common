@@ -335,6 +335,7 @@
         CreditManagement = 334,
         NextMNPServices = 345,
         NextMigrateServices = 348,
+        NextRoaming = 349,
     }
 }
 
