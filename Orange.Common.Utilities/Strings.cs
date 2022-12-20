@@ -158,6 +158,7 @@
             public const string DataGatheringFilesListName = "DataGatheringFilesListName";
 
             public const string JoinOrangeRequestReportListUrl = "JoinOrangeRequestReportListUrl";
+            public const string DSLBaseSiteUrl = "DSLBaseSiteUrl";
 
         }
         public struct Mails
@@ -509,6 +510,17 @@
         }
         public struct OrderDescriptions
         {
+            public const string GSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string MyOrangeGSMRechargeOrderDescription = "MOGSMRecharge";
+            public const string PortalGSMRechargeOrderDescription = "PortalGSMRecharge";
+            public const string MyOrangeGSMRechargeForOthersOrderDescription = "MOGSMRechargeForOthers";
+            public const string PortalGSMRechargeForOthersOrderDescription = "PortalGSMRechargeForOthers";
+            public const string GSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillOrderDescription = "MOGSMAddBill";
+            public const string MOGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
+            public const string PortalGSMAddBillOrderDescription = "PortalGSMAddBill";
+            public const string PortalGSMAddBillForOthersOrderDescription = "PortalGSMAddBillForOthers";
+            public const string MyOrangeGSMAddBillForOthersOrderDescription = "MOGSMAddBillForOthers";
             public const string DSLRechargeOrderDescription = "MODSLRecharge";
             public const string DSLAddBillOrderDescription = "MODSLAddBill";
         }
@@ -519,6 +531,7 @@
         public struct AppSettings
         {
             public const string MobileAdminTargetWebURL = "MobileAdminTargetWebURL";
+            public const string HashingDial = "XXXXX";
         }
 
         public struct EAIStatuses
@@ -539,5 +552,6 @@
         {
             public const string Authorization = "Authorization";
         }
+  
     }
 }

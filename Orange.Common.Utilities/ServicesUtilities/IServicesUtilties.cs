@@ -22,7 +22,7 @@ namespace Orange.Common.Utilities
         string GetEAISource(Channel channel);
         Object XMLToObject(string xml, Type objectType);
         string GetSoapXml<T>(T obj);
-        bool IsStagingEnviroment();
         DialType GetDialType(string rpCode);
+        bool IsStagingEnviroment();        
     }
 }

@@ -299,7 +299,11 @@
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
         SendDeviceToken = 341,
-        EndUserDataGathering = 345
+        SamsungOneOffer = 342,
+        TariffMigrations = 343,
+        DSLMyOrange = 344,
+        TODWorldCup = 345,
+        EndUserDataGathering = 346
     }
 }
 
