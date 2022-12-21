@@ -25,5 +25,11 @@ namespace Orange.Common.Utilities
             output.ErrorDescription = errorDesc;
             return output;
         }
+        public T OutputFiller<T, ErrorCodeEnum>(T output, ErrorCodeEnum errorCode, string errorDesc) where T : OutputFiller<ErrorCodeEnum> where ErrorCodeEnum : struct, IConvertible
+        {
+            output.ErrorCode = errorCode;
+            output.ErrorDescription = errorDesc;
+            return output;
+        }
     }
 }
