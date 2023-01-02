@@ -26,5 +26,6 @@
         AccountNumberAndPasswordAreNulls = 21,
         AccountNumberIsNullOrEmpty = 22,
         DSLTokenIsInvalid = 23
+        InputIsNull = 24
     }
 }
