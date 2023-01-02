@@ -37,7 +37,7 @@ namespace Orange.Common.Business.OrangeTriplePlay
         {
             try
             {
-                var endPoint = _utilities.GetAppSetting(Strings.APIs.CommonSecureIntegrationBusURL) + Strings.APIs.OrangeTriplePlayIdentifyUser;
+                var endPoint = _utilities.GetAppSetting(Strings.APIs.OrangeTPSecureIntegrationBusURL) + Strings.APIs.OrangeTriplePlayIdentifyUser;
                 var secureOutput = _secureManager.CallSecureConnect<IdentifyUserResponse>(
                     endPoint, MapInput(input, channel, moduleName), Strings.Verbs.Post);
                 if (secureOutput == null || secureOutput.ErrorCode != IdentifyUserResponse.ErrorCodes.Success)
