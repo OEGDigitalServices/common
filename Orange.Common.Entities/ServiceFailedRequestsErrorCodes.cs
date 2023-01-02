@@ -25,6 +25,7 @@
         WalletBalanceUnspecifiedError = 20,
         AccountNumberAndPasswordAreNulls = 21,
         AccountNumberIsNullOrEmpty = 22,
-        InputIsNull = 23,
+        DSLTokenIsInvalid = 23,
+        InputIsNull = 24
     }
 }
