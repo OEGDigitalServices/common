@@ -83,5 +83,15 @@
             public const string Dial = "Dial";
             public const string Email = "Email";
         }
+        public struct APIs
+        {
+            public const string CommonSecureIntegrationBusURL = "CommonSecureIntegrationBusURL";
+            public const string OrangeTriplePlayIdentifyUser = "Account/IdentifyUser";
+        }
+        public struct Verbs
+        {
+            public const string Post = "POST";
+
+        }
     }
 }

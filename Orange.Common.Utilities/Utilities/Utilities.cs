@@ -620,5 +620,10 @@ namespace Orange.Common.Utilities
         {
             get { return GetAppSetting(Strings.SharePoint.DSLBaseSiteUrl); }
         }
+        public string HashDial(string dial)
+        {
+            return dial.Substring(0, 3) + Strings.AppSettings.HashingDial + dial.Substring(dial.Length - 3, 3);
+
+        }
     }
 }
