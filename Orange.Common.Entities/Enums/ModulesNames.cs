@@ -305,6 +305,10 @@
         TODWorldCup = 345,
         SPPaymentsViaCreditCard = 346,
         SeasonalPackages = 347,
+
+        //please add the module name in the other two module names 
+        //Orange.GSM.Common
+        //Mobinil.Common.Utilities
     }
 }
 
