@@ -308,7 +308,12 @@
         TariffMigrations = 343,
         DSLMyOrange = 344,
         TODWorldCup = 345,
-        SeasonalPackages = 346
+        SPPaymentsViaCreditCard = 346,
+        SeasonalPackages = 347,
+
+        //please add the module name in the other two module names 
+        //Orange.GSM.Common
+        //Mobinil.Common.Utilities
     }
 }
 
