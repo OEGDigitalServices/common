@@ -7,5 +7,7 @@ namespace Orange.Common.Business
     {
         bool AddNotification(string body, string subject, string from, string to, string ccMail, Stream attachement, 
             string attachementName, CultureInfo cultureInfo, string resourceKey);
+        bool AddNotificationFullBody(string body, string subject, string from, string to, string ccMail, Stream attachement,
+            string attachementName);
     }
 }

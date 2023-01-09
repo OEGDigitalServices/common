@@ -60,5 +60,32 @@ namespace Orange.Common.Business
             str = str.Replace(Utilities.Strings.Mails.SiteUrl, _utilities.PublicSiteURL);
             return str;
         }
+
+        public override bool AddNotificationFullBody(string body, string subject, string from, string to, string ccMail,
+            Stream attachement, string attachementName)
+        {
+            try
+            {
+                QueuedEmail email = new QueuedEmail();
+                email.Subject = subject;
+                email.Body = body;
+                email.From = from;
+                email.To = to;
+                email.CC = ccMail;
+                if (attachement != null)
+                {
+                    var fileBinary = new byte[attachement.Length];
+                    email.AttachmentFile = fileBinary;
+                    email.AttachmentFileName = attachementName;
+                }
+                return _queuedEmailDataAccess.Add(email);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp);
+                return false;
+            }
+
+        }
     }
 }
