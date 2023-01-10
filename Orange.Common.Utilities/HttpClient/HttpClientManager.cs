@@ -97,7 +97,7 @@ namespace Orange.Common.Utilities
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
-            if(disableSSLVerification)
+            if (disableSSLVerification)
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);

@@ -563,6 +563,20 @@ namespace Orange.Common.Utilities
             }
         }
 
+        public bool IsValidAccountNumber(string accountNumber)
+        {
+            try
+            {
+                Regex regexDial = new Regex(@"^[0-9]*\.[0-9]*$", RegexOptions.Compiled);
+                return regexDial.IsMatch(accountNumber);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message, exp, false);
+                return false;
+            }
+        }
+
         public string GetInternalServerIPConsoleApp()
         {
             try
@@ -575,7 +589,7 @@ namespace Orange.Common.Utilities
                         return ip.ToString();
                     }
                 }
-                    throw new Exception("No network adapters with an IPv4 address in the system!");
+                throw new Exception("No network adapters with an IPv4 address in the system!");
             }
             catch (Exception exp)
             {
@@ -583,6 +597,7 @@ namespace Orange.Common.Utilities
                 return string.Empty;
             }
         }
+
         public string HashDial(string dial)
         {
             return dial.Substring(0, 3) + Strings.AppSettings.HashingDial + dial.Substring(dial.Length - 3, 3);
