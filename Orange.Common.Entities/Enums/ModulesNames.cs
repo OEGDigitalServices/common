@@ -305,7 +305,8 @@
         TODWorldCup = 345,
         EndUserDataGathering = 346,
         SPPaymentsViaCreditCard = 347,
-        SeasonalPackages = 348
+        SeasonalPackages = 348,
+        OrangeWebSecurity = 349
 
         //please add the module name in the other two module names 
         //Orange.GSM.Common
