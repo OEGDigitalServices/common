@@ -350,6 +350,7 @@
         SeasonalPackages = 345,
         NextMigrateServices = 346,
         Coins = 347,
+        NextRoaming = 348,
 
 
         //Don't forget to add the new module in the 2 other Module names in the 
