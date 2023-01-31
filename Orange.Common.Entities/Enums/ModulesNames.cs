@@ -298,12 +298,25 @@
         IPTvAddons = 324,
         TriplePlayDashboard = 325,
         IPTvPaymentsViaCreditCard = 326,
+        OrangeGSMInAdvanceBillPaymentViaCreditCard = 333,
+        OrangeGSMForOthersBillPaymentViaCreditCard = 334,
+        OrangeGSMInAdvanceBillPaymentForOthersViaCreditCard = 335,
+        OrangeGSMForOthersRechargeViaCreditCard = 336,
+        OrangeGSMAddBillViaScratchCard = 337,
         SendDeviceToken = 341,
         SamsungOneOffer = 342,
         TariffMigrations = 343,
         DSLMyOrange = 344,
         TODWorldCup = 345,
-        TheGold = 346,
+        EndUserDataGathering = 346,
+        SPPaymentsViaCreditCard = 347,
+        SeasonalPackages = 348,
+        Coins = 349,
+        TheGold = 350,
+
+        //please add the module name in the other two module names 
+        //Orange.GSM.Common
+        //Mobinil.Common.Utilities
     }
 }
 
