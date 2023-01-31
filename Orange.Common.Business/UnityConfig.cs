@@ -1,4 +1,5 @@
-﻿using Unity;
+﻿using Orange.Common.Business.OrangeTriplePlay;
+using Unity;
 namespace Orange.Common.Business
 {
     public class UnityConfig
@@ -15,6 +16,7 @@ namespace Orange.Common.Business
             container.RegisterType<IProfileManager, ProfileManager>();            
             container.RegisterType<ICaptchaService, CaptchaService>();
             container.RegisterType<IDSLBasicAuthenticationTokenManager, DSLBasicAuthenticationTokenManager>();
+            container.RegisterType<IOrangeTPManager, OrangeTPManager>();
 
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
