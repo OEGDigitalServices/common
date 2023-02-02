@@ -265,7 +265,7 @@
         UControlBillPayment = 261,
         HybirdOffer = 262,
         RamadanMassOffer = 263,
-        SummerOffer = 264,
+        RamadanVasOffer = 264,
         ServiceManagement = 265,
         SummerPromotion = 266,
         UControlManagePremier = 267,

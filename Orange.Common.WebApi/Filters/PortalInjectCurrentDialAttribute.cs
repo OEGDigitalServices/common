@@ -11,7 +11,7 @@ using Orange.Common.Utilities;
 using Unity;
 
 namespace Orange.Common.WebApi
-{ 
+{
     public class PortalInjectCurrentDialAttribute : ActionFilterAttribute
     {
         [Dependency]
@@ -28,7 +28,7 @@ namespace Orange.Common.WebApi
 
                 var obj = actionContext.ActionArguments["input"];
 
-                if(obj.GetType().GetProperty("Dial") != null && obj.GetType().GetProperty("Dial").PropertyType == typeof(string))
+                if (obj.GetType().GetProperty("Dial") != null && obj.GetType().GetProperty("Dial").PropertyType == typeof(string))
                 {
                     obj.GetType().GetProperty("Dial").SetValue(obj, currentDial);
                 }

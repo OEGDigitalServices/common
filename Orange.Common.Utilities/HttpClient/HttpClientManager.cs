@@ -27,6 +27,7 @@ namespace Orange.Common.Utilities
         {
             _utilities = utilities;
         }
+
         #endregion
 
         #region Methods
@@ -92,6 +93,7 @@ namespace Orange.Common.Utilities
             return (T)Convert.ChangeType(stringContent, typeof(T));
         }
 
+
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
         {     
             FillHeaders(headers);
@@ -106,6 +108,32 @@ namespace Orange.Common.Utilities
             var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
             var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
             return desrializedContent;
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.GetAsync(url).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance<TBody>(string url, TBody body, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var serializedContent = JsonConvert.SerializeObject(body);
+            var content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(url, content).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
+        }
+
+        public async Task<(HttpResponseMessage response, string stringContent)> PostWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
+        {
+            FillHeaders(headers);
+            var response = await _client.PostAsync(url, null).ConfigureAwait(false);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return (response, stringContent);
         }
 
         #endregion
@@ -139,7 +167,7 @@ namespace Orange.Common.Utilities
             return concatenatedURL;
         }
 
-        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds  = 100)
+        public async Task<string> Get(string url, Dictionary<string, string> headers = null, int timeoutInSeconds = 100)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(timeoutInSeconds));

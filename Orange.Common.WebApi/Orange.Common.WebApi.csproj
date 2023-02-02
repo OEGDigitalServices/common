@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -143,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenAuthUtilities\Log4Net.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -158,6 +162,14 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL.csproj">
+      <Project>{69c5b3b3-e1b6-490c-8bca-ffa5acdaf05c}</Project>
+      <Name>Orange.GSM.Profile.Auth.TokenAuthentication.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.Entities\Orange.GSM.Profile.Auth.TokenAuthentication.Entities.csproj">
+      <Project>{f9ac52b3-46c9-41e5-b532-5ad57f7c6bd7}</Project>
+      <Name>Orange.GSM.Profile.Auth.TokenAuthentication.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orange.Common.Business\Orange.Common.Business.csproj">
       <Project>{f76cda6a-cfda-449a-830a-92a016c18d80}</Project>
       <Name>Orange.Common.Business</Name>
