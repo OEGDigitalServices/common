@@ -23,16 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile.Membe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile", "Orange.Common.Profile\Orange.Common.Profile.csproj", "{5868AB0F-49C9-45B7-8860-3F057FF24AF3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TokenAuthentication", "TokenAuthentication", "{2341B022-1F2F-4471-AAB6-A3F04B4C98AF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.GSM.Profile.Auth.TokenAuthentication.BL", "..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL\Orange.GSM.Profile.Auth.TokenAuthentication.BL.csproj", "{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.GSM.Profile.Auth.TokenAuthentication.Entities", "..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\BL\Orange.GSM.Profile.Auth.TokenAuthentication.Entities\Orange.GSM.Profile.Auth.TokenAuthentication.Entities.csproj", "{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.GSM.Profile.Auth.TokenAuthentication.DB.DataAccess", "..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\DB\Orange.GSM.Profile.Auth.TokenAuthentication.DB.DataAccess\Orange.GSM.Profile.Auth.TokenAuthentication.DB.DataAccess.csproj", "{71F9C098-9977-45C0-99D4-9B33878A1D1A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.GSM.Profile.Auth.TokenAuthentication.DB.EF", "..\orange-gsm-staging-ld\Orange.GSM.Profile\Auth\TokenAuthentication\DB\Orange.GSM.Profile.Auth.TokenAuthentication.DB.EF\Orange.GSM.Profile.Auth.TokenAuthentication.DB.EF.csproj", "{393F4B96-96A8-4B92-8042-4C729E8E4350}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
