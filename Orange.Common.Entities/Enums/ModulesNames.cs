@@ -308,9 +308,11 @@
         TariffMigrations = 343,
         DSLMyOrange = 344,
         TODWorldCup = 345,
-        SPPaymentsViaCreditCard = 346,
-        SeasonalPackages = 347,
-        TheGold = 348,
+        EndUserDataGathering = 346,
+        SPPaymentsViaCreditCard = 347,
+        SeasonalPackages = 348,
+        Coins = 349,
+        TheGold = 350,
 
         //please add the module name in the other two module names 
         //Orange.GSM.Common
