@@ -14,6 +14,7 @@ namespace Orange.Common.WebApi
 {
     public class ValidateOrangeCashDialAndPin : ActionFilterAttribute
     {
+        [Dependency]
         public IOrangeCashManager _orangeCashManager { get; set; }
         [Dependency]
         public IUtilities _utilities { get; set; }

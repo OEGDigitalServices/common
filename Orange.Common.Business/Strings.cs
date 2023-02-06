@@ -88,8 +88,9 @@
             public const string CommonSecureIntegrationBusURL = "CommonSecureIntegrationBusURL";
             public const string OrangeTPSecureIntegrationBusURL = "OrangeTPSecureIntegrationBusURL";
             public const string OrangeTriplePlayIdentifyUser = "Account/IdentifyUser";
-            public const string OnlinePaymentsSecureIntegrationBusURL = "OnlinePaymentsSecureIntegrationBusURL";
-            public const string WalletBalanceInquiry = "WalletBalanceInquiry";
+            public const string OrangeCashSecureIntegrationBusURL = "OrangeCashSecureIntegrationBusURL";
+            public const string WalletBalanceInquiry = "api/Payments/WalletBalanceInquiry";
+
         }
         public struct Verbs
         {
