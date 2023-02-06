@@ -36,7 +36,7 @@ namespace Orange.Common.Business
             try
             {
                 return _httpClientManager.Post<WalletBalanceInquiryOutput, object>(string.Concat(
-                    _utilities.GetAppSetting(Strings.APIs.OnlinePaymentsSecureIntegrationBusURL),
+                    _utilities.GetAppSetting(Strings.APIs.OrangeCashSecureIntegrationBusURL),
                     Strings.APIs.WalletBalanceInquiry), MapInput(input), null, 120).GetAwaiter().GetResult(); ;
             }
             catch (Exception exp)
