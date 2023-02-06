@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrangeCash\IOrangeCashManager.cs" />
+    <Compile Include="OrangeCash\OrangeCashManager.cs" />
     <Compile Include="OrangePortal\IProfileManager.cs" />
     <Compile Include="OrangePortal\ProfileManager.cs" />
     <Compile Include="CaptchaSrevice\CaptchaService.cs" />

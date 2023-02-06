@@ -126,6 +126,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiUnityActionFilterProvider.cs" />
     <Compile Include="Controllers\AuthenticationFullBodyController.cs" />
+    <Compile Include="Controllers\OrangeCashAuthenticationController.cs" />
     <Compile Include="Controllers\PortalAuthenticatedUsersController.cs" />
     <Compile Include="Controllers\PortalBasicController.cs" />
     <Compile Include="Filters\DSLBasicAuthenticationTokenAttribute.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Filters\PortalInjectCurrentDialAttribute.cs" />
     <Compile Include="Filters\PortalSourceAuthenticationAttribute.cs" />
     <Compile Include="Filters\TokenAuthenticationAttribute.cs" />
+    <Compile Include="Filters\ValidateOrangeCashDialAndPin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
