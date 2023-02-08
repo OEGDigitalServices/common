@@ -6,5 +6,6 @@
         public string ErrorMessage { get; set; }
         public string InternalError { get; set; }
         public string InternalErrorDescription { get; set; }
+        public string URLFor3DS { get; set; }
     }
 }

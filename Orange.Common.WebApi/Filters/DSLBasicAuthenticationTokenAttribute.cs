@@ -17,6 +17,7 @@ namespace Orange.Common.WebApi
 {
     public class DSLBasicAuthenticationTokenAttribute : ActionFilterAttribute
     {
+        public bool IsOldCustomers { get; set; }
         [Dependency]
         public IDSLBasicAuthenticationTokenManager DSLAuthenticationTokenManager { get; set; }
         [Dependency]
@@ -30,6 +31,12 @@ namespace Orange.Common.WebApi
         {
             try
             {
+                var dslInput = (dynamic)actionContext.ActionArguments["input"];
+                if (IsOldCustomers && dslInput.DSLToken == Guid.Empty)
+                {
+                    base.OnActionExecuting(actionContext);
+                    return;
+                }
                 var input = GetRequestBody<DSLInput>(actionContext);
                 var dslClaims = DSLAuthenticationTokenManager.ValidateToken(input.Dial, input.DSLToken);
                 if (dslClaims == null || IsTokenExpired(dslClaims))
@@ -39,9 +46,6 @@ namespace Orange.Common.WebApi
                     return;
                 }
 
-                var dslInput = (dynamic)actionContext.ActionArguments["input"];
-                //if (!(actionContext.ActionArguments.ContainsKey("input") && 
-                //actionContext.ActionArguments["input"] is DSLInput dslInput)) return;
                 if (dslInput == null)
                     return;
                 dslInput.DSLNumber = dslClaims.LandLineNumber;

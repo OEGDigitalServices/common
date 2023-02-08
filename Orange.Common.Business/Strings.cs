@@ -86,6 +86,7 @@
         public struct APIs
         {
             public const string CommonSecureIntegrationBusURL = "CommonSecureIntegrationBusURL";
+            public const string OrangeTPSecureIntegrationBusURL = "OrangeTPSecureIntegrationBusURL";
             public const string OrangeTriplePlayIdentifyUser = "Account/IdentifyUser";
         }
         public struct Verbs

@@ -1,8 +1,7 @@
-﻿using Orange.Common.Utilities;
-using Orange.GSM.Common.EntityFramework.Models;
+﻿using Orange.Common.EntityFramework;
+using Orange.Common.Utilities;
 using System;
 using System.Linq;
-using DSLToken = Orange.GSM.Common.EntityFramework.Models.DSLToken;
 
 namespace Orange.Common.DataAccess
 {
