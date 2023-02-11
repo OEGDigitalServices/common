@@ -84,6 +84,7 @@ namespace Orange.Common.Utilities
 
             var serializedContent = _utilities.ObjectToXML<TBody>(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
 
             var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
