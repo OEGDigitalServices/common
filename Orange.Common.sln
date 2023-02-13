@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.WebApi", "Ora
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.GenericRepository", "Orange.Common.GenericRepository\Orange.Common.GenericRepository.csproj", "{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Connectors", "Orange.Common.Connectors\Orange.Common.Connectors.csproj", "{A3442EDE-7441-431C-8A44-A4EA71D9D92B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile.Membership", "Orange.Common.Profile.Membership\Orange.Common.Profile.Membership.csproj", "{96B01082-8202-46D4-A438-ED5BE3374B07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange.Common.Profile", "Orange.Common.Profile\Orange.Common.Profile.csproj", "{5868AB0F-49C9-45B7-8860-3F057FF24AF3}"
@@ -55,6 +57,10 @@ Global
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{611481AF-B1EB-49B8-B2C1-012AA7C62E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3442EDE-7441-431C-8A44-A4EA71D9D92B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96B01082-8202-46D4-A438-ED5BE3374B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96B01082-8202-46D4-A438-ED5BE3374B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96B01082-8202-46D4-A438-ED5BE3374B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,9 +69,31 @@ Global
 		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5868AB0F-49C9-45B7-8860-3F057FF24AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F9C098-9977-45C0-99D4-9B33878A1D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F9C098-9977-45C0-99D4-9B33878A1D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F9C098-9977-45C0-99D4-9B33878A1D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F9C098-9977-45C0-99D4-9B33878A1D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393F4B96-96A8-4B92-8042-4C729E8E4350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393F4B96-96A8-4B92-8042-4C729E8E4350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393F4B96-96A8-4B92-8042-4C729E8E4350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393F4B96-96A8-4B92-8042-4C729E8E4350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69C5B3B3-E1B6-490C-8BCA-FFA5ACDAF05C} = {2341B022-1F2F-4471-AAB6-A3F04B4C98AF}
+		{F9AC52B3-46C9-41E5-B532-5AD57F7C6BD7} = {2341B022-1F2F-4471-AAB6-A3F04B4C98AF}
+		{71F9C098-9977-45C0-99D4-9B33878A1D1A} = {2341B022-1F2F-4471-AAB6-A3F04B4C98AF}
+		{393F4B96-96A8-4B92-8042-4C729E8E4350} = {2341B022-1F2F-4471-AAB6-A3F04B4C98AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B76CE55E-F646-427C-A686-066922DE1F17}

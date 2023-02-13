@@ -27,13 +27,16 @@ namespace Orange.Common.WebApi
         [Dependency]
 
         public ILogger ILogger { get; set; }
+
         private string ctrl, action;
+
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             try
             {
                 if (!CheckTestingEnvironment())
                     return;
+                
                 var requestStartDate = DateTime.Now;
                 ctrl = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
                 action = actionContext.ActionDescriptor.ActionName;
@@ -71,11 +74,13 @@ namespace Orange.Common.WebApi
             }
 
         }
+
         private bool CheckTestingEnvironment()
         {
             bool.TryParse(Utilities.GetAppSetting(Strings.AppSettings.IsTokenEnabled), out bool isEnabled);
             return isEnabled;
         }
+
         private bool CheckPlainAndHashed(KeyValuePair<string, IEnumerable<string>> htv, KeyValuePair<string, IEnumerable<string>> ctv)
         {
             if (htv.Value == null || htv.Value.FirstOrDefault() == null)
