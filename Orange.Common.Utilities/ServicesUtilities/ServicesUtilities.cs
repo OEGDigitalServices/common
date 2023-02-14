@@ -445,6 +445,12 @@ namespace Orange.Common.Utilities
             xmlString += string.IsNullOrEmpty(parentNode) ? "</COMMAND>" : "</" + parentNode + ">";
             return xmlString;
         }
+
+        public IEnumerable<XElement> ExtractDataItemsFromXmlDocument(XDocument doc, string value)
+        {
+            return (from x in doc.Descendants(value) select x);
+        }
+
         #endregion
     }
 }
