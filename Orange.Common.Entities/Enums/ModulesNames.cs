@@ -336,6 +336,7 @@
         NextOffers = 371,
         PurchaseOfferViaCreditCard = 372,
         OrangeWebSecurity = 373,
+        NextMGM = 374,
 
         //please add the module name in the other two module names 
         //Orange.GSM.Common
