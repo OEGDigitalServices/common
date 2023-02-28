@@ -3,6 +3,7 @@ using Orange.Common.Entities;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace Orange.Common.Utilities
 {
@@ -29,5 +30,6 @@ namespace Orange.Common.Utilities
         DialType GetDialType(string rpCode);
         bool IsStagingEnviroment();
         string GenerateXMLRequest<T>(T xmlClass, string parentNode = "");
+        IEnumerable<XElement> ExtractDataItemsFromXmlDocument(XDocument doc, string value);
     }
 }

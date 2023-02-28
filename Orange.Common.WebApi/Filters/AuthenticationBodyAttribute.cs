@@ -29,10 +29,6 @@ namespace Orange.Common.WebApi
         {
             try
             {
-
-                if (IsJWTToken(actionContext))
-                    return;
-
                 ctrl = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
                 action = actionContext.ActionDescriptor.ActionName;
                 var claims = GetRequestBody(actionContext);
@@ -56,13 +52,6 @@ namespace Orange.Common.WebApi
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
             }
 
-        }
-
-
-        private bool IsJWTToken(HttpActionContext httpActionContext)
-        {
-            var token = httpActionContext.Request.Headers.FirstOrDefault(a => a.Key == Strings.Keys.Token || a.Key == Strings.Keys.Token.ToLower());
-            return !string.IsNullOrWhiteSpace(token.Value?.FirstOrDefault());
         }
 
         private ChannelClaims GetRequestBody(HttpActionContext actionContext)
