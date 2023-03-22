@@ -313,7 +313,7 @@
         SeasonalPackages = 348,
         Coins = 349,
         TheGold = 350,
-
+        MassOffer = 351,
         //please add the module name in the other two module names 
         //Orange.GSM.Common
         //Mobinil.Common.Utilities
