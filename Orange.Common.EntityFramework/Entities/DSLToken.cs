@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Orange.GSM.Common.EntityFramework.Models
+namespace Orange.Common.EntityFramework
 {
     public partial class DSLToken
     {

@@ -1,5 +1,5 @@
-﻿using System;
-using Orange.GSM.Common.EntityFramework.Models;
+﻿using Orange.Common.EntityFramework;
+using System;
 
 namespace Orange.Common.DataAccess
 {
