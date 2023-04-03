@@ -496,6 +496,8 @@
             public const string TestingMsisdn = "TestingMsisdn";
             public const string TestingUserId = "TestingUserId";
             public const string IsStagingEnviroment = "IsStagingEnviroment";
+            public const string DefaultBootstrapServers = "DefaultBootstrapServer";
+            public const string LingerMs = "LingerMs";
         }
         public struct CommandXmlTags
         {
@@ -552,6 +554,5 @@
         {
             public const string Authorization = "Authorization";
         }
-  
     }
 }
