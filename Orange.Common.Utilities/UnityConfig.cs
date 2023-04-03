@@ -22,6 +22,7 @@ namespace Orange.Common.Utilities
             container.RegisterType<ICachingUtilities, CachingUtilities>();
             container.RegisterType<ISharePointUtilities, SharePointUtilities>();
             container.RegisterType<ISecureManager, SecureManager>();
+            container.RegisterType<IKafkaProducer, KafkaProducer>(TypeLifetime.Singleton);
         }
     }
 }
