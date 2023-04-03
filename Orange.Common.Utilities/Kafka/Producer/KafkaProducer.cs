@@ -11,6 +11,7 @@ namespace Orange.Common.Utilities
 
         private readonly KafkaConfigurations _configurations;
         private readonly ILogger _logger;
+        private readonly Action<DeliveryReport<Null, string>> _handler;
 
         #endregion
 
@@ -20,12 +21,23 @@ namespace Orange.Common.Utilities
         {
             _configurations = kafkaConfigurations;
             _logger = logger;
+
+            #region DeliveryReport 
+
+            _handler = r =>
+            {
+                string error = r.Error.IsError
+                    ? r.Error.Reason
+                    : r.TopicPartitionOffset.ToString();
+                _logger.LogError(error, new Exception(JsonConvert.SerializeObject(r)));
+            };
+
+            #endregion
         }
 
         #endregion
 
         #region Log
-
 
         public void Log(object message, string topicName)
         {
@@ -45,7 +57,7 @@ namespace Orange.Common.Utilities
                         _logger.LogError(error.Reason, new Exception(JsonConvert.SerializeObject(error)));
                     }).Build())
                     {
-                        p.Produce(topicName, new Message<Null, string> { Value = JsonConvert.SerializeObject(message) }, handler);
+                        p.Produce(topicName, new Message<Null, string> { Value = JsonConvert.SerializeObject(message) }, _handler);
 
                         // wait for up to 10 seconds for any inflight messages to be delivered.
                         //p.Flush(TimeSpan.FromSeconds(5));
@@ -58,15 +70,6 @@ namespace Orange.Common.Utilities
                 }
             });
         }
-
-        #endregion
-
-        #region DeliveryReport 
-
-        Action<DeliveryReport<Null, string>> handler = r =>
-             Console.WriteLine(!r.Error.IsError
-               ? $"Delivered message to {r.TopicPartitionOffset}"
-               : $"Delivery Error : {r.Error.Reason}");
 
         #endregion
     }
