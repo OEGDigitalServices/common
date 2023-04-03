@@ -1,7 +1,7 @@
 ﻿using System;
 using Confluent.Kafka;
 using Newtonsoft.Json;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace Orange.Common.Utilities
 {
@@ -29,7 +29,7 @@ namespace Orange.Common.Utilities
 
         public void Log(object message, string topicName)
         {
-            var sendMessage = new Thread(() =>
+            Task.Run(() =>
             {
                 try
                 {
@@ -57,7 +57,6 @@ namespace Orange.Common.Utilities
                     _logger.LogError(exp.Message, exp);
                 }
             });
-            sendMessage.Start();
         }
 
         #endregion
