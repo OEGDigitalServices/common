@@ -35,5 +35,6 @@
         LinkDslDunningRetrialMechanism = 35,
         MyOrange = 36,
         MOTP = 37,
+        Recurring = 38
     }
 }
