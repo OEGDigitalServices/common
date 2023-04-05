@@ -76,6 +76,7 @@ namespace Orange.Common.Utilities
             var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            _logger.LogDebug(stringContent);
             var desrializedContent = JsonConvert.DeserializeObject<T>(stringContent);
             return desrializedContent;
         }
