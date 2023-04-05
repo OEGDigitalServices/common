@@ -5,6 +5,7 @@ using System.Data.Entity.Validation;
 
 namespace Orange.Common.Utilities
 {
+    //Test again
     public class EntityFramworkUtilties : IEntityFramworkUtilties
     {
         private readonly ILogger _logger;
