@@ -24,12 +24,12 @@ namespace Orange.Common.Utilities
 
             #region DeliveryReport 
 
-            _handler = r =>
+            _handler = report =>
             {
-                string error = r.Error.IsError
-                    ? r.Error.Reason
-                    : r.TopicPartitionOffset.ToString();
-                _logger.LogError(error, new Exception(JsonConvert.SerializeObject(r)));
+                if(report.Error.IsError)
+                {
+                    _logger.LogError(report.Error.Reason, new Exception(JsonConvert.SerializeObject(report)));
+                }
             };
 
             #endregion
@@ -52,15 +52,9 @@ namespace Orange.Common.Utilities
                         MessageTimeoutMs = _configurations.MessageTimeoutMs
                     };
 
-                    using (var p = new ProducerBuilder<Null, string>(config).SetErrorHandler((producer, error) =>
-                    {
-                        _logger.LogError(error.Reason, new Exception(JsonConvert.SerializeObject(error)));
-                    }).Build())
+                    using (var p = new ProducerBuilder<Null, string>(config).Build())
                     {
                         p.Produce(topicName, new Message<Null, string> { Value = JsonConvert.SerializeObject(message) }, _handler);
-
-                        // wait for up to 10 seconds for any inflight messages to be delivered.
-                        //p.Flush(TimeSpan.FromSeconds(5));
                         p.Flush();
                     }
                 }
