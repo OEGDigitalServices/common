@@ -23,7 +23,8 @@ namespace Orange.Common.Utilities
         {
             _client = new HttpClient();
         }
-        public HttpClientManager(IUtilities utilities)
+        public HttpClientManager(
+            IUtilities utilities)
         {
             _utilities = utilities;
         }
@@ -93,7 +94,7 @@ namespace Orange.Common.Utilities
         }
 
         public async Task<object> PostAsJson<T, TBody>(string url, TBody body, Dictionary<string, string> headers = null, bool disableSSLVerification = false) where TBody : class
-        {     
+        {
             FillHeaders(headers);
             string serializedContent = JsonConvert.SerializeObject((object)body);
             StringContent content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
@@ -101,11 +102,11 @@ namespace Orange.Common.Utilities
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+                throw new ArgumentException(Strings.ErrorDescriptions.StatusCodeNotSuccess + (int)response?.StatusCode);
             var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
-            var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
-            return desrializedContent;
+            return JsonConvert.DeserializeObject<object>(formatted);
         }
 
         #endregion

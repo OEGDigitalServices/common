@@ -427,6 +427,7 @@
 
             public const string LanguageHeaderMissingOrInvalid = "The \"lang\" header is missing or invalid";
             public const string LanguageHeaderMissingOrInvalidErrorLog = "The \"lang\" header is missing or invalid in {{url}} URL";
+            public const string StatusCodeNotSuccess = "API status code not success => {0}";
 
         }
         public struct SharePointQuery
