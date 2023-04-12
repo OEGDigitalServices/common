@@ -70,6 +70,19 @@
         {
             public const string Corporate = "corporate";
         }
+        public struct APIs
+        {
+            public const string CommonSecureIntegrationBusURL = "CommonSecureIntegrationBusURL";
+            public const string OrangeTPSecureIntegrationBusURL = "OrangeTPSecureIntegrationBusURL";
+            public const string OrangeTriplePlayIdentifyUser = "Account/IdentifyUser";
+            public const string OrangeCashSecureIntegrationBusURL = "OrangeCashSecureIntegrationBusURL";
+            public const string WalletBalanceInquiry = "api/Payments/WalletBalanceInquiry";
+        }
+        public struct Verbs
+        {
+            public const string Post = "POST";
+
+        }
         public struct ErrorDescriptions
         {
             public const string TokenInvalid = "The access token is invalid";
@@ -82,20 +95,6 @@
         {
             public const string Dial = "Dial";
             public const string Email = "Email";
-        }
-        public struct APIs
-        {
-            public const string CommonSecureIntegrationBusURL = "CommonSecureIntegrationBusURL";
-            public const string OrangeTPSecureIntegrationBusURL = "OrangeTPSecureIntegrationBusURL";
-            public const string OrangeTriplePlayIdentifyUser = "Account/IdentifyUser";
-            public const string OrangeCashSecureIntegrationBusURL = "OrangeCashSecureIntegrationBusURL";
-            public const string WalletBalanceInquiry = "api/Payments/WalletBalanceInquiry";
-
-        }
-        public struct Verbs
-        {
-            public const string Post = "POST";
-
         }
     }
 }

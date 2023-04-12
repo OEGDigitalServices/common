@@ -87,6 +87,7 @@ namespace Orange.Common.Utilities
 
             var serializedContent = _utilities.ObjectToXML<TBody>(body);
             var content = new StringContent(serializedContent, Encoding.UTF8, "application/xml");
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
 
             var response = await _client.PostAsync(url, content, cts.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
@@ -107,8 +108,10 @@ namespace Orange.Common.Utilities
 
             HttpResponseMessage response = await _client.PostAsync(url, content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            string formatted = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)).Replace("null", "\" \"").Replace("\"", "'");
-            return JsonConvert.DeserializeObject<object>(formatted);
+            var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var formatted = stringContent.Replace("null", "\" \"").Replace("\"", "\'");
+            var desrializedContent = JsonConvert.DeserializeObject<object>(formatted);
+            return desrializedContent;
         }
 
         public async Task<(HttpResponseMessage response, string stringContent)> GetWithoutSuccessEnsurance(string url, Dictionary<string, string> headers = null)
