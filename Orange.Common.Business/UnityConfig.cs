@@ -17,10 +17,11 @@ namespace Orange.Common.Business
             container.RegisterType<ICaptchaService, CaptchaService>();
             container.RegisterType<IDSLBasicAuthenticationTokenManager, DSLBasicAuthenticationTokenManager>();
             container.RegisterType<IOrangeTPManager, OrangeTPManager>();
+            container.RegisterType<IOrangeCashManager, OrangeCashManager>();
 
             Utilities.UnityConfig.RegisterTypes(container);
             DataAccess.UnityConfig.RegisterTypes(container);
-            Common.Profile.UnityConfig.RegisterTypes(container);
+            Profile.UnityConfig.RegisterTypes(container);
         }
     }
 }

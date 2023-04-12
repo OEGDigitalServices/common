@@ -64,6 +64,8 @@
     <Compile Include="Secure\Input\SIInput.cs" />
     <Compile Include="Secure\Output\SIOutput.cs" />
     <Compile Include="Inputs\MobileInput.cs" />
+    <Compile Include="OrangeCash\Common\Inputs\OrangeCashInput.cs" />
+    <Compile Include="OrangeCash\Common\Outputs\WalletBalanceInquiryOutput.cs" />
     <Compile Include="OrangeDSL\Input\DSLInput.cs" />
     <Compile Include="OrangeDSL\Output\ValidateDSLBasicAuthenticationTokenOutput.cs" />
     <Compile Include="OrangeTriplePlay\Inputs\TPInput.cs" />
